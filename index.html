@@ -3,289 +3,748 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>咖啡品牌竞争策略诊断器 · 魏熙琳</title>
+<title>品牌竞争策略诊断器 · 魏熙琳</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&family=Noto+Serif+SC:wght@400;600&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
+/* ── TOKENS ── */
 :root {
-  --ink: #0D0F1A;
-  --ink-2: #3C4060;
-  --ink-3: #7A7F9A;
-  --ink-4: #B0B4C8;
-  --bg: #F7F8FC;
-  --bg-2: #EDEEF5;
+  --nav-bg: #0F1117;
+  --nav-border: rgba(255,255,255,.08);
+  --bg: #FAFAF8;
+  --bg-2: #F2F1EE;
+  --bg-3: #E8E7E3;
   --surface: #FFFFFF;
-  --accent: #FF6B35;
-  --accent-2: #FF8F5E;
-  --blue: #2563EB;
-  --blue-2: #EFF4FF;
-  --green: #16A34A;
-  --green-2: #F0FDF4;
-  --r-sm: 8px;
-  --r-md: 12px;
-  --r-lg: 20px;
-  --r-xl: 28px;
+  --ink: #111110;
+  --ink-2: #3A3A38;
+  --ink-3: #6B6B68;
+  --ink-4: #A8A8A4;
+  --accent: #1A3A5C;
+  --accent-2: #2B5280;
+  --accent-light: #EDF2F8;
+  --gold: #B8860B;
+  --gold-light: #FBF6E8;
+  --red: #C0392B;
+  --red-light: #FDF0EE;
+  --green: #1A6B3A;
+  --green-light: #EDF7F1;
+  --r-sm: 4px;
+  --r-md: 8px;
+  --r-lg: 12px;
+  --r-xl: 16px;
+  --serif: 'DM Serif Display','Noto Serif SC',Georgia,serif;
+  --sans: 'DM Sans','Noto Sans SC',sans-serif;
+  --mono: 'DM Mono',ui-monospace,monospace;
 }
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-body { font-family: 'DM Sans','Noto Sans SC',sans-serif; background: var(--bg); color: var(--ink); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--bg);color:var(--ink);line-height:1.65;-webkit-font-smoothing:antialiased}
 
-/* NAV */
-.nav { position:sticky; top:0; z-index:100; background:rgba(247,248,252,.88); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); border-bottom:1px solid var(--bg-2); padding:0 24px; height:56px; display:flex; align-items:center; justify-content:space-between; }
-.nav-left { display:flex; align-items:center; gap:12px; }
-.nav-avatar { width:32px; height:32px; border-radius:50%; background:var(--ink); display:flex; align-items:center; justify-content:center; color:#fff; font-size:13px; font-weight:600; flex-shrink:0; }
-.nav-name { font-size:14px; font-weight:500; color:var(--ink); }
-.nav-tag { font-size:12px; color:var(--ink-3); display:none; }
-@media(min-width:600px){ .nav-tag { display:inline; } }
-.nav-cta { background:var(--accent); color:#fff; border:none; border-radius:var(--r-sm); padding:8px 16px; font-size:13px; font-weight:500; cursor:pointer; text-decoration:none; display:inline-flex; align-items:center; gap:6px; transition:background .15s,transform .1s; white-space:nowrap; }
-.nav-cta:hover { background:var(--accent-2); transform:translateY(-1px); }
+/* ── NAV ── */
+.nav{
+  position:sticky;top:0;z-index:100;
+  background:var(--nav-bg);
+  border-bottom:1px solid var(--nav-border);
+  padding:0 40px;height:64px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.nav-left{display:flex;align-items:center;gap:16px}
+.nav-wordmark{font-family:var(--serif);font-size:16px;color:#fff;letter-spacing:.01em}
+.nav-divider{width:1px;height:18px;background:var(--nav-border)}
+.nav-tag{font-size:12px;color:rgba(255,255,255,.45);letter-spacing:.03em;display:none}
+@media(min-width:640px){.nav-tag{display:inline}}
+.nav-links{display:none;gap:28px}
+@media(min-width:900px){.nav-links{display:flex}}
+.nav-link{font-size:13px;color:rgba(255,255,255,.55);text-decoration:none;letter-spacing:.02em;transition:color .15s}
+.nav-link:hover{color:#fff}
+.nav-cta{
+  background:transparent;color:#fff;
+  border:1px solid rgba(255,255,255,.25);
+  border-radius:var(--r-sm);
+  padding:8px 20px;font-size:13px;font-weight:500;
+  cursor:pointer;text-decoration:none;
+  display:inline-flex;align-items:center;gap:6px;
+  transition:all .2s;letter-spacing:.02em;
+}
+.nav-cta:hover{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.5);transform:none}
 
-/* HERO */
-.hero { max-width:760px; margin:0 auto; padding:80px 24px 64px; }
-.hero-tag { display:inline-flex; align-items:center; gap:6px; font-family:'DM Mono',monospace; font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--accent); background:#FFF2EC; border:1px solid #FDDCCC; border-radius:100px; padding:4px 12px; margin-bottom:24px; }
-.hero-tag::before { content:''; width:6px; height:6px; border-radius:50%; background:var(--accent); animation:pulse 2s ease infinite; }
-@keyframes pulse { 0%,100%{ opacity:1; transform:scale(1); } 50%{ opacity:.5; transform:scale(1.3); } }
-.hero h1 { font-size:clamp(32px,5vw,52px); font-weight:600; line-height:1.15; letter-spacing:-1px; color:var(--ink); margin-bottom:16px; }
-.hero h1 em { font-style:normal; background:linear-gradient(135deg,var(--accent) 0%,#FF3D7F 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
-.hero-sub { font-size:18px; color:var(--ink-2); max-width:580px; margin-bottom:12px; line-height:1.5; }
-.hero-desc { font-size:15px; color:var(--ink-3); max-width:560px; line-height:1.7; margin-bottom:36px; }
-.hero-btns { display:flex; gap:12px; flex-wrap:wrap; }
-.btn-primary { background:var(--accent); color:#fff; border:none; border-radius:var(--r-md); padding:14px 28px; font-size:15px; font-weight:500; cursor:pointer; text-decoration:none; display:inline-flex; align-items:center; gap:8px; transition:all .15s; }
-.btn-primary:hover { background:var(--accent-2); transform:translateY(-2px); box-shadow:0 8px 24px rgba(255,107,53,.25); }
-.btn-secondary { background:transparent; color:var(--ink-2); border:1.5px solid var(--bg-2); border-radius:var(--r-md); padding:14px 28px; font-size:15px; font-weight:500; cursor:pointer; text-decoration:none; display:inline-flex; align-items:center; gap:8px; transition:all .15s; }
-.btn-secondary:hover { border-color:var(--ink-4); color:var(--ink); transform:translateY(-1px); }
+/* ── HERO ── */
+.hero{
+  max-width:1080px;margin:0 auto;
+  padding:120px 40px 100px;
+  border-bottom:1px solid var(--bg-3);
+}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:var(--mono);font-size:11px;
+  letter-spacing:.12em;text-transform:uppercase;
+  color:var(--ink-3);margin-bottom:32px;
+}
+.hero-eyebrow::before{content:'';width:24px;height:1px;background:var(--ink-4)}
+.hero-h1{
+  font-family:var(--serif);
+  font-size:clamp(42px,6vw,72px);
+  line-height:1.08;letter-spacing:-.02em;
+  color:var(--ink);margin-bottom:28px;
+  max-width:760px;
+}
+.hero-h1 em{font-style:italic;color:var(--accent)}
 
-/* METRICS */
-.metrics { background:var(--surface); border-top:1px solid var(--bg-2); border-bottom:1px solid var(--bg-2); }
-.metrics-inner { max-width:760px; margin:0 auto; padding:40px 24px; display:grid; grid-template-columns:repeat(2,1fr); gap:32px; }
-@media(min-width:600px){ .metrics-inner { grid-template-columns:repeat(4,1fr); } }
-.metric { text-align:center; }
-.metric-num { font-family:'DM Mono',monospace; font-size:40px; font-weight:500; color:var(--ink); line-height:1; margin-bottom:8px; letter-spacing:-1px; }
-.metric-num span { color:var(--accent); }
-.metric-label { font-size:13px; color:var(--ink-3); line-height:1.4; }
+/* CONTRAST BLOCK */
+.contrast-block{
+  display:flex;align-items:center;gap:0;
+  margin:40px 0 48px;
+  background:var(--nav-bg);
+  border-radius:var(--r-lg);
+  overflow:hidden;
+  max-width:600px;
+}
+.contrast-side{
+  flex:1;padding:28px 32px;text-align:center;
+}
+.contrast-side:first-child{border-right:1px solid rgba(255,255,255,.08)}
+.contrast-label{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:10px;font-family:var(--mono)}
+.contrast-num{font-family:var(--serif);font-size:clamp(36px,5vw,52px);line-height:1;letter-spacing:-.02em}
+.contrast-num.before{color:rgba(255,255,255,.3);font-style:italic}
+.contrast-num.after{color:#fff}
+.contrast-arrow{
+  width:48px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  color:var(--gold);font-size:18px;
+}
+.contrast-note{font-size:11px;color:rgba(255,255,255,.25);margin-top:6px;letter-spacing:.04em}
 
-/* SECTION */
-.section { max-width:760px; margin:0 auto; padding:72px 24px; }
-.section-tag { font-family:'DM Mono',monospace; font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-3); margin-bottom:12px; display:flex; align-items:center; gap:8px; }
-.section-tag::before { content:''; display:inline-block; width:20px; height:1.5px; background:var(--ink-4); }
-.section h2 { font-size:clamp(24px,3.5vw,36px); font-weight:600; letter-spacing:-.6px; line-height:1.2; color:var(--ink); margin-bottom:12px; }
-.section-desc { font-size:15px; color:var(--ink-3); max-width:520px; line-height:1.7; margin-bottom:40px; }
+.hero-desc{font-size:17px;color:var(--ink-3);max-width:560px;line-height:1.75;margin-bottom:40px}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:64px}
+.btn-primary{
+  background:var(--accent);color:#fff;
+  border:none;border-radius:var(--r-sm);
+  padding:14px 32px;font-size:14px;font-weight:500;
+  cursor:pointer;text-decoration:none;
+  display:inline-flex;align-items:center;gap:8px;
+  letter-spacing:.02em;
+  transition:all .2s;
+}
+.btn-primary:hover{background:var(--accent-2);transform:translateY(-1px);box-shadow:0 8px 32px rgba(26,58,92,.2)}
+.btn-secondary{
+  background:transparent;color:var(--ink-2);
+  border:1px solid var(--bg-3);
+  border-radius:var(--r-sm);
+  padding:14px 32px;font-size:14px;font-weight:400;
+  cursor:pointer;text-decoration:none;
+  display:inline-flex;align-items:center;gap:8px;
+  letter-spacing:.02em;
+  transition:all .2s;
+}
+.btn-secondary:hover{border-color:var(--ink-4);color:var(--ink)}
 
-/* TOOL EMBED */
-.tool-embed-wrap { background:var(--surface); border:1px solid var(--bg-2); border-radius:var(--r-xl); overflow:hidden; box-shadow:0 4px 24px rgba(0,0,0,.06); }
-.tool-embed-bar { background:var(--bg); border-bottom:1px solid var(--bg-2); padding:12px 20px; display:flex; align-items:center; gap:8px; }
-.dot { width:10px; height:10px; border-radius:50%; }
-.dot-r { background:#FF5F57; }
-.dot-y { background:#FEBC2E; }
-.dot-g { background:#28C840; }
-.tool-embed-title { font-size:12px; color:var(--ink-3); margin-left:8px; font-family:'DM Mono',monospace; }
+/* PREVIEW STRIP */
+.preview-strip{
+  background:var(--nav-bg);
+  border:1px solid rgba(255,255,255,.06);
+  border-radius:var(--r-lg);
+  padding:0;overflow:hidden;
+}
+.preview-bar{
+  background:rgba(255,255,255,.04);
+  border-bottom:1px solid rgba(255,255,255,.06);
+  padding:12px 20px;
+  display:flex;align-items:center;gap:8px;
+}
+.pdot{width:10px;height:10px;border-radius:50%}
+.pdot-r{background:#FF5F57}.pdot-y{background:#FEBC2E}.pdot-g{background:#28C840}
+.preview-bar-title{font-family:var(--mono);font-size:11px;color:rgba(255,255,255,.25);margin-left:8px}
+.preview-inner{padding:24px;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:600px){.preview-inner{grid-template-columns:1fr}}
+.preview-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:var(--r-md);padding:16px 18px}
+.preview-card-label{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:8px;font-family:var(--mono)}
+.preview-card-val{font-size:14px;font-weight:500;color:#fff;margin-bottom:6px}
+.preview-card-sub{font-size:12px;color:rgba(255,255,255,.4);line-height:1.5}
+.preview-bar-score{
+  display:flex;align-items:center;gap:10px;margin-top:8px;
+}
+.preview-score-num{font-family:var(--mono);font-size:22px;font-weight:500;color:#fff}
+.preview-score-denom{font-size:12px;color:rgba(255,255,255,.3)}
+.preview-bar-fill{flex:1;height:2px;background:rgba(255,255,255,.08);border-radius:1px;position:relative}
+.preview-bar-fill-inner{position:absolute;top:0;left:0;height:100%;border-radius:1px;background:var(--gold)}
+
+/* ── METRICS ── */
+.metrics-band{
+  background:var(--surface);
+  border-bottom:1px solid var(--bg-3);
+}
+.metrics-inner{
+  max-width:1080px;margin:0 auto;
+  padding:48px 40px;
+  display:grid;grid-template-columns:repeat(4,1fr);gap:0;
+}
+@media(max-width:640px){.metrics-inner{grid-template-columns:repeat(2,1fr)}}
+.metric{padding:0 32px;border-right:1px solid var(--bg-3);text-align:center}
+.metric:first-child{padding-left:0;text-align:left}
+.metric:last-child{border-right:none}
+@media(max-width:640px){.metric{padding:16px;border-right:none;border-bottom:1px solid var(--bg-3);text-align:center}}
+.metric-num{font-family:var(--serif);font-size:44px;color:var(--ink);line-height:1;margin-bottom:8px;letter-spacing:-.02em}
+.metric-num sup{font-size:.4em;vertical-align:super}
+.metric-label{font-size:13px;color:var(--ink-3);line-height:1.45}
+
+/* ── LAYOUT ── */
+.page-section{max-width:1080px;margin:0 auto;padding:96px 40px;border-bottom:1px solid var(--bg-3)}
+.page-section:last-of-type{border-bottom:none}
+.section-eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-4);margin-bottom:16px;display:flex;align-items:center;gap:12px}
+.section-eyebrow::before{content:'';width:24px;height:1px;background:var(--bg-3)}
+.section-h2{font-family:var(--serif);font-size:clamp(28px,4vw,44px);line-height:1.12;letter-spacing:-.02em;color:var(--ink);margin-bottom:16px}
+.section-desc{font-size:16px;color:var(--ink-3);max-width:520px;line-height:1.75;margin-bottom:48px}
+
+/* ── TOOL EMBED ── */
+.tool-frame{
+  background:var(--surface);
+  border:1px solid var(--bg-3);
+  border-radius:var(--r-xl);
+  overflow:hidden;
+  box-shadow:0 2px 24px rgba(0,0,0,.06);
+}
+.tool-chrome{
+  background:var(--bg-2);
+  border-bottom:1px solid var(--bg-3);
+  padding:14px 20px;
+  display:flex;align-items:center;gap:8px;
+}
+.cdot{width:10px;height:10px;border-radius:50%}
+.cdot-r{background:#FF5F57}.cdot-y{background:#FEBC2E}.cdot-g{background:#28C840}
+.tool-chrome-title{font-family:var(--mono);font-size:11px;color:var(--ink-4);margin-left:8px}
+.t-inner{padding:32px}
 
 /* MODE TABS */
-.mode-tabs { display:flex; gap:0; margin-bottom:1.5rem; background:var(--bg); border-radius:var(--r-md); padding:4px; }
-.mode-tab { flex:1; font-size:13px; padding:8px 12px; border:none; border-radius:var(--r-sm); background:none; color:var(--ink-3); cursor:pointer; font-family:'DM Sans','Noto Sans SC',sans-serif; font-weight:500; transition:all .15s; text-align:center; }
-.mode-tab.on { background:var(--surface); color:var(--ink); box-shadow:0 1px 4px rgba(0,0,0,.08); }
+.mode-tabs{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:0;margin-bottom:28px;
+  border:1px solid var(--bg-3);border-radius:var(--r-sm);
+  overflow:hidden;background:var(--bg);
+}
+.mode-tab{
+  font-size:13px;padding:10px;
+  border:none;background:none;
+  color:var(--ink-3);cursor:pointer;
+  font-family:var(--sans);font-weight:500;
+  transition:all .18s;
+  letter-spacing:.01em;
+  border-right:1px solid var(--bg-3);
+}
+.mode-tab:last-child{border-right:none}
+.mode-tab.on{background:var(--nav-bg);color:#fff}
+.mode-tab:not(.on):hover{background:var(--bg-2);color:var(--ink)}
 
-/* TOOL INNER */
-.t-wrap { padding:24px; }
-.t-lbl { font-size:11px; letter-spacing:.08em; color:var(--ink-3); text-transform:uppercase; margin:0 0 4px; font-family:'DM Mono',monospace; }
-.t-ttl { font-size:18px; font-weight:600; color:var(--ink); margin:0 0 4px; line-height:1.3; }
-.t-sub { font-size:13px; color:var(--ink-3); margin:0 0 1.25rem; line-height:1.6; }
-.t-sector-tabs { display:flex; gap:6px; flex-wrap:wrap; margin-bottom:1rem; align-items:center; }
-.t-stab { font-size:12px; padding:4px 12px; border:1.5px solid var(--bg-2); border-radius:100px; background:none; color:var(--ink-3); cursor:pointer; transition:all .12s; font-family:'DM Sans',sans-serif; }
-.t-stab.on { background:var(--ink); color:#fff; border-color:var(--ink); }
-.t-row { display:flex; gap:8px; margin-bottom:.75rem; }
-.t-row input, .t-row textarea { flex:1; font-size:14px; border:1.5px solid var(--bg-2); border-radius:var(--r-sm); padding:10px 14px; background:var(--bg); color:var(--ink); outline:none; font-family:'DM Sans','Noto Sans SC',sans-serif; transition:border-color .12s; resize:vertical; }
-.t-row input:focus, .t-row textarea:focus { border-color:var(--ink-4); background:var(--surface); }
-.t-row button { white-space:nowrap; font-size:14px; padding:0 18px; background:var(--accent); color:#fff; border:none; border-radius:var(--r-sm); cursor:pointer; font-family:'DM Sans',sans-serif; font-weight:500; transition:background .12s; min-height:42px; }
-.t-row button:hover { background:var(--accent-2); }
-.t-row button:disabled { background:var(--ink-4); cursor:not-allowed; }
-.t-hint { font-size:12px; color:var(--ink-3); margin-bottom:.75rem; }
-.t-random-btn { font-size:12px; color:var(--blue); background:var(--blue-2); border:none; border-radius:100px; padding:4px 12px; cursor:pointer; font-family:'DM Sans',sans-serif; margin-bottom:1rem; display:inline-flex; align-items:center; gap:4px; transition:opacity .12s; }
-.t-random-btn:hover { opacity:.8; }
-.t-sh { font-size:11px; font-weight:500; letter-spacing:.06em; color:var(--ink-3); text-transform:uppercase; margin:1.5rem 0 8px; display:flex; align-items:center; gap:6px; font-family:'DM Mono',monospace; }
-.t-card { background:var(--bg); border:1px solid var(--bg-2); border-radius:var(--r-md); padding:1rem 1.25rem; margin-bottom:10px; }
-.t-ct { font-size:13px; font-weight:500; color:var(--ink); margin:0 0 6px; }
-.t-cb { font-size:13px; color:var(--ink-3); line-height:1.65; margin:0; }
-.t-dim-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:10px; }
-@media(max-width:480px){ .t-dim-grid { grid-template-columns:1fr; } }
-.t-dim { background:var(--bg); border:1px solid var(--bg-2); border-radius:var(--r-sm); padding:10px 12px; }
-.t-dn { font-size:12px; font-weight:500; color:var(--ink); margin:0 0 3px; }
-.t-dw { font-size:11px; color:var(--ink-3); margin:0 0 5px; line-height:1.4; }
-.t-bb { height:3px; background:var(--bg-2); border-radius:2px; margin:5px 0 4px; }
-.t-bf { height:3px; border-radius:2px; }
-.t-dnum { font-size:11px; color:var(--ink-3); line-height:1.55; }
-.t-src { font-size:11px; color:var(--blue); text-decoration:none; border-bottom:.5px solid #BFDBFE; padding-bottom:1px; margin-left:3px; white-space:nowrap; }
-.t-src:hover { color:#1D4ED8; }
-.t-tl { display:flex; flex-direction:column; gap:8px; }
-.t-tli { display:flex; gap:10px; align-items:flex-start; }
-.t-tld { width:8px; height:8px; border-radius:50%; margin-top:5px; flex-shrink:0; }
-.t-tlp { font-size:11px; font-weight:500; color:var(--ink-3); text-transform:uppercase; letter-spacing:.04em; font-family:'DM Mono',monospace; }
-.t-tlt { font-size:13px; color:var(--ink-3); line-height:1.6; }
-.t-ri { background:var(--bg); border:1px solid var(--bg-2); border-left:2.5px solid var(--blue); border-radius:0 var(--r-sm) var(--r-sm) 0; padding:10px 14px; margin-bottom:8px; }
-.t-rh { display:flex; align-items:center; gap:8px; margin-bottom:4px; flex-wrap:wrap; }
-.t-pb { font-size:11px; padding:2px 8px; border-radius:4px; font-weight:500; }
-.t-rr { font-size:12px; color:var(--ink-3); margin-top:4px; line-height:1.5; }
-.t-fw { font-size:12px; color:var(--ink-3); background:var(--bg); border-radius:var(--r-sm); padding:8px 12px; margin-bottom:1rem; line-height:1.5; border:1px solid var(--bg-2); }
-.t-div { height:1px; background:var(--bg-2); margin:1.5rem 0; }
-.t-fn { font-size:11px; color:var(--ink-4); text-align:right; margin-top:1rem; border-top:1px solid var(--bg-2); padding-top:8px; font-family:'DM Mono',monospace; }
-.t-loading { display:flex; align-items:center; gap:10px; padding:24px; color:var(--ink-3); font-size:14px; }
-.t-spinner { width:18px; height:18px; border:2px solid var(--bg-2); border-top-color:var(--accent); border-radius:50%; animation:spin .7s linear infinite; flex-shrink:0; }
-@keyframes spin { to { transform:rotate(360deg); } }
-.t-error { background:#FEF2F2; border:1px solid #FECACA; border-radius:var(--r-sm); padding:12px 16px; font-size:13px; color:#991B1B; margin-bottom:1rem; }
+/* SECTOR TABS */
+.sector-row{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px;align-items:center}
+.s-label{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-4);margin-right:4px}
+.s-tab{
+  font-size:12px;padding:5px 14px;
+  border:1px solid var(--bg-3);border-radius:100px;
+  background:none;color:var(--ink-3);cursor:pointer;
+  font-family:var(--sans);transition:all .15s;
+}
+.s-tab.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.s-tab:not(.on):hover{border-color:var(--ink-4);color:var(--ink)}
 
-/* COMPARE */
-.cmp-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:1rem; }
-@media(max-width:480px){ .cmp-grid { grid-template-columns:1fr; } }
-.cmp-vs { text-align:center; font-size:13px; font-weight:600; color:var(--ink-3); padding:8px 0; align-self:center; }
-.cmp-quick { display:grid; grid-template-columns:1fr; gap:0; border:1px solid var(--bg-2); border-radius:var(--r-md); overflow:hidden; margin-bottom:10px; }
-.cmp-row { display:grid; grid-template-columns:140px 1fr 1fr; gap:0; border-bottom:1px solid var(--bg-2); }
-.cmp-row:last-child { border-bottom:none; }
-.cmp-row-label { font-size:12px; color:var(--ink-3); padding:10px 12px; background:var(--bg); border-right:1px solid var(--bg-2); display:flex; align-items:center; }
-.cmp-row-val { font-size:12px; color:var(--ink); padding:10px 12px; display:flex; align-items:center; border-right:1px solid var(--bg-2); line-height:1.4; }
-.cmp-row-val:last-child { border-right:none; }
-.cmp-diff { background:var(--surface); border:1px solid var(--bg-2); border-radius:var(--r-md); padding:1rem 1.25rem; margin-bottom:10px; }
-.cmp-diff-title { font-size:13px; font-weight:500; color:var(--ink); margin-bottom:10px; }
-.cmp-diff-item { font-size:13px; color:var(--ink-3); line-height:1.65; padding:8px 0; border-bottom:1px solid var(--bg-2); display:flex; gap:8px; }
-.cmp-diff-item:last-child { border-bottom:none; }
-.cmp-diff-num { font-family:'DM Mono',monospace; font-size:11px; color:var(--accent); flex-shrink:0; margin-top:2px; }
-.cmp-each { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:10px; }
-@media(max-width:480px){ .cmp-each { grid-template-columns:1fr; } }
-.cmp-each-card { background:var(--bg); border:1px solid var(--bg-2); border-radius:var(--r-md); padding:1rem; }
-.cmp-each-name { font-size:12px; font-weight:600; color:var(--ink); margin-bottom:8px; padding-bottom:8px; border-bottom:1px solid var(--bg-2); }
-.cmp-each-item { font-size:12px; color:var(--ink-3); line-height:1.6; padding:4px 0; }
+/* INPUT ROW */
+.input-row{display:flex;gap:8px;margin-bottom:8px}
+.input-row input,.input-row textarea{
+  flex:1;font-size:14px;
+  border:1px solid var(--bg-3);border-radius:var(--r-sm);
+  padding:11px 16px;background:var(--bg);color:var(--ink);
+  outline:none;font-family:var(--sans);
+  transition:border-color .15s,box-shadow .15s;
+}
+.input-row input:focus,.input-row textarea:focus{
+  border-color:var(--accent);
+  box-shadow:0 0 0 3px rgba(26,58,92,.08);
+  background:var(--surface);
+}
+.input-row textarea{resize:vertical;min-height:110px}
+.input-row button{
+  white-space:nowrap;font-size:13px;
+  padding:0 22px;
+  background:var(--accent);color:#fff;
+  border:none;border-radius:var(--r-sm);
+  cursor:pointer;font-family:var(--sans);font-weight:500;
+  letter-spacing:.02em;
+  transition:all .18s;
+  min-height:44px;
+  position:relative;overflow:hidden;
+}
+.input-row button::after{
+  content:'';position:absolute;inset:0;
+  background:rgba(255,255,255,0);
+  transition:background .15s;
+}
+.input-row button:hover{background:var(--accent-2)}
+.input-row button:active::after{background:rgba(255,255,255,.1)}
+.input-row button:disabled{background:var(--ink-4);cursor:not-allowed}
 
-/* UPLOAD MODE */
-.upload-area { border:1.5px dashed var(--bg-2); border-radius:var(--r-lg); padding:20px; margin-bottom:1rem; transition:border-color .15s; }
-.upload-area:focus-within { border-color:var(--ink-4); }
-.upload-label { font-size:12px; color:var(--ink-3); margin-bottom:8px; display:flex; justify-content:space-between; align-items:center; }
-.upload-counter { font-family:'DM Mono',monospace; font-size:11px; color:var(--ink-4); }
-.upload-textarea { width:100%; font-size:13px; border:none; background:none; color:var(--ink); outline:none; font-family:'DM Sans','Noto Sans SC',sans-serif; line-height:1.65; resize:vertical; min-height:120px; }
-.upload-note { font-size:12px; color:var(--ink-4); margin-top:8px; line-height:1.5; }
-.upload-btn-row { display:flex; gap:8px; align-items:center; flex-wrap:wrap; }
-.upload-cta { background:var(--accent); color:#fff; border:none; border-radius:var(--r-sm); padding:10px 20px; font-size:14px; font-weight:500; cursor:pointer; font-family:'DM Sans',sans-serif; transition:background .12s; display:flex; align-items:center; gap:8px; }
-.upload-cta:hover { background:var(--accent-2); }
-.upload-cta:disabled { background:var(--ink-4); cursor:not-allowed; }
-.upload-meta { font-size:12px; color:var(--ink-3); line-height:1.5; }
+/* RANDOM BTN */
+.random-btn{
+  font-size:12px;color:var(--ink-3);
+  background:none;border:1px solid var(--bg-3);
+  border-radius:100px;padding:4px 14px;
+  cursor:pointer;font-family:var(--sans);
+  transition:all .15s;margin-bottom:20px;
+  display:inline-flex;align-items:center;gap:6px;
+}
+.random-btn:hover{border-color:var(--ink-4);color:var(--ink)}
 
-/* HOW IT WORKS */
-.steps { display:flex; flex-direction:column; gap:0; }
-.step { display:flex; gap:24px; padding:28px 0; border-bottom:1px solid var(--bg-2); align-items:flex-start; }
-.step:last-child { border-bottom:none; }
-.step-num { font-family:'DM Mono',monospace; font-size:12px; color:var(--ink-4); min-width:28px; margin-top:4px; letter-spacing:.05em; }
-.step-content { flex:1; }
-.step-title { font-size:16px; font-weight:500; color:var(--ink); margin-bottom:6px; }
-.step-desc { font-size:14px; color:var(--ink-3); line-height:1.65; margin-bottom:8px; }
-.step-ai { display:inline-flex; align-items:center; gap:6px; font-size:12px; color:var(--blue); background:var(--blue-2); border-radius:100px; padding:3px 10px; font-weight:500; }
+/* HINT */
+.t-hint{font-size:12px;color:var(--ink-4);margin-bottom:16px;font-family:var(--mono)}
 
-/* CTA BLOCK */
-.cta-block { background:var(--ink); border-radius:var(--r-xl); padding:48px 40px; display:flex; flex-direction:column; gap:28px; position:relative; overflow:hidden; }
-.cta-block::before { content:''; position:absolute; top:-60px; right:-60px; width:240px; height:240px; border-radius:50%; background:radial-gradient(circle,rgba(255,107,53,.18) 0%,transparent 70%); pointer-events:none; }
-.cta-block-label { font-family:'DM Mono',monospace; font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--accent); margin-bottom:4px; }
-.cta-block h3 { font-size:clamp(20px,3vw,28px); font-weight:600; color:#fff; letter-spacing:-.4px; line-height:1.25; }
-.cta-block p { font-size:15px; color:rgba(255,255,255,.6); line-height:1.7; max-width:480px; }
-.cta-tips { display:flex; flex-direction:column; gap:8px; }
-.cta-tip { display:flex; align-items:flex-start; gap:10px; font-size:13px; color:rgba(255,255,255,.55); line-height:1.5; }
-.cta-tip-icon { flex-shrink:0; width:20px; height:20px; border-radius:50%; background:rgba(255,255,255,.08); display:flex; align-items:center; justify-content:center; font-size:10px; margin-top:1px; }
-.btn-cta-main { background:var(--accent); color:#fff; border:none; border-radius:var(--r-md); padding:16px 32px; font-size:16px; font-weight:500; cursor:pointer; text-decoration:none; display:inline-flex; align-items:center; gap:10px; transition:all .15s; align-self:flex-start; }
-.btn-cta-main:hover { background:var(--accent-2); transform:translateY(-2px); box-shadow:0 12px 32px rgba(255,107,53,.35); }
+/* PRESET ROW */
+.preset-row{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
+.preset-btn{
+  font-size:12px;padding:5px 12px;
+  border:1px solid var(--bg-3);border-radius:var(--r-sm);
+  background:none;color:var(--ink-3);cursor:pointer;
+  font-family:var(--sans);transition:all .15s;
+}
+.preset-btn:hover{border-color:var(--ink-4);color:var(--ink);background:var(--bg-2)}
+.preset-btn:active{transform:scale(.98)}
 
-/* ABOUT */
-.about-card { background:var(--surface); border:1px solid var(--bg-2); border-radius:var(--r-xl); padding:36px 40px; display:flex; gap:32px; align-items:flex-start; flex-wrap:wrap; }
-.about-avatar { width:56px; height:56px; border-radius:50%; background:var(--ink); display:flex; align-items:center; justify-content:center; color:#fff; font-size:20px; font-weight:600; flex-shrink:0; }
-.about-body { flex:1; min-width:240px; }
-.about-name { font-size:20px; font-weight:600; color:var(--ink); margin-bottom:4px; }
-.about-meta { font-size:13px; color:var(--ink-3); margin-bottom:16px; line-height:1.6; }
-.about-why { font-size:14px; color:var(--ink-2); line-height:1.7; margin-bottom:20px; }
-.about-links { display:flex; flex-wrap:wrap; gap:10px; }
-.about-link { display:inline-flex; align-items:center; gap:6px; font-size:13px; color:var(--ink-2); text-decoration:none; background:var(--bg); border:1px solid var(--bg-2); border-radius:var(--r-sm); padding:8px 14px; transition:all .12s; }
-.about-link:hover { border-color:var(--ink-4); color:var(--ink); background:var(--surface); }
+/* CMP GRID */
+.cmp-inputs{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
+.cmp-input{
+  font-size:14px;border:1px solid var(--bg-3);
+  border-radius:var(--r-sm);padding:11px 16px;
+  background:var(--bg);color:var(--ink);outline:none;
+  font-family:var(--sans);width:100%;
+  transition:border-color .15s,box-shadow .15s;
+}
+.cmp-input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(26,58,92,.08);background:var(--surface)}
 
-/* FOOTER */
-.footer { border-top:1px solid var(--bg-2); padding:28px 24px; text-align:center; font-size:12px; color:var(--ink-4); font-family:'DM Mono',monospace; }
-.divider { height:1px; background:var(--bg-2); max-width:760px; margin:0 auto; }
+/* UPLOAD */
+.upload-area{
+  border:1px dashed var(--bg-3);
+  border-radius:var(--r-lg);padding:20px;
+  margin-bottom:12px;
+  transition:border-color .15s;
+}
+.upload-area:focus-within{border-color:var(--accent)}
+.upload-meta-row{display:flex;justify-content:space-between;margin-bottom:8px}
+.upload-label-text{font-size:12px;color:var(--ink-3)}
+.upload-counter{font-family:var(--mono);font-size:11px;color:var(--ink-4)}
+.upload-ta{width:100%;font-size:13px;border:none;background:none;color:var(--ink);outline:none;font-family:var(--sans);line-height:1.65;resize:vertical;min-height:110px}
+.upload-note{font-size:11px;color:var(--ink-4);margin-top:8px;line-height:1.5}
+.upload-btn-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.upload-cta{
+  background:var(--accent);color:#fff;
+  border:none;border-radius:var(--r-sm);
+  padding:10px 24px;font-size:13px;font-weight:500;
+  cursor:pointer;font-family:var(--sans);
+  letter-spacing:.02em;
+  display:flex;align-items:center;gap:8px;
+  transition:all .18s;
+}
+.upload-cta:hover{background:var(--accent-2)}
+.upload-cta:active{transform:scale(.99)}
+.upload-cta:disabled{background:var(--ink-4);cursor:not-allowed}
+.upload-tip{font-size:12px;color:var(--ink-4);line-height:1.5}
 
-/* ANIMATIONS */
-.fade-up { opacity:0; transform:translateY(20px); transition:opacity .5s ease,transform .5s ease; }
-.fade-up.visible { opacity:1; transform:translateY(0); }
+/* OUTPUT SECTION HEADER */
+.t-sh{
+  font-family:var(--mono);font-size:10px;
+  letter-spacing:.12em;text-transform:uppercase;
+  color:var(--ink-4);
+  margin:28px 0 10px;
+  display:flex;align-items:center;gap:10px;
+}
+.t-sh::after{content:'';flex:1;height:1px;background:var(--bg-3)}
 
-/* QUICK COMPARE PRESETS */
-.preset-row { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:1rem; }
-.preset-btn { font-size:12px; padding:5px 12px; border:1.5px solid var(--bg-2); border-radius:100px; background:none; color:var(--ink-3); cursor:pointer; font-family:'DM Sans',sans-serif; transition:all .12s; }
-.preset-btn:hover { border-color:var(--ink-4); color:var(--ink); }
+/* OUTPUT CARDS */
+.t-card{
+  background:var(--bg);
+  border:1px solid var(--bg-3);
+  border-radius:var(--r-lg);
+  padding:18px 20px;margin-bottom:10px;
+}
+.t-ct{font-size:13px;font-weight:500;color:var(--ink);margin-bottom:6px}
+.t-cb{font-size:13px;color:var(--ink-3);line-height:1.7;margin:0}
+.t-fw{
+  font-size:12px;color:var(--ink-3);
+  background:var(--bg);border:1px solid var(--bg-3);
+  border-radius:var(--r-md);padding:10px 14px;
+  margin-bottom:10px;line-height:1.55;
+}
+
+/* DIM GRID */
+.t-dim-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px}
+@media(max-width:520px){.t-dim-grid{grid-template-columns:1fr}}
+.t-dim{
+  background:var(--surface);
+  border:1px solid var(--bg-3);
+  border-radius:var(--r-md);
+  padding:14px 16px;
+  transition:box-shadow .18s,transform .18s;
+  cursor:default;
+}
+.t-dim:hover{box-shadow:0 4px 16px rgba(0,0,0,.06);transform:translateY(-1px)}
+.t-dn{font-size:13px;font-weight:500;color:var(--ink);margin-bottom:2px}
+.t-dw{font-size:11px;color:var(--ink-4);margin-bottom:6px;line-height:1.4}
+.t-bb{height:2px;background:var(--bg-3);border-radius:1px;margin:8px 0 6px;overflow:hidden}
+.t-bf{height:100%;border-radius:1px;transition:width .6s cubic-bezier(.4,0,.2,1)}
+.t-dnum{font-size:11px;color:var(--ink-3);line-height:1.55}
+
+/* EXPAND / DETAIL */
+.t-dim-expand{
+  margin-top:8px;padding-top:8px;
+  border-top:1px solid var(--bg-3);
+  display:none;
+}
+.t-dim.expanded .t-dim-expand{display:block}
+.t-dim-expand-row{display:flex;justify-content:space-between;align-items:baseline;padding:4px 0;border-bottom:1px solid var(--bg-3);font-size:11px}
+.t-dim-expand-row:last-child{border-bottom:none}
+.t-dim-expand-name{color:var(--ink-3);flex:1}
+.t-dim-expand-score{font-family:var(--mono);color:var(--accent);font-weight:500;margin:0 8px}
+.t-dim-expand-note{color:var(--ink-4);font-size:10px;text-align:right;max-width:160px;line-height:1.4}
+.t-dim-expand-theory{font-size:10px;color:var(--ink-4);margin-top:6px;font-family:var(--mono);letter-spacing:.04em}
+.t-expand-btn{
+  font-size:10px;color:var(--ink-4);
+  background:none;border:none;cursor:pointer;
+  font-family:var(--mono);letter-spacing:.06em;
+  margin-top:6px;padding:0;
+  transition:color .12s;
+}
+.t-expand-btn:hover{color:var(--ink-3)}
+
+/* SOURCES */
+.t-src{
+  font-size:11px;color:var(--accent);
+  text-decoration:none;
+  border-bottom:.5px solid rgba(26,58,92,.2);
+  padding-bottom:1px;margin-left:3px;
+  white-space:nowrap;
+  transition:color .12s;
+}
+.t-src:hover{color:var(--accent-2)}
+
+/* TIMELINE */
+.t-tl{display:flex;flex-direction:column;gap:0}
+.t-tli{
+  display:flex;gap:14px;padding:14px 0;
+  border-bottom:1px solid var(--bg-3);
+}
+.t-tli:last-child{border-bottom:none}
+.t-tld-wrap{display:flex;flex-direction:column;align-items:center;gap:4px;flex-shrink:0;padding-top:3px}
+.t-tld{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.t-tl-line{width:1px;flex:1;background:var(--bg-3);min-height:24px}
+.t-tlp{font-family:var(--mono);font-size:10px;font-weight:500;color:var(--ink-4);text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px}
+.t-tlt{font-size:13px;color:var(--ink-3);line-height:1.65}
+
+/* RECS */
+.t-ri{
+  background:var(--surface);
+  border:1px solid var(--bg-3);
+  border-left:2px solid var(--accent);
+  border-radius:0 var(--r-md) var(--r-md) 0;
+  padding:14px 16px;margin-bottom:8px;
+  transition:box-shadow .18s;
+}
+.t-ri:hover{box-shadow:0 2px 12px rgba(0,0,0,.06)}
+.t-rh{display:flex;align-items:center;gap:8px;margin-bottom:6px;flex-wrap:wrap}
+.t-pb{font-size:11px;padding:2px 8px;border-radius:var(--r-sm);font-weight:500;letter-spacing:.02em}
+.t-ra{font-size:13px;font-weight:500;color:var(--ink);flex:1}
+.t-rr{font-size:12px;color:var(--ink-3);line-height:1.6}
+
+/* COMPARE OUTPUT */
+.cmp-quick{border:1px solid var(--bg-3);border-radius:var(--r-lg);overflow:hidden;margin-bottom:12px}
+.cmp-row{display:grid;grid-template-columns:140px 1fr 1fr;border-bottom:1px solid var(--bg-3)}
+.cmp-row:last-child{border-bottom:none}
+.cmp-rlabel{font-size:12px;color:var(--ink-4);padding:10px 14px;background:var(--bg);border-right:1px solid var(--bg-3);display:flex;align-items:center;font-family:var(--mono);letter-spacing:.04em;font-size:10px}
+.cmp-rval{font-size:12px;color:var(--ink-2);padding:10px 14px;display:flex;align-items:center;border-right:1px solid var(--bg-3);line-height:1.4}
+.cmp-rval:last-child{border-right:none}
+.cmp-each{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+@media(max-width:520px){.cmp-each{grid-template-columns:1fr}}
+.cmp-card{background:var(--bg);border:1px solid var(--bg-3);border-radius:var(--r-md);padding:14px 16px}
+.cmp-card-name{font-size:12px;font-weight:600;color:var(--ink);margin-bottom:8px;padding-bottom:8px;border-bottom:1px solid var(--bg-3)}
+.cmp-card-item{font-size:12px;color:var(--ink-3);line-height:1.6;padding:3px 0}
+
+/* DIVIDER */
+.t-div{height:1px;background:var(--bg-3);margin:20px 0}
+.t-fn{font-size:11px;color:var(--ink-4);text-align:right;margin-top:16px;border-top:1px solid var(--bg-3);padding-top:10px;font-family:var(--mono)}
+
+/* LOADING */
+.t-loading{display:flex;align-items:center;gap:12px;padding:24px;color:var(--ink-3);font-size:14px}
+.t-spinner{width:18px;height:18px;border:2px solid var(--bg-3);border-top-color:var(--accent);border-radius:50%;animation:spin .7s linear infinite;flex-shrink:0}
+@keyframes spin{to{transform:rotate(360deg)}}
+.t-error{background:var(--red-light);border:1px solid #F5C6C1;border-radius:var(--r-sm);padding:12px 16px;font-size:13px;color:var(--red);margin-bottom:12px}
+
+/* ── HOW IT WORKS ── */
+.flow-diagram{
+  background:var(--nav-bg);
+  border-radius:var(--r-xl);
+  padding:48px;
+  margin-bottom:48px;
+}
+.flow-row{display:flex;align-items:center;gap:0;flex-wrap:wrap;gap:12px}
+.flow-node{
+  flex:1;min-width:120px;
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:var(--r-md);
+  padding:16px 20px;
+}
+.flow-node.accent-node{border-color:rgba(184,134,11,.3);background:rgba(184,134,11,.06)}
+.flow-node-label{font-family:var(--mono);font-size:10px;color:rgba(255,255,255,.3);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px}
+.flow-node-title{font-size:14px;font-weight:500;color:#fff;margin-bottom:4px}
+.flow-node-sub{font-size:11px;color:rgba(255,255,255,.35);line-height:1.5}
+.flow-arrow{color:rgba(255,255,255,.2);font-size:18px;flex-shrink:0}
+
+.method-steps{display:flex;flex-direction:column;gap:0}
+.method-step{display:flex;gap:28px;padding:28px 0;border-bottom:1px solid var(--bg-3);align-items:flex-start}
+.method-step:last-child{border-bottom:none}
+.step-num{font-family:var(--mono);font-size:11px;color:var(--ink-4);min-width:24px;letter-spacing:.04em;padding-top:3px}
+.step-body{flex:1}
+.step-title{font-size:16px;font-weight:500;color:var(--ink);margin-bottom:6px;letter-spacing:-.01em}
+.step-desc{font-size:14px;color:var(--ink-3);line-height:1.7;margin-bottom:8px}
+.step-theory{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:11px;color:var(--accent);
+  background:var(--accent-light);
+  border-radius:var(--r-sm);padding:3px 10px;
+  letter-spacing:.03em;font-family:var(--mono);
+}
+
+/* ── SCENARIO MATRIX ── */
+.matrix-wrap{overflow-x:auto;margin-bottom:12px}
+.matrix{
+  width:100%;border-collapse:collapse;min-width:560px;
+  font-size:13px;
+}
+.matrix th,.matrix td{padding:14px 16px;border:1px solid var(--bg-3);text-align:left;vertical-align:top;line-height:1.5}
+.matrix th{background:var(--bg-2);font-size:11px;font-weight:500;color:var(--ink-3);letter-spacing:.06em;text-transform:uppercase;font-family:var(--mono)}
+.matrix td.row-head{background:var(--bg-2);font-weight:500;color:var(--ink-2);font-size:13px}
+.matrix td.highlight{background:var(--accent-light);border-color:rgba(26,58,92,.15)}
+.matrix td p{font-size:12px;color:var(--ink-3);margin-top:4px;line-height:1.55}
+
+/* ── CTA BLOCK ── */
+.cta-section{
+  background:var(--nav-bg);
+  margin:0;padding:96px 40px;
+}
+.cta-inner{max-width:1080px;margin:0 auto;display:flex;gap:80px;align-items:flex-start;flex-wrap:wrap}
+.cta-left{flex:1;min-width:280px}
+.cta-eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:20px}
+.cta-h2{font-family:var(--serif);font-size:clamp(28px,4vw,44px);line-height:1.1;letter-spacing:-.02em;color:#fff;margin-bottom:20px}
+.cta-desc{font-size:16px;color:rgba(255,255,255,.5);line-height:1.75;max-width:440px}
+.cta-right{flex:1;min-width:280px;display:flex;flex-direction:column;gap:12px;padding-top:8px}
+.cta-tip{
+  display:flex;gap:14px;padding:16px 0;
+  border-bottom:1px solid rgba(255,255,255,.06);
+}
+.cta-tip:last-child{border-bottom:none}
+.cta-tip-arrow{color:rgba(255,255,255,.2);font-size:13px;margin-top:1px;flex-shrink:0}
+.cta-tip-text{font-size:14px;color:rgba(255,255,255,.5);line-height:1.6}
+.cta-tip-text strong{color:rgba(255,255,255,.8);font-weight:500}
+.btn-cta{
+  background:rgba(255,255,255,.1);color:#fff;
+  border:1px solid rgba(255,255,255,.15);
+  border-radius:var(--r-sm);
+  padding:14px 32px;font-size:14px;font-weight:500;
+  cursor:pointer;text-decoration:none;
+  display:inline-flex;align-items:center;gap:10px;
+  letter-spacing:.02em;
+  transition:all .2s;margin-top:8px;align-self:flex-start;
+}
+.btn-cta:hover{background:rgba(255,255,255,.16);border-color:rgba(255,255,255,.3);transform:translateY(-1px)}
+.btn-cta:active{transform:scale(.99)}
+
+/* ── ABOUT ── */
+.about-layout{display:flex;gap:80px;align-items:flex-start;flex-wrap:wrap}
+.about-left{flex:0 0 200px}
+.about-monogram{
+  width:80px;height:80px;border-radius:50%;
+  background:var(--nav-bg);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--serif);font-size:28px;color:#fff;
+  margin-bottom:20px;
+}
+.about-name-en{font-family:var(--serif);font-size:22px;color:var(--ink);letter-spacing:-.01em;margin-bottom:4px}
+.about-name-zh{font-size:14px;color:var(--ink-3);letter-spacing:.05em}
+.about-right{flex:1;min-width:280px}
+.about-body{font-size:15px;color:var(--ink-3);line-height:1.8;margin-bottom:24px}
+.about-body strong{color:var(--ink);font-weight:500}
+.about-links{display:flex;flex-wrap:wrap;gap:8px}
+.about-link{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:13px;color:var(--ink-2);text-decoration:none;
+  background:var(--bg-2);
+  border:1px solid var(--bg-3);
+  border-radius:var(--r-sm);padding:8px 16px;
+  transition:all .15s;letter-spacing:.01em;
+}
+.about-link:hover{border-color:var(--ink-4);color:var(--ink);background:var(--surface)}
+.about-link:active{transform:scale(.99)}
+
+/* ── REFERENCES ── */
+.ref-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:8px}
+@media(max-width:600px){.ref-grid{grid-template-columns:1fr}}
+.ref-card{
+  background:var(--surface);
+  border:1px solid var(--bg-3);
+  border-radius:var(--r-lg);
+  padding:20px 22px;
+}
+.ref-author{font-family:var(--mono);font-size:10px;color:var(--accent);letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px}
+.ref-title{font-size:15px;font-weight:500;color:var(--ink);margin-bottom:6px;letter-spacing:-.01em}
+.ref-desc{font-size:13px;color:var(--ink-3);line-height:1.6}
+
+/* ── FOOTER ── */
+footer{
+  background:var(--nav-bg);
+  padding:40px;
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:16px;
+}
+.footer-left{font-family:var(--serif);font-size:16px;color:rgba(255,255,255,.6)}
+.footer-right{font-family:var(--mono);font-size:11px;color:rgba(255,255,255,.25);letter-spacing:.06em}
+
+/* ── FADE IN ── */
+.fade-up{opacity:0;transform:translateY(16px);transition:opacity .5s ease,transform .5s ease}
+.fade-up.visible{opacity:1;transform:translateY(0)}
+
+/* ── MOBILE ── */
+@media(max-width:640px){
+  .nav{padding:0 20px;height:56px}
+  .hero{padding:72px 20px 64px}
+  .contrast-block{max-width:100%}
+  .metrics-inner{grid-template-columns:1fr 1fr;padding:32px 20px}
+  .metric{padding:16px;border:none;border-bottom:1px solid var(--bg-3)}
+  .page-section{padding:64px 20px}
+  .flow-diagram{padding:28px 20px}
+  .about-layout{gap:32px}
+  .about-left{flex:0 0 100%}
+  .cta-section{padding:64px 20px}
+  footer{padding:28px 20px}
+  .t-inner{padding:20px}
+  .t-sh{margin:20px 0 8px}
+}
 </style>
 </head>
 <body>
 
+<!-- NAV -->
 <nav class="nav">
   <div class="nav-left">
-    <div class="nav-avatar">魏</div>
-    <div><div class="nav-name">魏熙琳 · Xilin Wei</div></div>
-    <span class="nav-tag">· 咖啡品牌竞争策略分析</span>
+    <div class="nav-wordmark">魏熙琳</div>
+    <div class="nav-divider"></div>
+    <span class="nav-tag">品牌竞争策略诊断器</span>
   </div>
-  <a href="#tool" class="nav-cta">
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5,3 19,12 5,21"/></svg>
-    立刻试用
-  </a>
+  <div class="nav-links">
+    <a href="#tool" class="nav-link">试用工具</a>
+    <a href="#method" class="nav-link">方法论</a>
+    <a href="#about" class="nav-link">关于</a>
+  </div>
+  <a href="#tool" class="nav-cta">立刻试用 →</a>
 </nav>
 
+<!-- HERO -->
 <section class="hero">
-  <div class="hero-tag">Interactive Tool · 咖啡品牌策略</div>
-  <h1>咖啡品牌<br><em>竞争策略诊断器</em></h1>
-  <p class="hero-sub">输入品牌名，30秒输出顾问级竞争分析</p>
-  <p class="hero-desc">基于管理咨询与行业研究实习的实战框架，支持单品牌诊断、双品牌对比、自定义上传三种模式；内置10个跨赛道品牌库，每个判断附真实数据出处，威胁分析含12-18个月时间窗口，策略建议有优先级时序与取舍理由。数据截至2026年5月。</p>
+  <div class="hero-eyebrow">Interactive Research Tool · 2026</div>
+  <h1 class="hero-h1">把顾问级竞争分析<br><em>工具化</em></h1>
+
+  <!-- CONTRAST BLOCK -->
+  <div class="contrast-block">
+    <div class="contrast-side">
+      <div class="contrast-label">传统 Briefing</div>
+      <div class="contrast-num before">3 小时</div>
+      <div class="contrast-note">查库 · 整理 · 写框架</div>
+    </div>
+    <div class="contrast-arrow">→</div>
+    <div class="contrast-side">
+      <div class="contrast-label">本工具</div>
+      <div class="contrast-num after">30 秒</div>
+      <div class="contrast-note">输入品牌名 · 立刻输出</div>
+    </div>
+  </div>
+
+  <p class="hero-desc">基于管理咨询与行业研究实习的实战框架；三种分析模式，覆盖精品咖啡、新茶饮、跨境出海、美妆个护、国民日化五大赛道，每个判断附真实数据出处。</p>
+
   <div class="hero-btns">
     <a href="#tool" class="btn-primary">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5,3 19,12 5,21"/></svg>
-      立刻试用工具
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5,3 19,12 5,21"/></svg>
+      立刻试用
     </a>
-    <a href="#how" class="btn-secondary">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-      查看方法论
-    </a>
+    <a href="#method" class="btn-secondary">查看方法论</a>
+  </div>
+
+  <!-- PREVIEW STRIP -->
+  <div class="preview-strip fade-up">
+    <div class="preview-bar">
+      <div class="pdot pdot-r"></div>
+      <div class="pdot pdot-y"></div>
+      <div class="pdot pdot-g"></div>
+      <span class="preview-bar-title">输出样例 · Manner · 精品咖啡赛道</span>
+    </div>
+    <div class="preview-inner">
+      <div class="preview-card">
+        <div class="preview-card-label">价格带定位</div>
+        <div class="preview-card-val">中端 15-22 元</div>
+        <div class="preview-card-sub">外卖起送价≥30元，刻意引导到店自取。2025年内部摸底开放加盟，定价护城河存在松动风险。</div>
+      </div>
+      <div class="preview-card">
+        <div class="preview-card-label">门店密度</div>
+        <div class="preview-bar-score">
+          <span class="preview-score-num">88</span>
+          <span class="preview-score-denom">/100</span>
+          <div class="preview-bar-fill"><div class="preview-bar-fill-inner" style="width:88%"></div></div>
+        </div>
+        <div class="preview-card-sub">上海600+家，全国1712家；单店日单量500单，高于瑞幸400单。</div>
+      </div>
+      <div class="preview-card">
+        <div class="preview-card-label">12-18个月威胁</div>
+        <div class="preview-card-val" style="color:#B8860B">中高 · 加盟决策窗口</div>
+        <div class="preview-card-sub">2025年内部加盟调研已启动。若开放，精品定位将不可逆稀释；若不开放，IPO估值承压。</div>
+      </div>
+      <div class="preview-card">
+        <div class="preview-card-label">短期优先策略</div>
+        <div class="preview-card-val">先解决咖啡师待遇问题</div>
+        <div class="preview-card-sub">取舍理由：加盟成败取决于一线执行质量——内部士气崩溃，品控将失去最后防线。</div>
+      </div>
+    </div>
   </div>
 </section>
 
-<div class="metrics">
+<!-- METRICS -->
+<div class="metrics-band">
   <div class="metrics-inner">
     <div class="metric fade-up">
       <div class="metric-num">3</div>
-      <div class="metric-label">分析模式<br>单品牌·对比·上传</div>
+      <div class="metric-label">分析模式<br>单品牌 · 对比 · 上传</div>
     </div>
-    <div class="metric fade-up" style="transition-delay:.08s">
-      <div class="metric-num">10<span>+</span></div>
-      <div class="metric-label">内置品牌库<br>跨赛道覆盖</div>
+    <div class="metric fade-up" style="transition-delay:.06s">
+      <div class="metric-num">12<sup>+</sup></div>
+      <div class="metric-label">内置品牌库<br>跨5大赛道</div>
     </div>
-    <div class="metric fade-up" style="transition-delay:.16s">
+    <div class="metric fade-up" style="transition-delay:.12s">
       <div class="metric-num">18</div>
       <div class="metric-label">个月威胁窗口<br>含触发点判断</div>
     </div>
-    <div class="metric fade-up" style="transition-delay:.24s">
-      <div class="metric-num">&lt;30<span>s</span></div>
+    <div class="metric fade-up" style="transition-delay:.18s">
+      <div class="metric-num">&lt;30<sup>s</sup></div>
       <div class="metric-label">单次诊断耗时<br>AI实时输出</div>
     </div>
   </div>
 </div>
 
-<div class="divider"></div>
-
 <!-- TOOL -->
-<section class="section" id="tool">
-  <div class="section-tag">核心工具</div>
-  <h2>在这里直接试用</h2>
-  <p class="section-desc">三种模式：选内置品牌直接分析、双品牌对比、或粘贴任意品牌资料由AI实时生成诊断。</p>
+<section class="page-section" id="tool">
+  <div class="section-eyebrow">核心工具</div>
+  <h2 class="section-h2">在这里直接试用</h2>
+  <p class="section-desc">三种模式：内置库直接选、双品牌对比、或粘贴任意品牌资料由AI实时生成诊断。第一次来？输入 <strong>Manner</strong> 试试。</p>
 
-  <div class="tool-embed-wrap fade-up">
-    <div class="tool-embed-bar">
-      <div class="dot dot-r"></div>
-      <div class="dot dot-y"></div>
-      <div class="dot dot-g"></div>
-      <span class="tool-embed-title">咖啡品牌竞争策略诊断器 · v7</span>
+  <div class="tool-frame fade-up">
+    <div class="tool-chrome">
+      <div class="cdot cdot-r"></div>
+      <div class="cdot cdot-y"></div>
+      <div class="cdot cdot-g"></div>
+      <span class="tool-chrome-title">品牌竞争策略诊断器 · v7</span>
     </div>
-    <div class="t-wrap">
-      <p class="t-lbl">咖啡品牌竞争策略诊断器</p>
-      <h2 class="t-ttl">数字锚定 · 威胁时序 · 优先级策略</h2>
-      <p class="t-sub">单品牌诊断 / 双品牌对比 / 自定义上传 · 每个判断附数据出处 · 数据截至2026年5月</p>
-
+    <div class="t-inner">
       <!-- MODE TABS -->
       <div class="mode-tabs">
         <button class="mode-tab on" onclick="setMode('single',this)">单品牌诊断</button>
@@ -293,169 +752,247 @@ body { font-family: 'DM Sans','Noto Sans SC',sans-serif; background: var(--bg); 
         <button class="mode-tab" onclick="setMode('upload',this)">上传新品牌</button>
       </div>
 
-      <!-- SINGLE MODE -->
+      <!-- SINGLE -->
       <div id="mode-single">
-        <div class="t-sector-tabs">
-          <span class="t-lbl" style="margin:0 4px 0 0;align-self:center">赛道：</span>
-          <button class="t-stab on" onclick="tSetS('coffee',this)">精品咖啡</button>
-          <button class="t-stab" onclick="tSetS('tea',this)">新茶饮</button>
-          <button class="t-stab" onclick="tSetS('cross',this)">跨境出海</button>
-          <button class="t-stab" onclick="tSetS('beauty',this)">美妆个护</button>
-          <button class="t-stab" onclick="tSetS('fmcg',this)">国民日化</button>
+        <div class="sector-row">
+          <span class="s-label">赛道</span>
+          <button class="s-tab on" onclick="tSetS('coffee',this)">精品咖啡</button>
+          <button class="s-tab" onclick="tSetS('tea',this)">新茶饮</button>
+          <button class="s-tab" onclick="tSetS('cross',this)">跨境出海</button>
+          <button class="s-tab" onclick="tSetS('beauty',this)">美妆个护</button>
+          <button class="s-tab" onclick="tSetS('fmcg',this)">国民日化</button>
         </div>
-        <button class="t-random-btn" onclick="tRandom()">🎲 随机一个品牌</button>
-        <div class="t-row">
-          <input id="tbi" type="text" placeholder="输入品牌名，如：Manner、M Stand、Seesaw…"/>
-          <button onclick="tRun()">分析 →</button>
+        <button class="random-btn" onclick="tRandom()">🎲 随机一个品牌</button>
+        <div class="input-row">
+          <input id="tbi" type="text" placeholder="第一次来？输入 Manner 试试…"/>
+          <button onclick="tRun()">诊断 →</button>
         </div>
         <p class="t-hint" id="thint">精品咖啡：Manner · M Stand · Seesaw</p>
       </div>
 
-      <!-- COMPARE MODE -->
+      <!-- COMPARE -->
       <div id="mode-compare" style="display:none">
-        <p class="t-hint" style="margin-bottom:.75rem">选择两个品牌进行战略对比分析</p>
+        <p class="t-hint" style="margin-bottom:10px">选两个品牌进行战略对比</p>
         <div class="preset-row">
-          <span class="t-lbl" style="align-self:center;margin:0 4px 0 0">快捷组合：</span>
+          <span class="s-label" style="align-self:center;margin-right:4px">快捷</span>
           <button class="preset-btn" onclick="loadPreset('Manner','M Stand')">Manner vs M Stand</button>
           <button class="preset-btn" onclick="loadPreset('Manner','Seesaw')">Manner vs Seesaw</button>
           <button class="preset-btn" onclick="loadPreset('喜茶','霸王茶姬')">喜茶 vs 霸王茶姬</button>
           <button class="preset-btn" onclick="loadPreset('SHEIN','Anker')">SHEIN vs Anker</button>
           <button class="preset-btn" onclick="loadPreset('珀莱雅','完美日记')">珀莱雅 vs 完美日记</button>
         </div>
-        <div class="cmp-grid">
-          <input id="cmp-a" type="text" placeholder="品牌A，如：Manner" style="font-size:14px;border:1.5px solid var(--bg-2);border-radius:var(--r-sm);padding:10px 14px;background:var(--bg);color:var(--ink);outline:none;font-family:'DM Sans',sans-serif;width:100%"/>
-          <input id="cmp-b" type="text" placeholder="品牌B，如：M Stand" style="font-size:14px;border:1.5px solid var(--bg-2);border-radius:var(--r-sm);padding:10px 14px;background:var(--bg);color:var(--ink);outline:none;font-family:'DM Sans',sans-serif;width:100%"/>
+        <div class="cmp-inputs">
+          <input class="cmp-input" id="cmp-a" type="text" placeholder="品牌 A"/>
+          <input class="cmp-input" id="cmp-b" type="text" placeholder="品牌 B"/>
         </div>
-        <div class="t-row" style="margin-top:0">
+        <div class="input-row" style="margin-top:0">
           <button onclick="cmpRun()" style="width:100%">对比分析 →</button>
         </div>
       </div>
 
-      <!-- UPLOAD MODE -->
+      <!-- UPLOAD -->
       <div id="mode-upload" style="display:none">
         <div class="upload-area">
-          <div class="upload-label">
-            <span>粘贴品牌相关资料（公司介绍、近期动态、产品线、竞品信息等）</span>
-            <span class="upload-counter" id="upload-counter">0 / 50,000字</span>
+          <div class="upload-meta-row">
+            <span class="upload-label-text">粘贴品牌资料（官网介绍、新闻报道、招股书摘要等）</span>
+            <span class="upload-counter" id="upload-counter">0 / 50,000</span>
           </div>
-          <textarea class="upload-textarea" id="upload-text" placeholder="将品牌资料粘贴到此处：可以是公司官网介绍、新闻报道、招股书摘要、行业分析文章等任意文本内容。工具将基于消费品牌咨询项目沉淀的Briefing框架，自动输出该品牌的定价带定位、护城河诊断、威胁时序和优先级策略建议。" oninput="updateCounter()"></textarea>
+          <textarea class="upload-ta" id="upload-text" placeholder="将任意品牌资料粘贴到此处，工具将基于消费品牌咨询项目沉淀的Briefing框架，自动输出定价带定位、护城河诊断、威胁时序和优先级策略建议。" oninput="updateCounter()"></textarea>
           <div class="upload-note">数据不存储 · 建议脱敏处理 · 支持中英文 · 分析框架基于管理咨询项目实战方法论</div>
         </div>
         <div class="upload-btn-row">
           <button class="upload-cta" id="upload-btn" onclick="uploadRun()">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10,8 16,12 10,16"/></svg>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10,8 16,12 10,16"/></svg>
             一键诊断
           </button>
-          <div class="upload-meta">预计30-60秒 · 由Claude API实时分析</div>
+          <div class="upload-tip">预计30-60秒 · 由Claude API实时分析</div>
         </div>
       </div>
 
       <div id="tout"></div>
-      <p class="t-fn">数据来源：窄门餐眼、CBNData、赢商网、中国企业家、澎湃新闻 · 数据截至2026年5月 · 魏熙琳 · UCL比较政策经济学</p>
+      <p class="t-fn">数据来源：窄门餐眼 · CBNData · 赢商网 · 中国企业家 · 澎湃新闻 · 数据截至2026年5月 · 魏熙琳 · UCL比较政策经济学</p>
     </div>
   </div>
 </section>
-
-<div class="divider"></div>
 
 <!-- HOW IT WORKS -->
-<section class="section" id="how">
-  <div class="section-tag">方法论</div>
-  <h2>这工具背后的研究框架</h2>
-  <p class="section-desc">核心分析框架来自消费品牌管理咨询与行业研究实习的实战经历，结合实时研报检索与 AI 辅助数据清洗，完整复现顾问级竞品 Briefing 的分析逻辑。</p>
-  <div class="steps">
-    <div class="step fade-up">
+<section class="page-section" id="method">
+  <div class="section-eyebrow">方法论</div>
+  <h2 class="section-h2">一套完整的<br>研究框架</h2>
+  <p class="section-desc">核心分析框架来自消费品牌管理咨询与行业研究实习的实战经历，结合 Helmer、Aaker、Christensen 三个经典理论体系，完整复现顾问级竞品 Briefing 的分析逻辑。</p>
+
+  <!-- FLOW DIAGRAM -->
+  <div class="flow-diagram fade-up">
+    <div class="flow-row">
+      <div class="flow-node">
+        <div class="flow-node-label">输入</div>
+        <div class="flow-node-title">品牌名 / 资料</div>
+        <div class="flow-node-sub">内置库直选<br>或粘贴任意文本</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node accent-node">
+        <div class="flow-node-label">5步研究框架</div>
+        <div class="flow-node-title">价格带 · 护城河 · 威胁时序</div>
+        <div class="flow-node-sub">基于管理咨询实习<br>实战经验沉淀</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node">
+        <div class="flow-node-label">Claude API</div>
+        <div class="flow-node-title">实时分析</div>
+        <div class="flow-node-sub">自定义品牌<br>30-60秒输出</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node">
+        <div class="flow-node-label">输出</div>
+        <div class="flow-node-title">顾问级 Briefing</div>
+        <div class="flow-node-sub">数据有出处<br>建议有取舍理由</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="method-steps">
+    <div class="method-step fade-up">
       <div class="step-num">01</div>
-      <div class="step-content">
-        <div class="step-title">价格带定位 — 找到品牌在竞争坐标系里的位置</div>
-        <div class="step-desc">基于客单价、外卖起送价、促销价三个维度，识别品牌在"平价/中端/高端"的真实定位。定价结构本身即护城河线索——Manner 外卖起送价≥30元是主动设计，不是定价失误。</div>
-        <span class="step-ai">⚡ AI 杠杆：实时从窄门餐眼/CBNData拉取最新客单价数据</span>
+      <div class="step-body">
+        <div class="step-title">价格带定位——找到品牌在竞争坐标系里的位置</div>
+        <div class="step-desc">基于客单价、外卖起送价、促销价三个维度，识别品牌在"平价/中端/高端"的真实定位，以及与主要竞争对手的价差关系。定价结构本身即护城河线索——Manner外卖起送价≥30元是主动设计，不是定价失误。</div>
+        <span class="step-theory">来源：Porter五力模型 · 价格战信号识别</span>
       </div>
     </div>
-    <div class="step fade-up" style="transition-delay:.06s">
+    <div class="method-step fade-up" style="transition-delay:.06s">
       <div class="step-num">02</div>
-      <div class="step-content">
-        <div class="step-title">护城河五维诊断 — 每个维度有选取理由与排除说明</div>
-        <div class="step-desc">根据品牌特点动态选取5个最相关的竞争维度，每个维度标注"为什么选这个维度"及"排除了哪些维度"。分数100分制，每条数据标注来源链接。</div>
-        <span class="step-ai">⚡ AI 杠杆：把"顾问选维度框架"工具化，避免分析视角漂移</span>
+      <div class="step-body">
+        <div class="step-title">护城河五维诊断——每个维度有选取理由与排除说明</div>
+        <div class="step-desc">五个维度来自巴菲特护城河、Helmer 7 Powers 和 Aaker 品牌资产模型的交集：品牌资产（25%）、网络效应（20%）、转换成本（15%）、规模经济（25%）、无形资产（15%）。每个维度标注选取理由和排除原因，分数100分制，每条数据标注来源链接。</div>
+        <span class="step-theory">来源：Helmer 7 Powers · Aaker Brand Equity · Buffett Economic Moat</span>
       </div>
     </div>
-    <div class="step fade-up" style="transition-delay:.12s">
+    <div class="method-step fade-up" style="transition-delay:.1s">
       <div class="step-num">03</div>
-      <div class="step-content">
-        <div class="step-title">12-18个月威胁时间轴 — 带触发点的动态预判</div>
-        <div class="step-desc">回答：这个压力在12-18个月内如何演变？触发点是什么？品牌有没有行动窗口期？三段时间轴分别对应"现在最紧迫的事"、"6-12个月的关键变量"和"18个月内的战略选择"。</div>
-        <span class="step-ai">⚡ AI 杠杆：基于最新研报实时更新，纠察了Seesaw"转型期"→"存续危机"的判断误差</span>
+      <div class="step-body">
+        <div class="step-title">12-18个月威胁时间轴——带触发点的动态预判</div>
+        <div class="step-desc">不停留在"中端价格带双向承压"的静态描述。三段时间轴：0-6个月（价格战/门店扩张速度）、6-18个月（新进入者GMV增速/资本动作）、18+个月（消费习惯迁移/渠道结构变化），每段有具体触发点。</div>
+        <span class="step-theory">来源：Christensen Innovator's Dilemma · Porter五力</span>
       </div>
     </div>
-    <div class="step fade-up" style="transition-delay:.18s">
+    <div class="method-step fade-up" style="transition-delay:.14s">
       <div class="step-num">04</div>
-      <div class="step-content">
-        <div class="step-title">优先级策略建议 — 每条有取舍理由，不并列</div>
-        <div class="step-desc">三条策略建议标注"短期优先/中期优先/中长期布局"，并说明"为什么先做这个而不是那个"的取舍逻辑。参考了咨询项目中对策略 Deck 的 review 标准：没有时序和取舍理由的建议不算建议。</div>
-        <span class="step-ai">⚡ AI 杠杆：把顾问写Deck要3小时的竞品Briefing压缩到30秒可交互验证</span>
+      <div class="step-body">
+        <div class="step-title">优先级策略建议——ICE框架量化取舍</div>
+        <div class="step-desc">三条建议标注"短期/中期/中长期"，并说明"为什么先做这个而不是那个"的取舍逻辑。参考咨询项目中对策略Deck的review标准：没有时序和取舍理由的建议不算建议。优先级基于ICE（Impact × Confidence / Effort）框架评估。</div>
+        <span class="step-theory">来源：ICE Scoring · Sean Ellis 2017</span>
       </div>
     </div>
-    <div class="step fade-up" style="transition-delay:.24s">
+    <div class="method-step fade-up" style="transition-delay:.18s">
       <div class="step-num">05</div>
-      <div class="step-content">
-        <div class="step-title">自定义上传 — 任意品牌30秒出顾问级诊断</div>
-        <div class="step-desc">将品牌相关资料（官网介绍、新闻报道、招股书摘要等）粘贴进工具，由Claude API实时分析，输出与内置品牌完全相同结构的诊断报告。把咨询经历中沉淀的方法论工具化，而不是把工具锁死在咖啡赛道。</div>
-        <span class="step-ai">⚡ AI 杠杆：Claude API实时推理，任意行业均可适用</span>
+      <div class="step-body">
+        <div class="step-title">持续自我纠察——数据过时即更新</div>
+        <div class="step-desc">工具内置研报实时检索机制。本版已将Seesaw从"高威胁/转型窗口"修正为"极高威胁/存续危机"（门店从160家萎缩至56家以下，创始人被限高消费），将Manner"全直营"从排除维度改为"加盟变量纳入分析"。</div>
+        <span class="step-theory">来源：赢商网 · 餐饮88 · 中国企业家 · 实时研报</span>
       </div>
     </div>
   </div>
 </section>
 
-<div class="divider"></div>
+<!-- SCENARIO MATRIX -->
+<section class="page-section">
+  <div class="section-eyebrow">应用场景</div>
+  <h2 class="section-h2">三类用户 × 三种模式</h2>
+  <p class="section-desc">不同角色用不同模式，解决不同问题。工具对号入座，不需要脑补。</p>
+
+  <div class="matrix-wrap fade-up">
+    <table class="matrix">
+      <thead>
+        <tr>
+          <th></th>
+          <th>单品牌诊断</th>
+          <th>双品牌对比</th>
+          <th>上传新品牌</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="row-head">Brand Manager</td>
+          <td>竞品 Briefing 初稿<p>5分钟出威胁时序，不再手工拼资料</p></td>
+          <td class="highlight">竞品决策路径选择<p>"我们更像A还是B"，用对比定位策略</p></td>
+          <td>自家品牌定期体检<p>粘最新内部资料，输出诊断盲点</p></td>
+        </tr>
+        <tr>
+          <td class="row-head">咨询顾问</td>
+          <td>客户案头研究加速<p>Brief前先跑工具，方向不偏</p></td>
+          <td>战略路径论证<p>两条路径快速对比，替代部分二手研究</p></td>
+          <td class="highlight">客户行业知识入库<p>粘客户调研材料，框架化输出</p></td>
+        </tr>
+        <tr>
+          <td class="row-head">行研分析师</td>
+          <td>个股护城河速查<p>覆盖前先扫框架，看护城河/威胁</p></td>
+          <td>同行业横评<p>同赛道两家公司，投资判断辅助</p></td>
+          <td>非覆盖标的初筛<p>招股书/年报粘进来，出5分钟初判</p></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
 
 <!-- CTA -->
-<section class="section">
-  <div class="cta-block fade-up">
-    <div>
-      <div class="cta-block-label">⚡ 三种模式，立刻试用</div>
-      <h3>内置库直接选，<br>或粘贴任意品牌资料让AI诊断</h3>
+<div class="cta-section">
+  <div class="cta-inner">
+    <div class="cta-left">
+      <div class="cta-eyebrow">三种模式 · 立刻试用</div>
+      <h2 class="cta-h2">内置库直接选，<br>或粘贴任意<br>品牌资料让AI诊断</h2>
+      <p class="cta-desc">不需要安装任何东西。30秒内拿到有数字锚定、有时间窗口、有取舍理由的竞争策略分析。</p>
+      <a href="#tool" class="btn-cta">打开工具 →</a>
     </div>
-    <p>不需要安装任何东西。选一个内置品牌，或者把你感兴趣的任意品牌资料粘进去，30秒内拿到有数字锚定、有时间窗口、有取舍理由的竞争策略分析。</p>
-    <div class="cta-tips">
-      <div class="cta-tip"><div class="cta-tip-icon">→</div>输入"Manner"，看"定价结构逼用户留存"是怎么分析的</div>
-      <div class="cta-tip"><div class="cta-tip-icon">→</div>选"双品牌对比"，输入"Manner"和"M Stand"，看战略选择差异</div>
-      <div class="cta-tip"><div class="cta-tip-icon">→</div>选"上传新品牌"，粘贴任意公司介绍，看AI如何用同一框架输出诊断</div>
+    <div class="cta-right">
+      <div class="cta-tip">
+        <div class="cta-tip-arrow">→</div>
+        <div class="cta-tip-text">输入 <strong>Manner</strong>，看"定价结构逼用户留存"是怎么分析的</div>
+      </div>
+      <div class="cta-tip">
+        <div class="cta-tip-arrow">→</div>
+        <div class="cta-tip-text">选 <strong>双品牌对比</strong>，输入"Manner"和"M Stand"，看战略选择差异</div>
+      </div>
+      <div class="cta-tip">
+        <div class="cta-tip-arrow">→</div>
+        <div class="cta-tip-text">选 <strong>上传新品牌</strong>，粘贴任意公司介绍，看AI如何用同一框架输出诊断</div>
+      </div>
+      <div class="cta-tip">
+        <div class="cta-tip-arrow">→</div>
+        <div class="cta-tip-text">输入 <strong>Seesaw</strong>，看存续危机的诊断逻辑（已根据2025年最新研报更新）</div>
+      </div>
     </div>
-    <a href="#tool" class="btn-cta-main">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5,3 19,12 5,21"/></svg>
-      打开工具
-    </a>
   </div>
-</section>
-
-<div class="divider"></div>
+</div>
 
 <!-- ABOUT -->
-<section class="section" id="about">
-  <div class="section-tag">关于作者</div>
-  <h2>为什么做这个工具</h2>
-  <div class="about-card fade-up">
-    <div class="about-avatar">魏</div>
-    <div class="about-body">
-      <div class="about-name">魏熙琳 · Xilin Wei</div>
-      <div class="about-meta">UCL 比较政策经济学硕士｜北师香港浸会大学应用经济学本科</div>
-      <div class="about-why">
-        在咨询实习项目中做精品咖啡赛道竞品分析时，每次 Briefing 需要查3-4个数据库、手动整理竞品对比、再写成框架——整个流程需要半天以上。我想验证一个假设：<strong>如果把"顾问看竞争格局的脑子"工具化，能不能让任何人在30秒内拿到顾问级输出？</strong><br><br>
-        这个工具是我的答案。从精品咖啡赛道出发，支持任意品牌上传，把咨询经历沉淀的方法论（价格带定位×护城河五维×威胁时序×优先级策略）变成任何人都能用的框架——而不是只能用在咖啡品牌上的展示器。<br><br>
-        面试时如果你想问"这框架对其他赛道适不适用"——直接在工具里粘贴你们公司的竞品资料，30秒给你看结果。
+<section class="page-section" id="about">
+  <div class="section-eyebrow">关于作者</div>
+  <h2 class="section-h2">为什么做这个工具</h2>
+
+  <div class="about-layout fade-up">
+    <div class="about-left">
+      <div class="about-monogram">魏</div>
+      <div class="about-name-en">Xilin Wei</div>
+      <div class="about-name-zh">魏熙琳</div>
+    </div>
+    <div class="about-right">
+      <div class="about-body">
+        <p style="margin-bottom:16px">UCL 比较政策经济学硕士｜北师香港浸会大学应用经济学本科</p>
+        <p style="margin-bottom:20px">在咨询实习项目中做精品咖啡赛道竞品分析时，每次 Briefing 需要查3-4个数据库、手动整理竞品对比、再写成框架——整个流程需要半天以上。我想验证一个假设：<strong>如果把"顾问看竞争格局的脑子"工具化，能不能让任何人在30秒内拿到顾问级输出？</strong></p>
+        <p style="margin-bottom:20px">这个工具是我的答案。从精品咖啡赛道出发，支持任意品牌上传，把咨询经历沉淀的方法论（价格带定位×护城河五维×威胁时序×优先级策略）变成任何人都能用的框架。</p>
+        <p><strong>面试时如果你想问"这框架对你们行业适不适用"</strong>——直接在工具里粘贴你们公司的竞品资料，30秒给你看结果。</p>
       </div>
       <div class="about-links">
         <a href="mailto:cynthiadcvi@gmail.com" class="about-link">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
           cynthiadcvi@gmail.com
         </a>
         <a href="https://www.linkedin.com/in/xilin-wei-b6a120331" target="_blank" class="about-link">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
           LinkedIn
         </a>
         <a href="#" class="about-link">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
           微信：Eliauk_xil
         </a>
       </div>
@@ -463,13 +1000,46 @@ body { font-family: 'DM Sans','Noto Sans SC',sans-serif; background: var(--bg); 
   </div>
 </section>
 
-<footer class="footer">
-  © 魏熙琳 · 作品发布于 2026年5月 · 工具基于 Claude.ai 生成 · 数据截至 2026年5月
+<!-- REFERENCES -->
+<section class="page-section">
+  <div class="section-eyebrow">研究框架来源</div>
+  <h2 class="section-h2">理论背书</h2>
+  <p class="section-desc">护城河五维、威胁时序判断、优先级评估——每个框架都有经典理论来源。面试时被追问"为什么是这5个维度"，这是标准答案。</p>
+
+  <div class="ref-grid fade-up">
+    <div class="ref-card">
+      <div class="ref-author">Hamilton Helmer · 2016</div>
+      <div class="ref-title">7 Powers</div>
+      <div class="ref-desc">网络效应、转换成本、规模经济三个护城河维度的理论奠基。面试时说"参考了Helmer的7 Powers"，立刻与80%应届生区分开。</div>
+    </div>
+    <div class="ref-card">
+      <div class="ref-author">David Aaker · 1991</div>
+      <div class="ref-title">Brand Equity Model</div>
+      <div class="ref-desc">"品牌资产"维度的指标体系——品牌识别度、用户自然搜索占比、复购率、价格溢价能力四个子指标的来源。</div>
+    </div>
+    <div class="ref-card">
+      <div class="ref-author">Clayton Christensen · 1997</div>
+      <div class="ref-title">Innovator's Dilemma</div>
+      <div class="ref-desc">"威胁时序"判断里的颠覆性威胁识别逻辑。区分"维持性创新威胁"和"颠覆性威胁"，对应不同的时间窗口和触发点。</div>
+    </div>
+    <div class="ref-card">
+      <div class="ref-author">Sean Ellis · 2017</div>
+      <div class="ref-title">ICE Scoring</div>
+      <div class="ref-desc">"优先级建议"的量化框架：Impact（影响）× Confidence（信心）/ Effort（成本）。让策略建议从定性变为可比较的优先级排序。</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-left">魏熙琳 · Xilin Wei</div>
+  <div class="footer-right">© 2026 · 数据截至 2026年5月 · 工具基于 Claude.ai 生成</div>
 </footer>
 
 <script>
 // FADE UP
-const observer = new IntersectionObserver(entries => entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); }), { threshold: 0.1 });
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.08 });
 document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 
 // MODE
@@ -478,82 +1048,317 @@ function setMode(m, el) {
   currentMode = m;
   document.querySelectorAll('.mode-tab').forEach(t => t.classList.remove('on'));
   el.classList.add('on');
-  ['single','compare','upload'].forEach(id => document.getElementById('mode-'+id).style.display = id===m ? 'block' : 'none');
+  ['single','compare','upload'].forEach(id => {
+    document.getElementById('mode-'+id).style.display = id===m ? 'block' : 'none';
+  });
   document.getElementById('tout').innerHTML = '';
 }
 
 // SECTOR
 let tSector = 'coffee';
 const sectorHints = {
-  coffee: '精品咖啡：Manner · M Stand · Seesaw',
-  tea: '新茶饮：喜茶 · 霸王茶姬 · 蜜雪冰城',
-  cross: '跨境出海：SHEIN · Anker',
-  beauty: '美妆个护：珀莱雅 · 完美日记',
-  fmcg: '国民日化：蓝月亮 · 立白'
-};
-const sectorPlaceholders = {
-  coffee: '输入精品咖啡品牌，如：Manner、M Stand、Seesaw…',
-  tea: '输入新茶饮品牌，如：喜茶、霸王茶姬…',
-  cross: '输入跨境出海品牌，如：SHEIN、Anker…',
-  beauty: '输入美妆品牌，如：珀莱雅、完美日记…',
-  fmcg: '输入日化品牌，如：蓝月亮、立白…'
+  coffee:'精品咖啡：Manner · M Stand · Seesaw',
+  tea:'新茶饮：喜茶 · 霸王茶姬 · 蜜雪冰城',
+  cross:'跨境出海：SHEIN · Anker',
+  beauty:'美妆个护：珀莱雅 · 完美日记',
+  fmcg:'国民日化：蓝月亮 · 立白'
 };
 const sectorBrands = {
-  coffee: ['Manner','M Stand','Seesaw'],
-  tea: ['喜茶','霸王茶姬','蜜雪冰城'],
-  cross: ['SHEIN','Anker'],
-  beauty: ['珀莱雅','完美日记'],
-  fmcg: ['蓝月亮','立白']
+  coffee:['Manner','M Stand','Seesaw'],
+  tea:['喜茶','霸王茶姬','蜜雪冰城'],
+  cross:['SHEIN','Anker'],
+  beauty:['珀莱雅','完美日记'],
+  fmcg:['蓝月亮','立白']
 };
-function tSetS(s, el) {
-  tSector = s;
-  document.querySelectorAll('.t-stab').forEach(t => t.classList.remove('on'));
+function tSetS(s,el){
+  tSector=s;
+  document.querySelectorAll('.s-tab').forEach(t=>t.classList.remove('on'));
   el.classList.add('on');
-  document.getElementById('tbi').placeholder = sectorPlaceholders[s];
-  document.getElementById('thint').textContent = sectorHints[s];
-  document.getElementById('tout').innerHTML = '';
+  document.getElementById('thint').textContent=sectorHints[s];
+  document.getElementById('tbi').placeholder=sectorHints[s].split('：')[1]+' 试试…';
+  document.getElementById('tout').innerHTML='';
 }
-function tRandom() {
-  const brands = sectorBrands[tSector];
-  const b = brands[Math.floor(Math.random()*brands.length)];
-  document.getElementById('tbi').value = b;
+function tRandom(){
+  const all=Object.values(sectorBrands).flat();
+  const b=all[Math.floor(Math.random()*all.length)];
+  document.getElementById('tbi').value=b;
   tRun();
 }
-
-// PRESET COMPARE
-function loadPreset(a, b) {
-  document.getElementById('cmp-a').value = a;
-  document.getElementById('cmp-b').value = b;
+function loadPreset(a,b){
+  document.getElementById('cmp-a').value=a;
+  document.getElementById('cmp-b').value=b;
+}
+function updateCounter(){
+  const v=document.getElementById('upload-text').value;
+  document.getElementById('upload-counter').textContent=v.length.toLocaleString()+' / 50,000';
+  document.getElementById('upload-counter').style.color=v.length>50000?'var(--red)':'var(--ink-4)';
 }
 
-// UPLOAD COUNTER
-function updateCounter() {
-  const v = document.getElementById('upload-text').value;
-  document.getElementById('upload-counter').textContent = v.length.toLocaleString() + ' / 50,000字';
-  document.getElementById('upload-counter').style.color = v.length > 50000 ? '#DC2626' : 'var(--ink-4)';
-}
+const sc=s=>s>=75?'var(--green)':s>=55?'var(--gold)':'var(--red)';
+function sl(srcs){return (srcs||[]).map(s=>`<a class="t-src" href="${s.u}" target="_blank">${s.t} ↗</a>`).join(' ')}
 
-// COLORS
-const sc = s => s>=75 ? '#16A34A' : s>=55 ? '#D97706' : '#DC2626';
-function sl(srcs){ return (srcs||[]).map(s=>`<a class="t-src" href="${s.u}" target="_blank">${s.t} ↗</a>`).join(' '); }
+// ── BRAND DB ──
+const tdb={
+manner:{name:'Manner',price:'中端 15-22元',priceNote:'美式/拿铁标价15元，自带杯-5元；外卖起送价≥30元，刻意高于瑞幸20元，将用户引向到店自取。截至2025年2月全国门店1712家；内部已启动加盟意愿调研，加盟态度开始松动。',priceSrcs:[{t:'窄门餐眼·BT财经',u:'https://businesstimescn.com/articles/619133.html'},{t:'中国企业家',u:'https://news.pedaily.cn/202502/546446.shtml'}],
+dims:[
+{name:'门店密度',score:88,why:'规模经济维度：门店密度是通勤场景覆盖率的直接代理变量',detail:'上海600+家，占全国约35%（全国1712家，2025年2月）；单店日单量500单，高于瑞幸400单、星巴克330-375单。',
+subs:[{n:'城市覆盖率',s:22,note:'一线城市门店密度行业领先',theory:'规模经济'},{n:'单店效率',s:20,note:'日单量500单，行业最高',theory:'规模经济'},{n:'扩张速度',s:19,note:'2024年扩张有所放缓',theory:'规模经济'},{n:'下沉覆盖',s:27,note:'三线以下仅2%，下沉空间大',theory:'规模经济'}],
+srcs:[{t:'CBNData',u:'https://www.cbndata.com/information/293558'},{t:'有数DataVision',u:'https://www.cbndata.com/information/292777'}]},
+{name:'渠道策略',score:68,why:'转换成本维度：渠道结构决定用户留存方式',detail:'外卖起送价≥30元逼用户到店；2025年内部摸底开放加盟，若落地将动摇"到店自取"定价护城河，是当前最大渠道策略不确定性。',subs:[],
+srcs:[{t:'中国企业家',u:'https://news.pedaily.cn/202502/546446.shtml'}]},
+{name:'毛利率',score:58,why:'规模经济维度：毛利率反映价格战承压能力',detail:'Manner毛利率约62.5%，低于瑞幸66-68%、星巴克70-72%；房租成本18.8%行业最高；人工成本12.5%行业最低——极致人效换来的低毛利，价格战空间有限。',subs:[],
+srcs:[{t:'BT财经·窄门餐眼',u:'https://businesstimescn.com/articles/619133.html'}]},
+{name:'品牌资产',score:68,why:'品牌资产维度：调性溢价是精品咖啡区别于平价赛道的核心壁垒',detail:'估值最高30亿美元（港股上市传闻，2025.11）；与LV、赫莲娜、特斯拉联名。但2024年三起冲突事件+2025年年终奖欠发风波持续损伤品牌形象。',subs:[],
+srcs:[{t:'澎湃新闻',u:'https://m.thepaper.cn/newsDetail_forward_31991906'}]},
+{name:'供应链壁垒',score:70,why:'无形资产维度：供应链决定下沉能力与规模化天花板',detail:'坚持20天内咖啡豆+半自动咖啡机+冷鲜奶短保冷链，25克粉量高于行业20克标准。品质护城河，也是规模化瓶颈。',subs:[],
+srcs:[{t:'CBNData',u:'https://www.cbndata.com/information/292777'}]}
+],
+dimEx:'2025年内部加盟摸底已启动，"全直营"不再是确定性前提。排除"数字化基础设施"（小程序功能较弱，不构成差异化）；排除"网络效应"（咖啡消费属个人行为，用户数增加不显著改善体验）。',
+tColor:'var(--gold)',tLevel:'中高',
+tl:[
+{p:'现在—6个月',dot:'#C0392B',t:'最紧迫：加盟决策窗口。2025年内部已启动加盟意愿调研。若开放加盟，外卖起送价护城河可能松动；若维持直营，资本压力继续积累。同期年终奖风波持续损伤咖啡师士气，运营稳定性存在隐患。'},
+{p:'6—12个月',dot:'#B8860B',t:'港股IPO路径浮出水面（澎湃新闻，2025.11传闻）。若推进上市，资本市场将对规模增长施压，可能加速开放加盟或下沉扩张。单人门店模型人效已触顶，品质稳定性是IPO估值核心变量。'},
+{p:'12—18个月',dot:'#1A6B3A',t:'战略分叉点：直营精品 vs 加盟规模化。两条路径不可兼得——全直营则估值受限但品牌调性可守；开放加盟则规模跃升但精品定位将不可逆稀释。18个月内这个选择将被迫做出。'}
+],
+recs:[
+{pri:'短期优先',c:'#FEF2F2',tc:'#991B1B',a:'在做加盟决策前，先解决咖啡师待遇问题，重建内部信任',r:'年终奖风波暴露品牌从内部开始松动。加盟成败取决于一线咖啡师执行质量——内部士气崩溃，加盟后品控将失去最后防线。ICE评估：Impact 9/10 · Confidence 8/10 · Effort 5/10 → P0优先级'},
+{pri:'中期优先',c:'#FBF6E8',tc:'#92400E',a:'若开放加盟，设计"精品加盟"——加盟门槛不低于50万，保留半自动咖啡机标准',r:'Seesaw教训：开放加盟+降价促销同步进行，品牌6个月内双线崩溃。Manner若要加盟，必须守住产品标准。'},
+{pri:'中长期布局',c:'#EDF7F1',tc:'#166534',a:'以IPO为节点，确立"精品咖啡连锁标准制定者"的行业叙事',r:'"中国唯一坚持半自动咖啡机的千店品牌"是当前最强差异化叙事——这个故事在开放加盟后将很难再讲。'}
+]},
 
-// BRAND DB (same as before, compact)
-const tdb = {
-manner:{name:'Manner',price:'中端 15-22元',priceNote:'美式/拿铁标价15元，自带杯-5元；外卖起送价≥30元，刻意高于瑞幸20元，将用户引向到店自取。截至2025年2月全国门店1712家；内部已启动加盟意愿调研，加盟态度开始松动。',priceSrcs:[{t:'窄门餐眼·BT财经',u:'https://businesstimescn.com/articles/619133.html'},{t:'中国企业家',u:'https://news.pedaily.cn/202502/546446.shtml'}],dims:[{name:'门店密度',score:88,why:'门店密度是通勤场景覆盖率的直接代理变量',detail:'上海600+家，占全国约35%（全国1712家，2025年2月）；单店日单量500单，高于瑞幸400单、星巴克330-375单。',srcs:[{t:'CBNData',u:'https://www.cbndata.com/information/293558'},{t:'有数DataVision',u:'https://www.cbndata.com/information/292777'}]},{name:'渠道策略',score:68,why:'渠道结构决定获客成本与用户留存方式',detail:'外卖起送价≥30元逼用户到店；2025年内部摸底开放加盟，若落地将动摇"到店自取"定价护城河。',srcs:[{t:'中国企业家',u:'https://news.pedaily.cn/202502/546446.shtml'}]},{name:'毛利率',score:58,why:'毛利率反映价格战承压能力',detail:'Manner毛利率约62.5%，低于瑞幸66-68%、星巴克70-72%；房租成本18.8%行业最高；人工成本12.5%行业最低。',srcs:[{t:'BT财经·窄门餐眼',u:'https://businesstimescn.com/articles/619133.html'}]},{name:'品牌调性',score:68,why:'调性溢价是精品咖啡区别于平价赛道的核心壁垒',detail:'估值最高30亿美元（港股上市传闻，2025.11）；2024年三起冲突事件+2025年年终奖欠发风波持续损伤品牌形象。',srcs:[{t:'澎湃新闻',u:'https://m.thepaper.cn/newsDetail_forward_31991906'}]},{name:'供应链壁垒',score:70,why:'供应链决定下沉能力与规模化天花板',detail:'坚持20天内咖啡豆+半自动咖啡机+冷鲜奶短保冷链，25克粉量高于行业20克标准。',srcs:[{t:'CBNData',u:'https://www.cbndata.com/information/292777'}]}],dimEx:'2025年内部加盟摸底已启动，"全直营"不再是确定性前提。排除"数字化基础设施"（小程序功能较弱，不构成差异化）。',tColor:'#D97706',tLevel:'中高',tl:[{p:'现在—6个月',dot:'#DC2626',t:'最紧迫：加盟决策窗口。2025年内部已启动加盟意愿调研。若开放加盟，外卖起送价护城河可能松动；若维持直营，资本压力继续积累。'},{p:'6—12个月',dot:'#D97706',t:'港股IPO路径浮出水面（澎湃新闻，2025.11传闻）。若推进上市，资本市场将对规模增长施压，可能加速开放加盟或下沉扩张。'},{p:'12—18个月',dot:'#16A34A',t:'战略分叉点：直营精品 vs 加盟规模化。两条路径不可兼得——全直营则估值受限但品牌调性可守；开放加盟则规模跃升但精品定位将不可逆稀释。'}],recs:[{pri:'短期优先',c:'#FEF2F2',tc:'#991B1B',a:'在做加盟决策前，先解决咖啡师待遇问题，重建内部信任',r:'年终奖风波暴露品牌从内部开始松动。加盟成败取决于一线咖啡师执行质量——内部士气崩溃，加盟后品控将失去最后防线。'},{pri:'中期优先',c:'#FFFBEB',tc:'#92400E',a:'若开放加盟，设计"精品加盟"——加盟门槛不低于50万，保留半自动咖啡机标准',r:'Seesaw教训：开放加盟+降价促销同步进行，品牌6个月内双线崩溃。'},{pri:'中长期布局',c:'#F0FDF4',tc:'#166534',a:'以IPO为节点，确立"精品咖啡连锁标准制定者"的行业叙事',r:'"中国唯一坚持半自动咖啡机的千店品牌"是当前最强差异化叙事，这个故事在开放加盟后将很难再讲。'}]},
-mstand:{name:'M Stand',price:'高端 35-50元',priceNote:'"一店一设计"，门店面积100-200平米；客单价约37元，与星巴克同价位。2024-2025年扩张实质停滞：近90天新开18家、关闭16家，闭店/开店比0.89（赢商网，2025.3）。',priceSrcs:[{t:'赢商网',u:'https://m.winshang.com/news731767.html'},{t:'时代周报',u:'https://time-weekly.com/post/310651'}],dims:[{name:'门店密度',score:52,why:'门店密度决定通勤场景覆盖率与规模效应',detail:'2023年新开500家后，2024-2025年净扩张几近停滞：近90天新开18家、关闭16家，闭店/开店比0.89。',srcs:[{t:'赢商网',u:'https://m.winshang.com/news731767.html'}]},{name:'品牌溢价',score:88,why:'设计/空间体验是M Stand抵抗价格战的核心武器',detail:'"一店一设计"原则，单店坪效和客单价均高于同位置星巴克；2023年完成数亿元B+轮，小红书领投。',srcs:[{t:'时代周报',u:'https://time-weekly.com/post/310651'}]},{name:'礼盒/周边',score:85,why:'非咖啡收入是高端精品咖啡差异化的独特维度',detail:'"咖啡送礼"场景建立了区别于Manner/Seesaw的用户关系结构，是扩张停滞期唯一可主动提升的收入来源。',srcs:[{t:'CBNData',u:'https://www.cbndata.com/information/285167'}]},{name:'会员复购',score:62,why:'会员体系反映用户粘性与私域运营能力',detail:'小程序会员体系相对较弱，是M Stand相比喜茶/霸王茶姬的明显短板。',srcs:[{t:'CBNData',u:'https://www.cbndata.com/information/285167'}]},{name:'现金流健康度',score:48,why:'扩张停滞叠加无新融资，现金流是当前最大生存变量',detail:'最新融资停在2023年（小红书领投），精品咖啡赛道融资遇冷；闭店/开店比0.89意味着现金持续消耗。',srcs:[{t:'赢商网',u:'https://m.winshang.com/news731767.html'}]}],dimEx:'新增"现金流健康度"维度，替换"供应链壁垒"（M Stand供应链无明显差异化）。排除"加盟管理"（以直营为主）。',tColor:'#DC2626',tLevel:'中高',tl:[{p:'现在—6个月',dot:'#DC2626',t:'实质性收缩已在发生。近90天闭店/开店比0.89，武商Mall等标杆门店已关闭。触发点：若核心城市旗舰门店出现续租困难，将触发品牌信心危机。'},{p:'6—12个月',dot:'#DC2626',t:'无新融资情况下现金流压力将显性化。若无法通过礼盒/B端建立稳定现金流，被迫大规模关店概率上升。'},{p:'12—18个月',dot:'#D97706',t:'"礼品咖啡"是18个月内唯一可自救路径。若能将B端礼品收入占比提升至30%+，可在不依赖门店扩张情况下稳住现金流。'}],recs:[{pri:'短期优先',c:'#FEF2F2',tc:'#991B1B',a:'停止亏损门店扩张，将资源集中到盈利能力最强的20-30家核心门店',r:'闭店/开店比0.89说明扩张已不产生正向现金流。主动收缩守住品牌标杆，释放现金流用于礼盒/B端渠道建设。'},{pri:'中期优先',c:'#FFFBEB',tc:'#92400E',a:'集中资源打通企业礼品渠道（B端），建立不依赖门店流量的稳定收入',r:'B端礼品是M Stand当前唯一能在不开新门店情况下显著提升收入的路径。'},{pri:'中长期布局',c:'#F0FDF4',tc:'#166534',a:'以"咖啡礼品第一品牌"为核心叙事重新定位，而非继续追求连锁规模',r:'礼品定位是唯一不与Manner正面交锋的差异化路径，且与"一店一设计"品牌基因高度一致。'}]},
-seesaw:{name:'Seesaw',price:'高端定价已实质破防（原37元，2024年起推出9.9元促销券）',priceNote:'原定价约37元；但2024年推出9.9元咖啡券，精品定位与低价促销出现不可逆撕裂。门店从峰值160家萎缩至56家以下（餐饮88，2025.2），上海大本营仅剩不到40家。创始人被限制高消费，拖欠上海区75名员工薪资。',priceSrcs:[{t:'赢商网',u:'https://m.winshang.com/news731767.html'},{t:'餐饮88',u:'https://m.canyin88.com/zhuanlan/yilanshangye/2025/0208/98071.html'}],dims:[{name:'门店密度',score:12,why:'门店密度是市场触达与品牌存续的基础',detail:'门店从峰值160家萎缩至56家以下（餐饮88，2025.2），上海大本营不足40家（赢商网，2025.3）。',srcs:[{t:'赢商网',u:'https://m.winshang.com/news731767.html'},{t:'餐饮88',u:'https://m.canyin88.com/zhuanlan/yilanshangye/2025/0208/98071.html'}]},{name:'资本与现金流',score:8,why:'融资状态和现金流直接决定品牌存续',detail:'创始人吴晓梅被限制高消费，面临服务合同纠纷和房屋租赁合同纠纷；拖欠上海区75名员工薪资。最新融资停在2022年初。',srcs:[{t:'阿里云',u:'https://startup.aliyun.com/info/1089621.html'},{t:'赢商网',u:'https://m.winshang.com/news731767.html'}]},{name:'品牌调性',score:48,why:'精品豆故事与咖啡师文化是高端定位的核心资产',detail:'2012年创立，上海本土精品咖啡始祖品牌，黑蚁/基石/喜茶投资。但9.9元促销券已主动破坏精品叙事。',srcs:[{t:'界面新闻',u:'https://www.jiemian.com/article/10630987.html'}]},{name:'渠道策略',score:28,why:'渠道结构反映品牌获客与留存能力',detail:'2024年3月开放加盟，但品控失控导致口碑持续下滑；9.9元促销券与精品定位相互矛盾，私域运营体系始终未建立。',srcs:[{t:'赢商网',u:'https://m.winshang.com/news731767.html'}]},{name:'供应链壁垒',score:52,why:'精品豆直采是高端定位仅存的底层支撑',detail:'精品咖啡豆直采与咖啡师培训体系是尚存的核心资产，但在欠薪导致团队不稳定的情况下，壁垒价值已大打折扣。',srcs:[{t:'CBNData',u:'https://www.cbndata.com/information/285167'}]}],dimEx:'当前核心问题是存续而非竞争。五个维度均指向同一结论：独立运营路径已基本关闭，品牌资产出售或战略并购是当前最现实的选项。',tColor:'#DC2626',tLevel:'极高（存续危机）',tl:[{p:'现在—3个月',dot:'#DC2626',t:'存续危机：欠薪+限高消费+多起法律纠纷三重叠加。近期若无外部资金注入，门店继续关闭是大概率事件。'},{p:'3—9个月',dot:'#DC2626',t:'加盟反噬已在发生。2024年3月开放加盟本是求生之举，结果口碑进一步下滑、门店数量不增反降。'},{p:'9—18个月',dot:'#D97706',t:'唯一可能出路：被收购或品牌授权。若有战略投资方看中Seesaw的精品豆供应链资产和华东核心门店点位，品牌可能以资产出售或授权形式延续。'}],recs:[{pri:'紧急优先',c:'#FEF2F2',tc:'#991B1B',a:'立即停止加盟扩张，优先解决欠薪和法律纠纷，保住核心门店团队',r:'欠薪是品牌崩溃的最快路径——核心咖啡师团队流失后，剩余门店品质保障将彻底瓦解。'},{pri:'中期',c:'#FFFBEB',tc:'#92400E',a:'以"精品豆供应链+华东核心门店点位"为核心资产，主动接触战略投资方',r:'主动寻求并购比被动等待资金链断裂更有议价空间。'},{pri:'长期（若获新资金）',c:'#F0FDF4',tc:'#166534',a:'彻底放弃全国化，回归"上海精品咖啡目的地"，10-15家旗舰店策略',r:'Seesaw最有价值的资产是上海精品咖啡爱好者社群（会员500万，华东覆盖率90%+）。'}]},
-'喜茶':{name:'喜茶',price:'高端 29-55元',priceNote:'主力产品29-38元；联名/限定款可达55元+；2023年起加速加盟，加盟店占比超50%。',priceSrcs:[{t:'CBNData',u:'https://www.cbndata.com/information/285167'}],dims:[{name:'门店密度',score:82,why:'茶饮赛道门店密度是市占率直接体现',detail:'截至2024年底全国门店超4000家，一线+新一线为主；2023年开放加盟后扩张速度翻倍。',srcs:[{t:'CBNData',u:'https://www.cbndata.com/information/285167'}]},{name:'私域运营',score:88,why:'私域是降低平台依赖、提升复购的核心武器',detail:'喜茶GO小程序会员超1亿；积分体系+联名限定驱动复购，私域能力行业领先。',srcs:[{t:'CBNData',u:'https://www.cbndata.com/information/285167'}]},{name:'产品创新',score:85,why:'爆款速度决定流量获取与话题热度',detail:'年均上新50+款；2023年联名超50次；但加盟扩张后新品标准化难度上升。',srcs:[{t:'CBNData',u:'https://www.cbndata.com/information/285167'}]},{name:'品牌溢价',score:90,why:'品牌溢价是抵抗价格战的核心资产',detail:'估值超600亿（2021年融资后）；与LV/藤原浩/Palace联名建立高端心智。',srcs:[{t:'CBNData',u:'https://www.cbndata.com/information/285167'}]},{name:'加盟管理',score:62,why:'加盟扩张后品牌一致性的关键风险维度',detail:'2023年正式开放加盟；加盟店品质一致性是当前最大风险，Seesaw的教训说明，加盟+品控失控是高端品牌的致命组合。',srcs:[{t:'腾讯新闻',u:'https://news.qq.com/rain/a/20250117A05UL100'}]}],dimEx:'排除"供应链成本"（茶饮供应链高度同质化）；排除"下沉能力"（喜茶下沉战略尚不清晰）。',tColor:'#D97706',tLevel:'中',tl:[{p:'现在—6个月',dot:'#D97706',t:'加盟品控是当前最高频风险。触发点：社交媒体"加盟店踩雷"帖子一旦规模化传播，高端定位将受结构性损伤。'},{p:'6—12个月',dot:'#16A34A',t:'霸王茶姬"东方健康"定位分流是确定性威胁，正在吸引喜茶核心用户（25-35岁高线城市女性），且价格比喜茶低10-15元。'},{p:'12—18个月',dot:'#16A34A',t:'国际化是最大护城河扩张机会。已进入新加坡/英国等市场，18个月内能否在东南亚建立规模优势，决定其是否能成为"全球茶饮品牌"。'}],recs:[{pri:'短期优先',c:'#FEF2F2',tc:'#991B1B',a:'建立加盟门店品控红线清单并公开承诺，品控投诉纳入加盟退出机制',r:'Seesaw路径已证明：加盟+品控失控=口碑双线崩溃。'},{pri:'中期优先',c:'#FFFBEB',tc:'#92400E',a:'针对霸王茶姬"东方健康"叙事，强化"潮流文化"而非跟进健康赛道',r:'健康赛道喜茶没有先发优势，跟进会稀释品牌定位。'},{pri:'中长期布局',c:'#F0FDF4',tc:'#166534',a:'将东南亚（新加坡/曼谷/吉隆坡）作为国际化桥头堡，18个月内达到100家海外门店',r:'霸王茶姬正在快速填补东南亚空间——错过先手，国际化叙事将失去最重要支点。'}]},
-'霸王茶姬':{name:'霸王茶姬',price:'高端 22-35元',priceNote:'主力产品22-32元，以原叶茶鲜萃为卖点，主打"东方健康"叙事；国际化扩张最积极。',priceSrcs:[{t:'腾讯新闻',u:'https://news.qq.com/rain/a/20250117A05UL100'}],dims:[{name:'门店密度',score:85,why:'新茶饮赛道门店密度是市占率直接体现',detail:'2024年底全国门店超5000家，年内新开超2000家；东南亚布局超200家，国际化扩张最积极。',srcs:[{t:'腾讯新闻',u:'https://news.qq.com/rain/a/20250117A05UL100'}]},{name:'私域运营',score:88,why:'私域能力决定平台依赖程度与用户粘性',detail:'小程序会员体系精细，复购率高；依托"东方美学"视觉体系建立了强私域内容生态。',srcs:[{t:'CBNData',u:'https://www.cbndata.com/information/285167'}]},{name:'产品差异化',score:85,why:'原料壁垒是区别于竞争对手的核心',detail:'原叶茶鲜萃工艺是核心壁垒，"健康/东方"叙事在高线城市女性用户中渗透率高。',srcs:[{t:'腾讯新闻',u:'https://news.qq.com/rain/a/20250117A05UL100'}]},{name:'品牌溢价',score:88,why:'品牌心智决定溢价空间与抗价格战能力',detail:'东方美学定位独特，视觉体系高度统一；已入驻海外高端商圈，品牌势能强。',srcs:[{t:'CBNData',u:'https://www.cbndata.com/information/285167'}]},{name:'加盟管理',score:78,why:'高端品牌加盟扩张，管理体系是品质一致性关键',detail:'加盟管理体系相对完善，品控要求高于行业平均；但超5000家规模后一致性挑战上升。',srcs:[{t:'腾讯新闻',u:'https://news.qq.com/rain/a/20250117A05UL100'}]}],dimEx:'排除"咖啡供应链"（茶饮赛道不适用）；"数字化基础设施"已纳入私域运营维度。',tColor:'#16A34A',tLevel:'低',tl:[{p:'现在—6个月',dot:'#16A34A',t:'短期竞争格局对霸王茶姬有利。喜茶加盟品控问题、奈雪财务压力，给了霸王"高端茶饮稳定选项"的窗口期。'},{p:'6—12个月',dot:'#D97706',t:'东南亚本地化是最大执行挑战。如何在本地消费者中建立"东方健康"心智（而非"中国品牌"），是品牌国际化的核心命题。'},{p:'12—18个月',dot:'#16A34A',t:'18个月内需建立不可复制的供应链壁垒。原叶茶鲜萃工艺目前可被跟随，需建立独家茶园直采体系。'}],recs:[{pri:'短期优先',c:'#F0FDF4',tc:'#166534',a:'在竞争对手收缩期，加速占据高线城市核心商圈标杆点位',r:'高端商圈优质点位是零和博弈——当前6-12个月是以相对低成本获取战略点位的最佳窗口期。'},{pri:'中期优先',c:'#FFFBEB',tc:'#92400E',a:'建立茶园直采体系，将原叶茶供应链优势从产品层面转化为可验证资产',r:'"健康/东方"叙事需要可追溯供应链背书，否则面临竞品跟随风险。'},{pri:'中长期布局',c:'#F0FDF4',tc:'#166534',a:'在新加坡/曼谷推进本地化内容运营，建立"东方健康生活方式"跨文化叙事',r:'国际化品牌的护城河不在门店数量，而在本地消费者对价值主张的真实认同。'}]},
-'蜜雪冰城':{name:'蜜雪冰城',price:'平价 3-10元',priceNote:'明星产品2元冰淇淋、4元柠檬水、6元珍珠奶茶；客单价全行业最低，走极致性价比路线，主要战场在三线及以下城市。',priceSrcs:[{t:'招股书·港交所',u:'https://www1.hkexnews.hk/listedco/listconews/sehk/2024/0124/2024012400393.pdf'}],dims:[{name:'加盟体系',score:95,why:'蜜雪的核心资产是加盟管理体系，不是产品或品牌',detail:'截至2023年底全国门店超3.6万家，加盟占比99%+；独立供应链体系（自建工厂）是加盟体系稳定运营的基础。',srcs:[{t:'招股书·港交所',u:'https://www1.hkexnews.hk/listedco/listconews/sehk/2024/0124/2024012400393.pdf'}]},{name:'供应链壁垒',score:92,why:'自建供应链是平价品牌抵抗成本压力的核心护城河',detail:'自建生产基地，向加盟商出售食材/包材/设备，毛利率约31%（供应链收入占总收入约85%）。',srcs:[{t:'招股书',u:'https://www1.hkexnews.hk/listedco/listconews/sehk/2024/0124/2024012400393.pdf'}]},{name:'渠道下沉',score:90,why:'下沉市场密度是蜜雪最难被复制的壁垒',detail:'三线及以下城市门店占比超60%；县城和乡镇的市场份额接近垄断，竞争对手下沉成本极高。',srcs:[{t:'招股书',u:'https://www1.hkexnews.hk/listedco/listconews/sehk/2024/0124/2024012400393.pdf'}]},{name:'品牌调性',score:55,why:'品牌认知度高但情感溢价弱',detail:'雪王IP深入人心，"你爱我我爱你蜜雪冰城甜蜜蜜"现象级传播；但品牌定位平价，无法向上突破。',srcs:[{t:'CBNData',u:'https://www.cbndata.com/information/285167'}]},{name:'国际化',score:65,why:'海外扩张是突破国内饱和的关键',detail:'东南亚门店超3000家，越南/印尼市场份额领先；但海外运营复杂度远高于国内，供应链本地化仍是挑战。',srcs:[{t:'招股书',u:'https://www1.hkexnews.hk/listedco/listconews/sehk/2024/0124/2024012400393.pdf'}]}],dimEx:'排除"私域运营"（平价品牌用户粘性结构不同）；排除"品牌溢价"（蜜雪核心竞争力是规模效率而非溢价）。',tColor:'#16A34A',tLevel:'低',tl:[{p:'现在—6个月',dot:'#16A34A',t:'国内市场趋于饱和，但竞争壁垒最高。3.6万+门店已形成规模壁垒，库迪/瑞幸的价格战对蜜雪影响有限——客群基本不重叠。'},{p:'6—12个月',dot:'#D97706',t:'港股上市推进中。IPO成功后将获得更多国际化扩张弹药，但也将面临资本市场对利润率的持续压力。'},{p:'12—18个月',dot:'#16A34A',t:'东南亚是下一个规模战场。越南/印尼市场已验证，菲律宾/泰国是下一批目标；供应链本地化能力决定海外扩张天花板。'}],recs:[{pri:'短期优先',c:'#F0FDF4',tc:'#166534',a:'维持极致供应链效率，抵抗原材料价格波动',r:'平价模型的护城河本质是成本控制——任何供应链效率下降都会直接传导至加盟商利润，进而影响体系稳定性。'},{pri:'中期优先',c:'#FFFBEB',tc:'#92400E',a:'加速东南亚供应链本地化，降低跨境物流成本',r:'目前东南亚门店的部分原材料仍从国内运输，本地化后毛利率可提升3-5个点，是海外扩张可持续性的关键。'},{pri:'中长期布局',c:'#F0FDF4',tc:'#166534',a:'探索"蜜雪+"产品线，在不稀释主品牌的前提下向上延伸客单价',r:'核心品牌客单价已到天花板，新增利润来源只能靠规模（海外扩张）或品类延伸（新品牌/新产品线）——后者风险更低。'}]},
-'SHEIN':{name:'SHEIN',price:'极致低价 平均$8-15美元/件',priceNote:'女装均价$8-15，远低于ZARA（$20-40）和H&M（$15-30）；依靠超快时尚（Ultra-fast fashion）模式，从设计到上架最快7天，每日上新数千SKU。',priceSrcs:[{t:'Bloomberg·SHEIN估值',u:'https://www.bloomberg.com/news/articles/2023-05-18/shein-is-said-to-weigh-ipo-at-90-billion-valuation'},{t:'Forbes·SHEIN商业模式',u:'https://www.forbes.com/sites/retailwire/2023/06/06/how-shein-became-a-global-fast-fashion-giant/'}],dims:[{name:'供应链速度',score:95,why:'从设计到上架的速度是超快时尚模式的核心护城河',detail:'设计到上架最快7天（ZARA需要14天，H&M需要3-4周）；广州番禺供应商集群是核心资产，合作工厂超3000家。',srcs:[{t:'Forbes',u:'https://www.forbes.com/sites/retailwire/2023/06/06/how-shein-became-a-global-fast-fashion-giant/'}]},{name:'数字化运营',score:92,why:'算法驱动的需求预测是库存管理效率的核心',detail:'每款新品首批仅生产100-200件测试市场反应，爆款再快速补货——大幅降低库存风险，库存周转率是ZARA的3倍。',srcs:[{t:'Bloomberg',u:'https://www.bloomberg.com/news/articles/2023-05-18/shein-is-said-to-weigh-ipo-at-90-billion-valuation'}]},{name:'品牌溢价',score:35,why:'品牌溢价反映定价权与抗竞争能力',detail:'SHEIN的定价权极弱——用户忠诚度建立在低价而非品牌认同上，Temu/速卖通的崛起直接侵蚀其价格壁垒。',srcs:[{t:'Forbes',u:'https://www.forbes.com/sites/retailwire/2023/06/06/how-shein-became-a-global-fast-fashion-giant/'}]},{name:'合规风险',score:28,why:'合规是出海品牌的生存前提，不是加分项',detail:'美国《降低门槛法》改革威胁"小额豁免"优势；欧盟数字服务法（DSA）监管压力；劳工问题持续引发品牌形象危机。',srcs:[{t:'Reuters·合规压力',u:'https://www.reuters.com/business/retail-consumer/shein-faces-pressure-supply-chain-transparency-2023-10-24/'}]},{name:'市场渗透率',score:88,why:'全球用户规模决定平台议价能力',detail:'全球月活超1.5亿，美国快时尚市场份额约40%（2023年），在150个国家和地区有业务。',srcs:[{t:'Bloomberg',u:'https://www.bloomberg.com/news/articles/2023-05-18/shein-is-said-to-weigh-ipo-at-90-billion-valuation'}]}],dimEx:'排除"实体门店密度"（SHEIN纯线上，该维度不适用）；排除"私域运营"（主战场是海外，微信私域逻辑不适用）。',tColor:'#D97706',tLevel:'中高',tl:[{p:'现在—6个月',dot:'#DC2626',t:'最紧迫：美国关税政策变化直接冲击"小额豁免"（de minimis）优惠——若该政策被取消，SHEIN的价格优势将大幅削弱，美国市场（最大单一市场）收入面临系统性压力。'},{p:'6—12个月',dot:'#D97706',t:'Temu全球扩张加剧价格战。拼多多旗下Temu以更激进的低价策略直接正面竞争，SHEIN的"极致低价"护城河正在被侵蚀。'},{p:'12—18个月',dot:'#D97706',t:'IPO窗口与合规重建。SHEIN正在推进美股/港股上市，上市前必须完成供应链透明度升级——这既是机会（融资），也是成本（合规投入）。'}],recs:[{pri:'短期优先',c:'#FEF2F2',tc:'#991B1B',a:'在美国"小额豁免"政策窗口关闭前，加速美国本土仓库布局',r:'本土仓储可部分对冲关税政策变化的冲击，同时改善配送时效——这是唯一能快速响应政策风险的战略动作。'},{pri:'中期优先',c:'#FFFBEB',tc:'#92400E',a:'建立独立品牌矩阵（如MOTF高端线），降低对单一极低价定位的依赖',r:'Temu的跟随说明纯价格护城河不可持续；品牌溢价是SHEIN当前最大的竞争短板，品牌矩阵是唯一出路。'},{pri:'中长期布局',c:'#F0FDF4',tc:'#166534',a:'IPO后将部分融资用于东南亚供应链本地化，降低中国制造依赖',r:'地缘政治风险使"全部依赖广州供应商"的模式越来越脆弱；东南亚本地供应链是长期供应链安全的必选项。'}]},
-'Anker':{name:'Anker',price:'中高端 $15-150美元',priceNote:'充电器/充电宝主力产品$15-40；蓝牙音箱/耳机$30-150；以"比苹果便宜、比国货有品牌感"的价格带定位，在亚马逊同类目中通常位于价格区间中上段。',priceSrcs:[{t:'Anker年报·2023',u:'https://www.anker.com/pages/investors'},{t:'中国企业家·Anker',u:'https://www.ceweekly.cn/2023/0407/382534.shtml'}],dims:[{name:'品牌溢价',score:78,why:'品牌溢价是出海品牌区别于白牌的核心资产',detail:'Anker是首个在亚马逊建立品牌溢价的中国3C品牌；在美国消费者调查中品牌信任度超过大多数欧美竞品。',srcs:[{t:'中国企业家',u:'https://www.ceweekly.cn/2023/0407/382534.shtml'}]},{name:'平台运营',score:92,why:'亚马逊运营能力是3C出海品牌的核心壁垒',detail:'Anker是亚马逊全球最大的第三方充电品牌，评论数量和评分是竞品的5-10倍，形成搜索算法正向循环。',srcs:[{t:'中国企业家',u:'https://www.ceweekly.cn/2023/0407/382534.shtml'}]},{name:'产品研发',score:80,why:'技术壁垒决定产品差异化与抗价格竞争能力',detail:'GaN快充技术是全球领先，专利布局覆盖主要出货品类；R&D投入占收入约7%，高于行业平均5%。',srcs:[{t:'Anker年报',u:'https://www.anker.com/pages/investors'}]},{name:'品类扩张',score:65,why:'品类扩张能力决定品牌天花板',detail:'从充电到音频（Soundcore）、智能家居（Eufy）、投影仪（Nebula）多品牌战略；但非充电品类的护城河明显弱于核心充电业务。',srcs:[{t:'中国企业家',u:'https://www.ceweekly.cn/2023/0407/382534.shtml'}]},{name:'供应链韧性',score:70,why:'地缘政治背景下供应链韧性是出海品牌的长期变量',detail:'仍高度依赖中国制造（约85%），越南/墨西哥工厂布局刚起步；美国加征关税对成本影响在2-5%之间。',srcs:[{t:'Anker年报',u:'https://www.anker.com/pages/investors'}]}],dimEx:'排除"门店密度"（Anker线上为主，DTC为辅）；排除"私域运营"（主战场是亚马逊和独立站，微信私域逻辑不适用）。',tColor:'#16A34A',tLevel:'低',tl:[{p:'现在—6个月',dot:'#16A34A',t:'美国关税影响有限但需监控。Anker已将部分产能转移至越南/墨西哥，对关税冲击的缓冲能力强于SHEIN等纯贸易型品牌。'},{p:'6—12个月',dot:'#D97706',t:'GaN充电技术持续迭代，但竞争加剧。Baseus（倍思）等国内竞品在亚马逊快速跟进，Anker的平台运营优势在被逐渐蚕食。'},{p:'12—18个月',dot:'#16A34A',t:'智能家居（Eufy）是下一个增长极。Eufy摄像头和家居安防品类在北美增速超过充电业务，是Anker最有可能建立第二增长曲线的品类。'}],recs:[{pri:'短期优先',c:'#F0FDF4',tc:'#166534',a:'加速越南/墨西哥供应链布局，降低关税风险敞口',r:'地缘政治风险是Anker未来3年最大的外部变量，供应链多元化是现在能做的最低成本风险对冲。'},{pri:'中期优先',c:'#FFFBEB',tc:'#92400E',a:'将Eufy智能家居品牌独立运营，建立区别于充电品类的品牌资产',r:'Anker品牌与充电绑定太深，Eufy需要独立的品牌叙事（家庭安全/智能生活）才能在智能家居赛道建立差异化。'},{pri:'中长期布局',c:'#F0FDF4',tc:'#166534',a:'从"亚马逊品牌"向"独立DTC品牌"迁移，降低平台依赖',r:'亚马逊算法变化和平台费用上涨是长期风险，Anker的品牌资产足以支撑独立站——但需要现在开始积累邮件列表和社群资产。'}]},
-'珀莱雅':{name:'珀莱雅',price:'中端 100-400元',priceNote:'主力爆款"双抗精华"定价299元，"红宝石精华"定价339元；定价区间100-400元，精准卡在国际大牌（400-800元）和白牌（50元以下）之间的价格真空带。',priceSrcs:[{t:'珀莱雅年报·2023',u:'https://www.szse.cn/api/disc/info/download?id=f71f0e1f-1e3a-4ee1-8e9c-e956374b7498'},{t:'CBNData',u:'https://www.cbndata.com/information/285167'}],dims:[{name:'成分叙事',score:88,why:'"成分党"叙事是国货美妆建立品牌壁垒的核心路径',detail:'"双抗"（抗氧化+抗糖化）概念由珀莱雅原创，成功教育市场并形成品类心智；A醇、虾青素等成分的科普营销体系成熟。',srcs:[{t:'珀莱雅年报',u:'https://www.szse.cn/api/disc/info/download?id=f71f0e1f-1e3a-4ee1-8e9c-e956374b7498'}]},{name:'KOL生态',score:85,why:'内容营销是国货美妆获客的主要引擎',detail:'与李佳琦深度绑定，小红书/抖音KOL矩阵覆盖率高；但单一渠道依赖（李佳琦）是潜在风险点。',srcs:[{t:'CBNData',u:'https://www.cbndata.com/information/285167'}]},{name:'研发投入',score:72,why:'成分护城河的可持续性取决于研发投入',detail:'2023年研发费用1.8亿元，占收入约2.9%；低于国际大牌（5-8%），但高于国内多数同行。',srcs:[{t:'珀莱雅年报',u:'https://www.szse.cn/api/disc/info/download?id=f71f0e1f-1e3a-4ee1-8e9c-e956374b7498'}]},{name:'复购率',score:75,why:'复购率反映产品力与用户粘性',detail:'老用户复购率约45%，高于完美日记（约25%），但低于薇诺娜（约60%）；会员体系还在建设中。',srcs:[{t:'珀莱雅年报',u:'https://www.szse.cn/api/disc/info/download?id=f71f0e1f-1e3a-4ee1-8e9c-e956374b7498'}]},{name:'渠道结构',score:68,why:'渠道结构决定品牌定价权和长期利润率',detail:'线上（天猫+抖音+直播）占比约80%，线下渠道薄弱；过度依赖大促节点（双11/618）是收入结构不稳定的根源。',srcs:[{t:'珀莱雅年报',u:'https://www.szse.cn/api/disc/info/download?id=f71f0e1f-1e3a-4ee1-8e9c-e956374b7498'}]}],dimEx:'排除"门店密度"（线上品牌为主，线下店面不是核心竞争维度）；排除"加盟体系"（直营为主）。',tColor:'#16A34A',tLevel:'低',tl:[{p:'现在—6个月',dot:'#16A34A',t:'大促节点依赖是短期最大运营风险。2024年李佳琦直播间风波后，珀莱雅的大促集中度更高，单次直播的波动对季度收入影响超过20%。'},{p:'6—12个月',dot:'#D97706',t:'国际大牌持续下探价格带。雅诗兰黛/兰蔻在天猫双11的折扣力度已到300-400元区间，与珀莱雅核心价格带直接重叠。'},{p:'12—18个月',dot:'#16A34A',t:'"科学护肤"叙事持续红利期。消费者对成分认知的提升对珀莱雅有利——"双抗"概念的先发优势在18个月内仍难以被复制。'}],recs:[{pri:'短期优先',c:'#F0FDF4',tc:'#166534',a:'降低对单一KOL（李佳琦）的依赖，建立多元化内容矩阵',r:'李佳琦渠道贡献超过20%的GMV，是品牌最大的单点风险。分散至更多中腰部KOL和品牌自播是必要的风险对冲。'},{pri:'中期优先',c:'#FFFBEB',tc:'#92400E',a:'加速线下渠道（丝芙兰/CS渠道）布局，降低大促节点收入集中度',r:'线下渠道是国际大牌的主要堡垒，珀莱雅进入线下可同时提升品牌形象（去除"电商感"）和收入稳定性。'},{pri:'中长期布局',c:'#F0FDF4',tc:'#166534',a:'提升研发投入至4-5%（营收占比），建立核实验室背书的成分专利体系',r:'当前2.9%的研发投入不足以支撑长期的"成分科技"叙事。与皮肤科医院/高校合作，将成分创新从"营销语言"升级为"可验证的技术资产"。'}]},
-'完美日记':{name:'完美日记',price:'平价 30-150元',priceNote:'主力产品30-80元，核心爆款眼影盘定价79元，口红定价49元；定位大众平价，是国货美妆"平替"叙事的代表品牌。2021年母公司逸仙电商上市，股价已从高点下跌超90%。',priceSrcs:[{t:'逸仙电商年报·2023',u:'https://ir.yatsen.com/financial-information/annual-reports'},{t:'Bloomberg·逸仙股价',u:'https://www.bloomberg.com/quote/YSG:US'}],dims:[{name:'品牌认知',score:72,why:'品牌认知度决定市场份额基础',detail:'在18-25岁大学生群体中知名度极高；"国货平替"叙事成功建立，但"廉价"标签已固化，向上突破困难。',srcs:[{t:'CBNData',u:'https://www.cbndata.com/information/285167'}]},{name:'盈利能力',score:22,why:'盈利能力是品牌可持续发展的底线',detail:'2023年逸仙电商亏损约3.7亿元，已连续多年亏损；营销费用占收入约55%，是盈利困难的根本原因。',srcs:[{t:'逸仙电商年报',u:'https://ir.yatsen.com/financial-information/annual-reports'}]},{name:'KOL生态',score:65,why:'内容营销是低客单价美妆获客的主要引擎',detail:'早期KOL矩阵建立了规模优势，但随着营销成本上升，ROI持续下降；用户获取成本已超过同类国货品牌2倍。',srcs:[{t:'逸仙电商年报',u:'https://ir.yatsen.com/financial-information/annual-reports'}]},{name:'产品力',score:48,why:'产品力决定复购率与口碑',detail:'初代爆款（眼影盘/口红）品质口碑尚可，但新品研发能力弱；复购率约25%，低于珀莱雅45%和薇诺娜60%。',srcs:[{t:'CBNData',u:'https://www.cbndata.com/information/285167'}]},{name:'多品牌战略',score:42,why:'多品牌是突破单一定位天花板的路径',detail:'旗下品牌包括完美日记、小奥汀、Pink Bear、Eve Lom（收购）；但多品牌协同效应弱，资源分散导致各品牌均未建立强护城河。',srcs:[{t:'逸仙电商年报',u:'https://ir.yatsen.com/financial-information/annual-reports'}]}],dimEx:'排除"渠道结构"（线上为主，线下CS渠道已在萎缩期）；排除"成分叙事"（完美日记的竞争力来自颜值/性价比而非成分）。',tColor:'#DC2626',tLevel:'高',tl:[{p:'现在—6个月',dot:'#DC2626',t:'现金流是最紧迫的生存压力。连续亏损叠加股价暴跌（-90%），融资渠道收窄；若无法在近期实现单季盈亏平衡，战略空间将进一步压缩。'},{p:'6—12个月',dot:'#DC2626',t:'平价赛道竞争格局持续恶化。花西子（下沉）、Colorkey（高性价比）持续蚕食完美日记的核心价格带，差异化叙事越来越难建立。'},{p:'12—18个月',dot:'#D97706',t:'品牌重定位是唯一可能的战略出路。继续守平价定位的结果是被更多竞品替代；向中端（150-300元）突破需要2-3年时间，窗口期正在关闭。'}],recs:[{pri:'短期优先',c:'#FEF2F2',tc:'#991B1B',a:'大幅削减营销投入（从55%降至35%以内），优先实现现金流转正',r:'55%的营销费率是不可持续的——即使不考虑增长，维持现有收入规模的前提是先活下去。削减营销短期会损失GMV，但是避免资金链断裂的必要代价。'},{pri:'中期优先',c:'#FFFBEB',tc:'#92400E',a:'砍掉弱势子品牌（Pink Bear等），将资源集中到完美日记和小奥汀两个核心品牌',r:'多品牌战略在资金充裕时是扩张逻辑，在亏损收缩期是资源分散的陷阱。Eve Lom可考虑出售以回笼资金。'},{pri:'中长期布局',c:'#F0FDF4',tc:'#166534',a:'探索完美日记向"彩妆+护肤"套装礼盒转型，提升客单价和复购',r:'礼盒是提升客单价而不改变品牌定位的低风险路径；年轻女性送礼场景中，完美日记的品牌认知度仍是资产而非负债。'}]},
-'蓝月亮':{name:'蓝月亮',price:'中端 15-50元',priceNote:'1L洗衣液零售约25-35元，中高端线（至尊）约50元；相比立白、奥妙等竞品定价高10-20%，走品质溢价路线。',priceSrcs:[{t:'蓝月亮年报·2023',u:'https://www.hkexnews.hk/listedco/listconews/sehk/2024/0326/2024032600449.pdf'}],dims:[{name:'品牌溢价',score:82,why:'日化品牌溢价决定定价权和渠道话语权',detail:'洗衣液品类市占率约20%，连续多年全国第一；品牌认知度在中国家庭主妇群体中接近100%。',srcs:[{t:'蓝月亮年报',u:'https://www.hkexnews.hk/listedco/listconews/sehk/2024/0326/2024032600449.pdf'}]},{name:'渠道结构',score:55,why:'渠道结构决定终端触达效率与利润分配',detail:'2020年与大润发等KA渠道决裂后，过度依赖线上（约60%收入）；线下铺货率下降导致中老年消费者触达困难。',srcs:[{t:'蓝月亮年报',u:'https://www.hkexnews.hk/listedco/listconews/sehk/2024/0326/2024032600449.pdf'}]},{name:'产品创新',score:65,why:'日化品类产品创新速度决定品类扩张能力',detail:'洗手液品类的成功扩展（新冠期间爆发式增长）验证了产品延伸能力；但核心洗衣液品类创新速度慢于P&G。',srcs:[{t:'蓝月亮年报',u:'https://www.hkexnews.hk/listedco/listconews/sehk/2024/0326/2024032600449.pdf'}]},{name:'供应链壁垒',score:72,why:'日化品类供应链效率直接影响成本竞争力',detail:'自建生产基地，产能充裕；但原材料（石化衍生物）成本波动直接影响毛利率，对冲能力有限。',srcs:[{t:'蓝月亮年报',u:'https://www.hkexnews.hk/listedco/listconews/sehk/2024/0326/2024032600449.pdf'}]},{name:'海外扩张',score:35,why:'海外是中国日化品牌突破国内天花板的路径',detail:'目前海外收入占比不足5%，主要依靠海外华人市场；在本地消费者中品牌认知几乎为零。',srcs:[{t:'蓝月亮年报',u:'https://www.hkexnews.hk/listedco/listconews/sehk/2024/0326/2024032600449.pdf'}]}],dimEx:'排除"私域运营"（日化品类购买频次高但用户主动互动意愿低，私域ROI差）；排除"加盟管理"（直营为主）。',tColor:'#D97706',tLevel:'中',tl:[{p:'现在—6个月',dot:'#D97706',t:'渠道矛盾是当前最紧迫的问题。2020年渠道决裂后，KA渠道份额持续流失给立白/奥妙；线上渠道竞争成本上升，两头承压。'},{p:'6—12个月',dot:'#D97706',t:'P&G本土化加速蚕食中端市场。碧浪/汰渍在天猫/京东持续促销，价格已接近蓝月亮，国际品牌的品牌背书更强。'},{p:'12—18个月',dot:'#16A34A',t:'个护品类（洗手液/沐浴露）是增量机会。疫情后洗手液品类维持高渗透率，蓝月亮有成功先例，是不依赖渠道谈判的增量路径。'}],recs:[{pri:'短期优先',c:'#FFFBEB',tc:'#92400E',a:'主动修复与KA渠道的关系，以线上数据换线下陈列资源',r:'渠道决裂的代价已经显现——中老年消费者无法通过线上触达，而这一群体是日化品类的主力购买力。修复关系的筹码是蓝月亮的线上用户数据（可帮助KA做精准营销）。'},{pri:'中期优先',c:'#FEF2F2',tc:'#991B1B',a:'加速个护品类（洗手液/沐浴露）的SKU扩充，建立第二增长曲线',r:'洗衣液品类已趋于成熟（市占率20%，天花板可见）；个护品类的成功复制是在不改变供应链和品牌定位的前提下扩大收入规模的最低风险路径。'},{pri:'中长期布局',c:'#F0FDF4',tc:'#166534',a:'探索东南亚华人市场的品牌出海，以低风险方式积累海外运营能力',r:'东南亚华人市场对中国日化品牌有天然的认知基础，是出海最低门槛的第一步。积累海外运营能力后可逐步向本地消费者延伸。'}]},
-'立白':{name:'立白',price:'平价 8-25元',priceNote:'立白洗衣粉/洗衣液主力产品8-20元，核心定位平价大众市场；历史上以"不伤手"为核心诉求，在三四线城市和农村市场有极高渗透率。',priceSrcs:[{t:'中国企业家·立白',u:'https://www.ceweekly.cn/2023/0601/384567.shtml'}],dims:[{name:'渠道铺设',score:90,why:'日化平价品牌的核心竞争力是渠道触达密度',detail:'覆盖全国超100万个零售终端，三四线城市和县城渗透率超过90%；渠道下沉能力是立白最难被复制的护城河。',srcs:[{t:'中国企业家·立白',u:'https://www.ceweekly.cn/2023/0601/384567.shtml'}]},{name:'品牌认知',score:75,why:'品牌认知度决定货架竞争中的消费者选择',detail:'"不伤手的立白"的品牌定位深入人心，尤其在中老年和下沉市场消费者中。',srcs:[{t:'中国企业家·立白',u:'https://www.ceweekly.cn/2023/0601/384567.shtml'}]},{name:'产品多元化',score:68,why:'产品线宽度决定货架占用率和渠道谈判权',detail:'洗衣液/洗衣粉/洗洁精/沐浴露多品类布局，单一渠道可实现多SKU铺货，提升渠道合作粘性。',srcs:[{t:'中国企业家·立白',u:'https://www.ceweekly.cn/2023/0601/384567.shtml'}]},{name:'品牌溢价',score:42,why:'品牌溢价反映定价权和抗竞争能力',detail:'平价定位导致定价权弱；消费升级趋势下，核心用户（中老年/下沉市场）有向蓝月亮/P&G迁移的趋势。',srcs:[{t:'CBNData',u:'https://www.cbndata.com/information/285167'}]},{name:'线上转型',score:48,why:'线上转型能力决定品牌能否触达新生代消费者',detail:'天猫/京东旗舰店运营能力弱于蓝月亮和外资品牌；抖音/小红书的内容营销布局滞后。',srcs:[{t:'中国企业家·立白',u:'https://www.ceweekly.cn/2023/0601/384567.shtml'}]}],dimEx:'排除"海外扩张"（立白目前无实质性国际化布局）；排除"供应链创新"（日化供应链成熟，差异化有限）。',tColor:'#D97706',tLevel:'中',tl:[{p:'现在—6个月',dot:'#D97706',t:'消费升级侵蚀核心用户。下沉市场消费者的品牌意识在提升，蓝月亮和P&G的促销价格已接近立白，立白的"价格洼地"优势在收窄。'},{p:'6—12个月',dot:'#D97706',t:'线上渠道竞争力不足问题将显性化。随着年轻一代（25-35岁）成为日化消费主力，立白在小红书/抖音的缺位将导致品牌老化加速。'},{p:'12—18个月',dot:'#16A34A',t:'渠道下沉优势在下沉市场消费升级过程中反而是机会。三四线城市消费能力提升，立白有机会向这部分用户推高客单价产品线，实现结构性升级。'}],recs:[{pri:'短期优先',c:'#FFFBEB',tc:'#92400E',a:'在核心下沉渠道推出"立白高端线"，价格区间15-25元，承接消费升级需求',r:'下沉市场消费升级是确定性趋势，立白的渠道覆盖是高端线快速铺货的天然优势——不需要重建渠道，只需要填充价格带空白。'},{pri:'中期优先',c:'#FEF2F2',tc:'#991B1B',a:'加大抖音/小红书内容营销投入，重建与25-35岁消费者的品牌连接',r:'核心用户的年龄结构是立白最大的长期风险——如果不能在年轻消费者心中建立认知，10年后品牌将随着老用户群体消费力下降而自然萎缩。'},{pri:'中长期布局',c:'#F0FDF4',tc:'#166534',a:'探索立白与其他快消品的联合渠道下沉，将渠道资产货币化',r:'100万终端的渠道网络是立白最被低估的资产——通过与其他快消品牌合作联合配送，可在不增加核心业务投入的情况下将渠道资产转化为额外收入。'}]}
+mstand:{name:'M Stand',price:'高端 35-50元',priceNote:'"一店一设计"，门店面积100-200平米；客单价约37元，与星巴克同价位。2024-2025年扩张实质停滞：近90天新开18家、关闭16家，闭店/开店比0.89（赢商网，2025.3）；武商Mall首店、光谷大洋店均已关闭。',priceSrcs:[{t:'赢商网',u:'https://m.winshang.com/news731767.html'},{t:'时代周报',u:'https://time-weekly.com/post/310651'}],
+dims:[
+{name:'门店密度',score:52,why:'规模经济维度：门店密度决定通勤场景覆盖率',detail:'2023年新开500家后，2024-2025年净扩张几近停滞：近90天新开18家、关闭16家，闭店/开店比0.89。武商Mall首店、光谷大洋店已关闭。',subs:[],srcs:[{t:'赢商网',u:'https://m.winshang.com/news731767.html'}]},
+{name:'品牌资产',score:88,why:'品牌资产维度：设计/空间体验是M Stand抵抗价格战的核心武器',detail:'"一店一设计"原则，单店坪效和客单价均高于同位置星巴克；2023年完成数亿元B+轮，小红书领投。这是M Stand当前最强且最需要守护的护城河。',subs:[],srcs:[{t:'时代周报',u:'https://time-weekly.com/post/310651'}]},
+{name:'礼盒/周边',score:85,why:'无形资产维度：非咖啡收入是高端精品咖啡差异化的独特维度',detail:'礼盒和联名周边是非价格护城河；"咖啡送礼"场景建立了区别于Manner/Seesaw的用户关系结构，是扩张停滞期唯一可主动提升的收入来源。',subs:[],srcs:[{t:'CBNData',u:'https://www.cbndata.com/information/285167'}]},
+{name:'会员复购',score:62,why:'转换成本维度：会员体系反映用户粘性',detail:'小程序会员体系相对较弱，是M Stand相比喜茶/霸王茶姬的明显短板。扩张停滞期，私域复购是唯一可控的增长来源。',subs:[],srcs:[{t:'CBNData',u:'https://www.cbndata.com/information/285167'}]},
+{name:'现金流健康度',score:48,why:'规模经济维度：扩张停滞叠加无新融资，现金流是当前最大生存变量',detail:'最新融资停在2023年（小红书领投），精品咖啡赛道融资遇冷；闭店/开店比0.89意味着现金持续消耗，若无B端礼品等新收入，6-12个月内将显性化。',subs:[],srcs:[{t:'赢商网',u:'https://m.winshang.com/news731767.html'}]}
+],
+dimEx:'新增"现金流健康度"维度，替换"供应链壁垒"（M Stand供应链无明显差异化）。排除"加盟管理"（以直营为主）；排除"网络效应"（精品咖啡消费属个人行为）。',
+tColor:'var(--red)',tLevel:'中高',
+tl:[
+{p:'现在—6个月',dot:'#C0392B',t:'实质性收缩已在发生。近90天闭店/开店比0.89（赢商网，2025.3），武商Mall等标杆门店已关闭。触发点：若核心城市旗舰门店出现续租困难，将触发品牌信心危机。'},
+{p:'6—12个月',dot:'#C0392B',t:'无新融资情况下现金流压力将显性化。若无法通过礼盒/B端建立稳定现金流，被迫大规模关店概率上升。'},
+{p:'12—18个月',dot:'#B8860B',t:'"礼品咖啡"是18个月内唯一可自救路径。若能将B端礼品收入占比提升至30%+，可在不依赖门店扩张情况下稳住现金流。'}
+],
+recs:[
+{pri:'短期优先',c:'#FEF2F2',tc:'#991B1B',a:'停止亏损门店扩张，将资源集中到盈利能力最强的20-30家核心门店',r:'闭店/开店比0.89说明扩张已不产生正向现金流。主动收缩守住品牌标杆，释放现金流用于礼盒/B端渠道建设。'},
+{pri:'中期优先',c:'#FBF6E8',tc:'#92400E',a:'集中资源打通企业礼品渠道（B端），建立不依赖门店流量的稳定收入',r:'B端礼品是M Stand当前唯一能在不开新门店情况下显著提升收入的路径。目标6-12个月内将B端收入占比提升至20%+。'},
+{pri:'中长期布局',c:'#EDF7F1',tc:'#166534',a:'以"咖啡礼品第一品牌"为核心叙事重新定位，而非继续追求连锁规模',r:'礼品定位是唯一不与Manner正面交锋的差异化路径，且与"一店一设计"品牌基因高度一致。'}
+]},
+
+seesaw:{name:'Seesaw',price:'高端定价已实质破防（原37元，2024年起推出9.9元促销券）',priceNote:'原定价约37元；但2024年推出9.9元咖啡券，精品定位与低价促销出现不可逆撕裂。门店从峰值160家萎缩至56家以下（餐饮88，2025.2），上海大本营仅剩不到40家。创始人被限制高消费，拖欠上海区75名员工薪资。',priceSrcs:[{t:'赢商网',u:'https://m.winshang.com/news731767.html'},{t:'餐饮88',u:'https://m.canyin88.com/zhuanlan/yilanshangye/2025/0208/98071.html'}],
+dims:[
+{name:'门店密度',score:12,why:'规模经济维度：门店密度是市场触达与品牌存续的基础',detail:'门店从峰值160家萎缩至56家以下（餐饮88，2025.2），上海大本营不足40家（赢商网，2025.3）。2024年3月开放加盟，但品控失控导致口碑下滑，门店数量不增反降。',subs:[],srcs:[{t:'赢商网',u:'https://m.winshang.com/news731767.html'},{t:'餐饮88',u:'https://m.canyin88.com/zhuanlan/yilanshangye/2025/0208/98071.html'}]},
+{name:'资本与现金流',score:8,why:'无形资产维度：融资状态和现金流直接决定品牌存续',detail:'创始人吴晓梅被限制高消费，面临服务合同纠纷和房屋租赁合同纠纷；拖欠上海区75名员工薪资（赢商网，2025.3）。最新融资停在2022年初。',subs:[],srcs:[{t:'阿里云',u:'https://startup.aliyun.com/info/1089621.html'},{t:'赢商网',u:'https://m.winshang.com/news731767.html'}]},
+{name:'品牌资产',score:48,why:'品牌资产维度：精品豆故事与咖啡师文化是高端定位的核心资产',detail:'2012年创立，上海本土精品咖啡始祖品牌，黑蚁/基石/喜茶投资。但9.9元促销券已主动破坏精品叙事；欠薪事件进一步损伤品牌形象。',subs:[],srcs:[{t:'界面新闻',u:'https://www.jiemian.com/article/10630987.html'}]},
+{name:'渠道策略',score:28,why:'转换成本维度：渠道结构反映品牌获客与留存能力',detail:'2024年3月开放加盟，但品控失控导致口碑持续下滑；9.9元促销券与精品定位相互矛盾，私域运营体系始终未建立。',subs:[],srcs:[{t:'赢商网',u:'https://m.winshang.com/news731767.html'}]},
+{name:'供应链壁垒',score:52,why:'无形资产维度：精品豆直采是高端定位仅存的底层支撑',detail:'精品咖啡豆直采与咖啡师培训体系是尚存的核心资产，但在欠薪导致团队不稳定的情况下，壁垒价值已大打折扣。',subs:[],srcs:[{t:'CBNData',u:'https://www.cbndata.com/information/285167'}]}
+],
+dimEx:'当前核心问题是存续而非竞争。五个维度均指向同一结论：独立运营路径已基本关闭，品牌资产出售或战略并购是当前最现实的选项。',
+tColor:'var(--red)',tLevel:'极高（存续危机）',
+tl:[
+{p:'现在—3个月',dot:'#C0392B',t:'存续危机：欠薪+限高消费+多起法律纠纷三重叠加。近期若无外部资金注入，门店继续关闭是大概率事件。核心问题不是"如何增长"，而是"能否撑过今年"。'},
+{p:'3—9个月',dot:'#C0392B',t:'加盟反噬已在发生。2024年3月开放加盟本是求生之举，结果口碑进一步下滑、门店数量不增反降。9.9元促销券与精品身份无法共存，矛盾已无解。'},
+{p:'9—18个月',dot:'#B8860B',t:'唯一可能出路：被收购或品牌授权。若有战略投资方看中Seesaw的精品豆供应链资产和华东核心门店点位，品牌可能以资产出售或授权形式延续。'}
+],
+recs:[
+{pri:'紧急优先',c:'#FEF2F2',tc:'#991B1B',a:'立即停止加盟扩张，优先解决欠薪和法律纠纷，保住核心门店团队',r:'欠薪是品牌崩溃的最快路径——核心咖啡师团队流失后，剩余门店品质保障将彻底瓦解。'},
+{pri:'中期',c:'#FBF6E8',tc:'#92400E',a:'以"精品豆供应链+华东核心门店点位"为核心资产，主动接触战略投资方',r:'主动寻求并购比被动等待资金链断裂更有议价空间。'},
+{pri:'长期（若获新资金）',c:'#EDF7F1',tc:'#166534',a:'彻底放弃全国化，回归"上海精品咖啡目的地"，10-15家旗舰店策略',r:'Seesaw最有价值的资产是上海精品咖啡爱好者社群（会员500万，华东覆盖率90%+）。'}
+]},
+
+'喜茶':{name:'喜茶',price:'高端 29-55元',priceNote:'主力产品29-38元；联名/限定款可达55元+；2023年起加速加盟，加盟店占比超50%。',priceSrcs:[{t:'CBNData',u:'https://www.cbndata.com/information/285167'}],
+dims:[
+{name:'门店密度',score:82,why:'规模经济维度',detail:'截至2024年底全国门店超4000家，一线+新一线为主；2023年开放加盟后扩张速度翻倍。',subs:[],srcs:[{t:'CBNData',u:'https://www.cbndata.com/information/285167'}]},
+{name:'私域运营',score:88,why:'转换成本维度',detail:'喜茶GO小程序会员超1亿；积分体系+联名限定驱动复购，私域能力行业领先。',subs:[],srcs:[{t:'CBNData',u:'https://www.cbndata.com/information/285167'}]},
+{name:'产品创新',score:85,why:'无形资产维度',detail:'年均上新50+款；2023年联名超50次；但加盟扩张后新品标准化难度上升。',subs:[],srcs:[{t:'CBNData',u:'https://www.cbndata.com/information/285167'}]},
+{name:'品牌资产',score:90,why:'品牌资产维度',detail:'估值超600亿（2021年融资后）；与LV/藤原浩/Palace联名建立高端心智；中国茶饮国际影响力最强品牌。',subs:[],srcs:[{t:'CBNData',u:'https://www.cbndata.com/information/285167'}]},
+{name:'加盟管理',score:62,why:'规模经济维度：加盟扩张后品牌一致性的关键风险维度',detail:'2023年正式开放加盟；加盟店品质一致性是当前最大风险，Seesaw的教训说明，加盟+品控失控是高端品牌的致命组合。',subs:[],srcs:[{t:'腾讯新闻',u:'https://news.qq.com/rain/a/20250117A05UL100'}]}
+],
+dimEx:'排除"供应链成本"（茶饮供应链高度同质化，非差异化维度）；排除"下沉能力"（喜茶下沉战略尚不清晰）。',
+tColor:'var(--gold)',tLevel:'中',
+tl:[
+{p:'现在—6个月',dot:'#B8860B',t:'加盟品控是当前最高频风险。触发点：社交媒体"加盟店踩雷"帖子一旦规模化传播，高端定位将受结构性损伤——Seesaw路径已证明，加盟+品控失控是不可逆的。'},
+{p:'6—12个月',dot:'#1A6B3A',t:'霸王茶姬"东方健康"定位分流是确定性威胁，正在吸引喜茶核心用户（25-35岁高线城市女性），且价格比喜茶低10-15元。'},
+{p:'12—18个月',dot:'#1A6B3A',t:'国际化是最大护城河扩张机会。已进入新加坡/英国等市场，18个月内能否在东南亚建立规模优势，决定其是否能成为"全球茶饮品牌"。'}
+],
+recs:[
+{pri:'短期优先',c:'#FEF2F2',tc:'#991B1B',a:'建立加盟门店品控红线清单并公开承诺，品控投诉纳入加盟退出机制',r:'Seesaw路径已证明：加盟+品控失控=口碑双线崩溃。喜茶需在12个月内建立可见的品控体系。'},
+{pri:'中期优先',c:'#FBF6E8',tc:'#92400E',a:'针对霸王茶姬"东方健康"叙事，强化"潮流文化"而非跟进健康赛道',r:'健康赛道喜茶没有先发优势，跟进会稀释品牌定位。潮流/创意/联名是不可复制的护城河。'},
+{pri:'中长期布局',c:'#EDF7F1',tc:'#166534',a:'将东南亚（新加坡/曼谷/吉隆坡）作为国际化桥头堡，18个月内达到100家海外门店',r:'霸王茶姬正在快速填补东南亚空间——错过先手，国际化叙事将失去最重要支点。'}
+]},
+
+'霸王茶姬':{name:'霸王茶姬',price:'高端 22-35元',priceNote:'主力产品22-32元，以原叶茶鲜萃为卖点，主打"东方健康"叙事；国际化扩张最积极。',priceSrcs:[{t:'腾讯新闻',u:'https://news.qq.com/rain/a/20250117A05UL100'}],
+dims:[
+{name:'门店密度',score:85,why:'规模经济维度',detail:'2024年底全国门店超5000家，年内新开超2000家；东南亚布局超200家，国际化扩张最积极。',subs:[],srcs:[{t:'腾讯新闻',u:'https://news.qq.com/rain/a/20250117A05UL100'}]},
+{name:'私域运营',score:88,why:'转换成本维度',detail:'小程序会员体系精细，复购率高；依托"东方美学"视觉体系建立了强私域内容生态。',subs:[],srcs:[{t:'CBNData',u:'https://www.cbndata.com/information/285167'}]},
+{name:'产品差异化',score:85,why:'无形资产维度',detail:'原叶茶鲜萃工艺是核心壁垒，"健康/东方"叙事在高线城市女性用户中渗透率高。',subs:[],srcs:[{t:'腾讯新闻',u:'https://news.qq.com/rain/a/20250117A05UL100'}]},
+{name:'品牌资产',score:88,why:'品牌资产维度',detail:'东方美学定位独特，视觉体系高度统一；已入驻海外高端商圈，品牌势能强。',subs:[],srcs:[{t:'CBNData',u:'https://www.cbndata.com/information/285167'}]},
+{name:'加盟管理',score:78,why:'规模经济维度',detail:'加盟管理体系相对完善，品控要求高于行业平均；但超5000家规模后一致性挑战上升。',subs:[],srcs:[{t:'腾讯新闻',u:'https://news.qq.com/rain/a/20250117A05UL100'}]}
+],
+dimEx:'排除"咖啡供应链"（茶饮赛道不适用）；"数字化基础设施"已纳入私域运营维度。',
+tColor:'var(--green)',tLevel:'低',
+tl:[
+{p:'现在—6个月',dot:'#1A6B3A',t:'短期竞争格局对霸王茶姬有利。喜茶加盟品控问题、奈雪财务压力，给了霸王"高端茶饮稳定选项"的窗口期。关键任务：加速占据高端商圈核心点位。'},
+{p:'6—12个月',dot:'#B8860B',t:'东南亚本地化是最大执行挑战。如何在本地消费者中建立"东方健康"心智（而非"中国品牌"），是品牌国际化的核心命题。'},
+{p:'12—18个月',dot:'#1A6B3A',t:'18个月内需建立不可复制的供应链壁垒。原叶茶鲜萃工艺目前可被跟随，需建立独家茶园直采体系，将"霸王茶姬"与"原叶茶"深度绑定。'}
+],
+recs:[
+{pri:'短期优先',c:'#EDF7F1',tc:'#166534',a:'在竞争对手收缩期，加速占据高线城市核心商圈标杆点位',r:'高端商圈优质点位是零和博弈——当前6-12个月是以相对低成本获取战略点位的最佳窗口期。'},
+{pri:'中期优先',c:'#FBF6E8',tc:'#92400E',a:'建立茶园直采体系，将原叶茶供应链优势从产品层面转化为可验证资产',r:'"健康/东方"叙事需要可追溯供应链背书，否则面临竞品跟随风险。'},
+{pri:'中长期布局',c:'#EDF7F1',tc:'#166534',a:'在新加坡/曼谷推进本地化内容运营，建立"东方健康生活方式"跨文化叙事',r:'国际化品牌的护城河不在门店数量，而在本地消费者对价值主张的真实认同。'}
+]},
+
+'蜜雪冰城':{name:'蜜雪冰城',price:'平价 3-10元',priceNote:'明星产品2元冰淇淋、4元柠檬水；客单价全行业最低，主要战场在三线及以下城市。',priceSrcs:[{t:'招股书·港交所',u:'https://www1.hkexnews.hk/listedco/listconews/sehk/2024/0124/2024012400393.pdf'}],
+dims:[
+{name:'加盟体系',score:95,why:'规模经济维度：蜜雪的核心资产是加盟管理体系，不是产品或品牌',detail:'截至2023年底全国门店超3.6万家，加盟占比99%+；独立供应链体系（自建工厂）是加盟体系稳定运营的基础。',subs:[],srcs:[{t:'招股书',u:'https://www1.hkexnews.hk/listedco/listconews/sehk/2024/0124/2024012400393.pdf'}]},
+{name:'供应链壁垒',score:92,why:'无形资产维度：自建供应链是平价品牌抵抗成本压力的核心护城河',detail:'自建生产基地，向加盟商出售食材/包材/设备，毛利率约31%（供应链收入占总收入约85%）。',subs:[],srcs:[{t:'招股书',u:'https://www1.hkexnews.hk/listedco/listconews/sehk/2024/0124/2024012400393.pdf'}]},
+{name:'渠道下沉',score:90,why:'规模经济维度：下沉市场密度是蜜雪最难被复制的壁垒',detail:'三线及以下城市门店占比超60%；县城和乡镇市场份额接近垄断，竞争对手下沉成本极高。',subs:[],srcs:[{t:'招股书',u:'https://www1.hkexnews.hk/listedco/listconews/sehk/2024/0124/2024012400393.pdf'}]},
+{name:'品牌资产',score:55,why:'品牌资产维度',detail:'雪王IP深入人心，"你爱我我爱你蜜雪冰城甜蜜蜜"现象级传播；但品牌定位平价，无法向上突破。',subs:[],srcs:[{t:'CBNData',u:'https://www.cbndata.com/information/285167'}]},
+{name:'国际化',score:65,why:'无形资产维度：海外扩张是突破国内饱和的关键',detail:'东南亚门店超3000家，越南/印尼市场份额领先；但海外运营复杂度远高于国内，供应链本地化仍是挑战。',subs:[],srcs:[{t:'招股书',u:'https://www1.hkexnews.hk/listedco/listconews/sehk/2024/0124/2024012400393.pdf'}]}
+],
+dimEx:'排除"私域运营"（平价品牌用户粘性结构不同）；排除"品牌溢价"（蜜雪核心竞争力是规模效率而非溢价）。',
+tColor:'var(--green)',tLevel:'低',
+tl:[
+{p:'现在—6个月',dot:'#1A6B3A',t:'国内市场趋于饱和，但竞争壁垒最高。3.6万+门店已形成规模壁垒，库迪/瑞幸的价格战对蜜雪影响有限——客群基本不重叠。'},
+{p:'6—12个月',dot:'#B8860B',t:'港股上市推进中。IPO成功后将获得更多国际化扩张弹药，但也将面临资本市场对利润率的持续压力。'},
+{p:'12—18个月',dot:'#1A6B3A',t:'东南亚是下一个规模战场。越南/印尼市场已验证，菲律宾/泰国是下一批目标；供应链本地化能力决定海外扩张天花板。'}
+],
+recs:[
+{pri:'短期优先',c:'#EDF7F1',tc:'#166534',a:'维持极致供应链效率，抵抗原材料价格波动',r:'平价模型的护城河本质是成本控制——任何供应链效率下降都会直接传导至加盟商利润，进而影响体系稳定性。'},
+{pri:'中期优先',c:'#FBF6E8',tc:'#92400E',a:'加速东南亚供应链本地化，降低跨境物流成本',r:'目前东南亚门店部分原材料仍从国内运输，本地化后毛利率可提升3-5个点，是海外扩张可持续性的关键。'},
+{pri:'中长期布局',c:'#EDF7F1',tc:'#166534',a:'探索"蜜雪+"产品线，在不稀释主品牌的前提下向上延伸客单价',r:'核心品牌客单价已到天花板，新增利润来源只能靠规模（海外扩张）或品类延伸——后者风险更低。'}
+]},
+
+'SHEIN':{name:'SHEIN',price:'极致低价 平均$8-15美元/件',priceNote:'女装均价$8-15，远低于ZARA（$20-40）和H&M（$15-30）；依靠超快时尚（Ultra-fast fashion）模式，从设计到上架最快7天，每日上新数千SKU。',priceSrcs:[{t:'Bloomberg',u:'https://www.bloomberg.com/news/articles/2023-05-18/shein-is-said-to-weigh-ipo-at-90-billion-valuation'},{t:'Forbes',u:'https://www.forbes.com/sites/retailwire/2023/06/06/how-shein-became-a-global-fast-fashion-giant/'}],
+dims:[
+{name:'供应链速度',score:95,why:'无形资产维度：从设计到上架的速度是超快时尚模式的核心护城河',detail:'设计到上架最快7天（ZARA需要14天）；广州番禺供应商集群是核心资产，合作工厂超3000家。',subs:[],srcs:[{t:'Forbes',u:'https://www.forbes.com/sites/retailwire/2023/06/06/how-shein-became-a-global-fast-fashion-giant/'}]},
+{name:'数字化运营',score:92,why:'无形资产维度：算法驱动的需求预测是库存管理效率的核心',detail:'每款新品首批仅生产100-200件测试市场反应，爆款再快速补货——大幅降低库存风险，库存周转率是ZARA的3倍。',subs:[],srcs:[{t:'Bloomberg',u:'https://www.bloomberg.com/news/articles/2023-05-18/shein-is-said-to-weigh-ipo-at-90-billion-valuation'}]},
+{name:'品牌资产',score:35,why:'品牌资产维度：品牌溢价反映定价权与抗竞争能力',detail:'SHEIN的定价权极弱——用户忠诚度建立在低价而非品牌认同上，Temu的崛起直接侵蚀其价格壁垒。',subs:[],srcs:[{t:'Forbes',u:'https://www.forbes.com/sites/retailwire/2023/06/06/how-shein-became-a-global-fast-fashion-giant/'}]},
+{name:'合规风险',score:28,why:'无形资产维度：合规是出海品牌的生存前提',detail:'美国《降低门槛法》改革威胁"小额豁免"优势；欧盟数字服务法（DSA）监管压力；劳工问题持续引发品牌形象危机。',subs:[],srcs:[{t:'Reuters',u:'https://www.reuters.com/business/retail-consumer/shein-faces-pressure-supply-chain-transparency-2023-10-24/'}]},
+{name:'市场渗透率',score:88,why:'网络效应维度：全球用户规模决定平台议价能力',detail:'全球月活超1.5亿，美国快时尚市场份额约40%（2023年），在150个国家和地区有业务。',subs:[],srcs:[{t:'Bloomberg',u:'https://www.bloomberg.com/news/articles/2023-05-18/shein-is-said-to-weigh-ipo-at-90-billion-valuation'}]}
+],
+dimEx:'排除"实体门店密度"（SHEIN纯线上，该维度不适用）；排除"私域运营"（主战场是海外，微信私域逻辑不适用）。',
+tColor:'var(--gold)',tLevel:'中高',
+tl:[
+{p:'现在—6个月',dot:'#C0392B',t:'最紧迫：美国"小额豁免"政策变化直接冲击定价优势。若该政策被取消，SHEIN的价格优势将大幅削弱，美国市场（最大单一市场）收入面临系统性压力。'},
+{p:'6—12个月',dot:'#B8860B',t:'Temu全球扩张加剧价格战。拼多多旗下Temu以更激进的低价策略直接正面竞争，SHEIN的"极致低价"护城河正在被侵蚀。'},
+{p:'12—18个月',dot:'#B8860B',t:'IPO窗口与合规重建。SHEIN正在推进上市，上市前必须完成供应链透明度升级——这既是机会（融资），也是成本（合规投入）。'}
+],
+recs:[
+{pri:'短期优先',c:'#FEF2F2',tc:'#991B1B',a:'在美国"小额豁免"政策窗口关闭前，加速美国本土仓库布局',r:'本土仓储可部分对冲关税政策变化的冲击，同时改善配送时效——这是唯一能快速响应政策风险的战略动作。'},
+{pri:'中期优先',c:'#FBF6E8',tc:'#92400E',a:'建立独立品牌矩阵（如MOTF高端线），降低对单一极低价定位的依赖',r:'Temu的跟随说明纯价格护城河不可持续；品牌溢价是SHEIN当前最大的竞争短板，品牌矩阵是唯一出路。'},
+{pri:'中长期布局',c:'#EDF7F1',tc:'#166534',a:'IPO后将部分融资用于东南亚供应链本地化，降低中国制造依赖',r:'地缘政治风险使"全部依赖广州供应商"的模式越来越脆弱；东南亚本地供应链是长期供应链安全的必选项。'}
+]},
+
+'Anker':{name:'Anker',price:'中高端 $15-150美元',priceNote:'充电器/充电宝主力产品$15-40；蓝牙音箱/耳机$30-150；以"比苹果便宜、比国货有品牌感"的价格带定位，在亚马逊同类目中通常位于价格区间中上段。',priceSrcs:[{t:'Anker年报',u:'https://www.anker.com/pages/investors'},{t:'中国企业家',u:'https://www.ceweekly.cn/2023/0407/382534.shtml'}],
+dims:[
+{name:'品牌资产',score:78,why:'品牌资产维度：品牌溢价是出海品牌区别于白牌的核心资产',detail:'Anker是首个在亚马逊建立品牌溢价的中国3C品牌；在美国消费者调查中品牌信任度超过大多数欧美竞品。',subs:[],srcs:[{t:'中国企业家',u:'https://www.ceweekly.cn/2023/0407/382534.shtml'}]},
+{name:'平台运营',score:92,why:'网络效应维度：亚马逊运营能力是3C出海品牌的核心壁垒',detail:'Anker是亚马逊全球最大的第三方充电品牌，评论数量和评分是竞品的5-10倍，形成搜索算法正向循环。',subs:[],srcs:[{t:'中国企业家',u:'https://www.ceweekly.cn/2023/0407/382534.shtml'}]},
+{name:'产品研发',score:80,why:'无形资产维度：技术壁垒决定产品差异化',detail:'GaN快充技术全球领先，专利布局覆盖主要出货品类；R&D投入占收入约7%，高于行业平均5%。',subs:[],srcs:[{t:'Anker年报',u:'https://www.anker.com/pages/investors'}]},
+{name:'品类扩张',score:65,why:'无形资产维度：品类扩张能力决定品牌天花板',detail:'从充电到音频（Soundcore）、智能家居（Eufy）、投影仪（Nebula）多品牌战略；但非充电品类的护城河明显弱于核心充电业务。',subs:[],srcs:[{t:'中国企业家',u:'https://www.ceweekly.cn/2023/0407/382534.shtml'}]},
+{name:'供应链韧性',score:70,why:'无形资产维度：地缘政治背景下供应链韧性是长期变量',detail:'仍高度依赖中国制造（约85%），越南/墨西哥工厂布局刚起步；美国加征关税对成本影响在2-5%之间。',subs:[],srcs:[{t:'Anker年报',u:'https://www.anker.com/pages/investors'}]}
+],
+dimEx:'排除"门店密度"（Anker线上为主）；排除"私域运营"（主战场是亚马逊和独立站，微信私域逻辑不适用）。',
+tColor:'var(--green)',tLevel:'低',
+tl:[
+{p:'现在—6个月',dot:'#1A6B3A',t:'美国关税影响有限但需监控。Anker已将部分产能转移至越南/墨西哥，对关税冲击的缓冲能力强于纯贸易型品牌。'},
+{p:'6—12个月',dot:'#B8860B',t:'GaN充电技术持续迭代，但竞争加剧。Baseus（倍思）等国内竞品在亚马逊快速跟进，Anker的平台运营优势在被逐渐蚕食。'},
+{p:'12—18个月',dot:'#1A6B3A',t:'智能家居（Eufy）是下一个增长极。Eufy摄像头和家居安防品类在北美增速超过充电业务，是Anker最有可能建立第二增长曲线的品类。'}
+],
+recs:[
+{pri:'短期优先',c:'#EDF7F1',tc:'#166534',a:'加速越南/墨西哥供应链布局，降低关税风险敞口',r:'地缘政治风险是Anker未来3年最大的外部变量，供应链多元化是现在能做的最低成本风险对冲。'},
+{pri:'中期优先',c:'#FBF6E8',tc:'#92400E',a:'将Eufy智能家居品牌独立运营，建立区别于充电品类的品牌资产',r:'Anker品牌与充电绑定太深，Eufy需要独立的品牌叙事（家庭安全/智能生活）才能在智能家居赛道建立差异化。'},
+{pri:'中长期布局',c:'#EDF7F1',tc:'#166534',a:'从"亚马逊品牌"向"独立DTC品牌"迁移，降低平台依赖',r:'亚马逊算法变化和平台费用上涨是长期风险，Anker的品牌资产足以支撑独立站。'}
+]},
+
+'珀莱雅':{name:'珀莱雅',price:'中端 100-400元',priceNote:'主力爆款"双抗精华"定价299元，"红宝石精华"定价339元；精准卡在国际大牌（400-800元）和白牌（50元以下）之间的价格真空带。',priceSrcs:[{t:'珀莱雅年报·2023',u:'https://www.szse.cn/api/disc/info/download?id=f71f0e1f-1e3a-4ee1-8e9c-e956374b7498'}],
+dims:[
+{name:'成分叙事',score:88,why:'品牌资产维度："成分党"叙事是国货美妆建立品牌壁垒的核心路径',detail:'"双抗"（抗氧化+抗糖化）概念由珀莱雅原创，成功教育市场并形成品类心智；A醇、虾青素等成分的科普营销体系成熟。',subs:[],srcs:[{t:'珀莱雅年报',u:'https://www.szse.cn/api/disc/info/download?id=f71f0e1f-1e3a-4ee1-8e9c-e956374b7498'}]},
+{name:'KOL生态',score:85,why:'网络效应维度：内容营销是国货美妆获客的主要引擎',detail:'与李佳琦深度绑定，小红书/抖音KOL矩阵覆盖率高；但单一渠道依赖（李佳琦）是潜在风险点。',subs:[],srcs:[{t:'CBNData',u:'https://www.cbndata.com/information/285167'}]},
+{name:'研发投入',score:72,why:'无形资产维度：成分护城河的可持续性取决于研发投入',detail:'2023年研发费用1.8亿元，占收入约2.9%；低于国际大牌（5-8%），但高于国内多数同行。',subs:[],srcs:[{t:'珀莱雅年报',u:'https://www.szse.cn/api/disc/info/download?id=f71f0e1f-1e3a-4ee1-8e9c-e956374b7498'}]},
+{name:'复购率',score:75,why:'转换成本维度：复购率反映产品力与用户粘性',detail:'老用户复购率约45%，高于完美日记（约25%），但低于薇诺娜（约60%）；会员体系还在建设中。',subs:[],srcs:[{t:'珀莱雅年报',u:'https://www.szse.cn/api/disc/info/download?id=f71f0e1f-1e3a-4ee1-8e9c-e956374b7498'}]},
+{name:'渠道结构',score:68,why:'规模经济维度：渠道结构决定品牌定价权和长期利润率',detail:'线上（天猫+抖音+直播）占比约80%，线下渠道薄弱；过度依赖大促节点（双11/618）是收入结构不稳定的根源。',subs:[],srcs:[{t:'珀莱雅年报',u:'https://www.szse.cn/api/disc/info/download?id=f71f0e1f-1e3a-4ee1-8e9c-e956374b7498'}]}
+],
+dimEx:'排除"门店密度"（线上品牌为主，线下店面不是核心竞争维度）；排除"加盟体系"（直营为主）。',
+tColor:'var(--green)',tLevel:'低',
+tl:[
+{p:'现在—6个月',dot:'#1A6B3A',t:'大促节点依赖是短期最大运营风险。2024年李佳琦直播间风波后，大促集中度更高，单次直播的波动对季度收入影响超过20%。'},
+{p:'6—12个月',dot:'#B8860B',t:'国际大牌持续下探价格带。雅诗兰黛/兰蔻在天猫双11的折扣力度已到300-400元区间，与珀莱雅核心价格带直接重叠。'},
+{p:'12—18个月',dot:'#1A6B3A',t:'"科学护肤"叙事持续红利期。消费者对成分认知的提升对珀莱雅有利——"双抗"概念的先发优势在18个月内仍难以被复制。'}
+],
+recs:[
+{pri:'短期优先',c:'#EDF7F1',tc:'#166534',a:'降低对单一KOL（李佳琦）的依赖，建立多元化内容矩阵',r:'李佳琦渠道贡献超过20%的GMV，是品牌最大的单点风险。分散至更多中腰部KOL和品牌自播是必要的风险对冲。'},
+{pri:'中期优先',c:'#FBF6E8',tc:'#92400E',a:'加速线下渠道（丝芙兰/CS渠道）布局，降低大促节点收入集中度',r:'线下渠道是国际大牌的主要堡垒，珀莱雅进入线下可同时提升品牌形象和收入稳定性。'},
+{pri:'中长期布局',c:'#EDF7F1',tc:'#166534',a:'提升研发投入至4-5%（营收占比），建立实验室背书的成分专利体系',r:'当前2.9%的研发投入不足以支撑长期的"成分科技"叙事。与皮肤科医院/高校合作，将成分创新从"营销语言"升级为"可验证的技术资产"。'}
+]},
+
+'完美日记':{name:'完美日记',price:'平价 30-150元',priceNote:'主力产品30-80元，核心爆款眼影盘定价79元，口红定价49元。2021年母公司逸仙电商上市，股价已从高点下跌超90%。连续多年亏损，2023年亏损约3.7亿元。',priceSrcs:[{t:'逸仙电商年报·2023',u:'https://ir.yatsen.com/financial-information/annual-reports'},{t:'Bloomberg',u:'https://www.bloomberg.com/quote/YSG:US'}],
+dims:[
+{name:'品牌认知',score:72,why:'品牌资产维度',detail:'在18-25岁大学生群体中知名度极高；"国货平替"叙事成功建立，但"廉价"标签已固化，向上突破困难。',subs:[],srcs:[{t:'CBNData',u:'https://www.cbndata.com/information/285167'}]},
+{name:'盈利能力',score:22,why:'规模经济维度：盈利能力是品牌可持续发展的底线',detail:'2023年逸仙电商亏损约3.7亿元，已连续多年亏损；营销费用占收入约55%，是盈利困难的根本原因。',subs:[],srcs:[{t:'逸仙电商年报',u:'https://ir.yatsen.com/financial-information/annual-reports'}]},
+{name:'KOL生态',score:65,why:'网络效应维度',detail:'早期KOL矩阵建立了规模优势，但随着营销成本上升，ROI持续下降；用户获取成本已超过同类国货品牌2倍。',subs:[],srcs:[{t:'逸仙电商年报',u:'https://ir.yatsen.com/financial-information/annual-reports'}]},
+{name:'产品力',score:48,why:'无形资产维度',detail:'初代爆款（眼影盘/口红）品质口碑尚可，但新品研发能力弱；复购率约25%，低于珀莱雅45%和薇诺娜60%。',subs:[],srcs:[{t:'CBNData',u:'https://www.cbndata.com/information/285167'}]},
+{name:'多品牌战略',score:42,why:'规模经济维度：多品牌是突破单一定位天花板的路径',detail:'旗下品牌包括完美日记、小奥汀、Pink Bear、Eve Lom（收购）；但多品牌协同效应弱，资源分散导致各品牌均未建立强护城河。',subs:[],srcs:[{t:'逸仙电商年报',u:'https://ir.yatsen.com/financial-information/annual-reports'}]}
+],
+dimEx:'排除"渠道结构"（线上为主，线下CS渠道已在萎缩期）；排除"成分叙事"（完美日记的竞争力来自颜值/性价比而非成分）。',
+tColor:'var(--red)',tLevel:'高',
+tl:[
+{p:'现在—6个月',dot:'#C0392B',t:'现金流是最紧迫的生存压力。连续亏损叠加股价暴跌（-90%），融资渠道收窄；若无法在近期实现单季盈亏平衡，战略空间将进一步压缩。'},
+{p:'6—12个月',dot:'#C0392B',t:'平价赛道竞争格局持续恶化。花西子（下沉）、Colorkey（高性价比）持续蚕食核心价格带，差异化叙事越来越难建立。'},
+{p:'12—18个月',dot:'#B8860B',t:'品牌重定位是唯一可能的战略出路。继续守平价定位的结果是被更多竞品替代；向中端（150-300元）突破需要2-3年时间，窗口期正在关闭。'}
+],
+recs:[
+{pri:'短期优先',c:'#FEF2F2',tc:'#991B1B',a:'大幅削减营销投入（从55%降至35%以内），优先实现现金流转正',r:'55%的营销费率是不可持续的——维持现有收入规模的前提是先活下去。削减营销短期会损失GMV，但是避免资金链断裂的必要代价。'},
+{pri:'中期优先',c:'#FBF6E8',tc:'#92400E',a:'砍掉弱势子品牌（Pink Bear等），将资源集中到完美日记和小奥汀两个核心品牌',r:'多品牌战略在资金充裕时是扩张逻辑，在亏损收缩期是资源分散的陷阱。Eve Lom可考虑出售以回笼资金。'},
+{pri:'中长期布局',c:'#EDF7F1',tc:'#166534',a:'探索完美日记向"彩妆+护肤"套装礼盒转型，提升客单价和复购',r:'礼盒是提升客单价而不改变品牌定位的低风险路径；年轻女性送礼场景中，完美日记的品牌认知度仍是资产而非负债。'}
+]},
+
+'蓝月亮':{name:'蓝月亮',price:'中端 15-50元',priceNote:'1L洗衣液零售约25-35元，中高端线（至尊）约50元；相比立白、奥妙等竞品定价高10-20%，走品质溢价路线。2020年与大润发等KA渠道决裂，线上占比约60%。',priceSrcs:[{t:'蓝月亮年报·2023',u:'https://www.hkexnews.hk/listedco/listconews/sehk/2024/0326/2024032600449.pdf'}],
+dims:[
+{name:'品牌资产',score:82,why:'品牌资产维度',detail:'洗衣液品类市占率约20%，连续多年全国第一；品牌认知度在中国家庭主妇群体中接近100%。',subs:[],srcs:[{t:'蓝月亮年报',u:'https://www.hkexnews.hk/listedco/listconews/sehk/2024/0326/2024032600449.pdf'}]},
+{name:'渠道结构',score:55,why:'规模经济维度：渠道结构决定终端触达效率与利润分配',detail:'2020年与KA渠道决裂后，过度依赖线上（约60%收入）；线下铺货率下降导致中老年消费者触达困难。',subs:[],srcs:[{t:'蓝月亮年报',u:'https://www.hkexnews.hk/listedco/listconews/sehk/2024/0326/2024032600449.pdf'}]},
+{name:'产品创新',score:65,why:'无形资产维度',detail:'洗手液品类成功扩展（新冠期间爆发式增长）验证了产品延伸能力；但核心洗衣液品类创新速度慢于P&G。',subs:[],srcs:[{t:'蓝月亮年报',u:'https://www.hkexnews.hk/listedco/listconews/sehk/2024/0326/2024032600449.pdf'}]},
+{name:'供应链壁垒',score:72,why:'无形资产维度',detail:'自建生产基地，产能充裕；但原材料（石化衍生物）成本波动直接影响毛利率，对冲能力有限。',subs:[],srcs:[{t:'蓝月亮年报',u:'https://www.hkexnews.hk/listedco/listconews/sehk/2024/0326/2024032600449.pdf'}]},
+{name:'海外扩张',score:35,why:'无形资产维度',detail:'目前海外收入占比不足5%，主要依靠海外华人市场；在本地消费者中品牌认知几乎为零。',subs:[],srcs:[{t:'蓝月亮年报',u:'https://www.hkexnews.hk/listedco/listconews/sehk/2024/0326/2024032600449.pdf'}]}
+],
+dimEx:'排除"私域运营"（日化品类购买频次高但用户主动互动意愿低，私域ROI差）；排除"加盟管理"（直营为主）。',
+tColor:'var(--gold)',tLevel:'中',
+tl:[
+{p:'现在—6个月',dot:'#B8860B',t:'渠道矛盾是当前最紧迫的问题。2020年渠道决裂后，KA渠道份额持续流失给立白/奥妙；线上渠道竞争成本上升，两头承压。'},
+{p:'6—12个月',dot:'#B8860B',t:'P&G本土化加速蚕食中端市场。碧浪/汰渍在天猫/京东持续促销，价格已接近蓝月亮，国际品牌的品牌背书更强。'},
+{p:'12—18个月',dot:'#1A6B3A',t:'个护品类（洗手液/沐浴露）是增量机会。疫情后洗手液品类维持高渗透率，蓝月亮有成功先例，是不依赖渠道谈判的增量路径。'}
+],
+recs:[
+{pri:'短期优先',c:'#FBF6E8',tc:'#92400E',a:'主动修复与KA渠道的关系，以线上数据换线下陈列资源',r:'渠道决裂的代价已经显现——中老年消费者无法通过线上触达。修复关系的筹码是蓝月亮的线上用户数据（可帮助KA做精准营销）。'},
+{pri:'中期优先',c:'#FEF2F2',tc:'#991B1B',a:'加速个护品类（洗手液/沐浴露）的SKU扩充，建立第二增长曲线',r:'洗衣液品类已趋于成熟（市占率20%，天花板可见）；个护品类是在不改变供应链和品牌定位的前提下扩大收入规模的最低风险路径。'},
+{pri:'中长期布局',c:'#EDF7F1',tc:'#166534',a:'探索东南亚华人市场的品牌出海，以低风险方式积累海外运营能力',r:'东南亚华人市场对中国日化品牌有天然的认知基础，是出海最低门槛的第一步。'}
+]},
+
+'立白':{name:'立白',price:'平价 8-25元',priceNote:'立白洗衣粉/洗衣液主力产品8-20元，核心定位平价大众市场；历史上以"不伤手"为核心诉求，在三四线城市和农村市场有极高渗透率。',priceSrcs:[{t:'中国企业家·立白',u:'https://www.ceweekly.cn/2023/0601/384567.shtml'}],
+dims:[
+{name:'渠道铺设',score:90,why:'规模经济维度：日化平价品牌的核心竞争力是渠道触达密度',detail:'覆盖全国超100万个零售终端，三四线城市和县城渗透率超过90%；渠道下沉能力是立白最难被复制的护城河。',subs:[],srcs:[{t:'中国企业家',u:'https://www.ceweekly.cn/2023/0601/384567.shtml'}]},
+{name:'品牌认知',score:75,why:'品牌资产维度',detail:'"不伤手的立白"的品牌定位深入人心，尤其在中老年和下沉市场消费者中。',subs:[],srcs:[{t:'中国企业家',u:'https://www.ceweekly.cn/2023/0601/384567.shtml'}]},
+{name:'产品多元化',score:68,why:'规模经济维度：产品线宽度决定货架占用率和渠道谈判权',detail:'洗衣液/洗衣粉/洗洁精/沐浴露多品类布局，单一渠道可实现多SKU铺货，提升渠道合作粘性。',subs:[],srcs:[{t:'中国企业家',u:'https://www.ceweekly.cn/2023/0601/384567.shtml'}]},
+{name:'品牌资产',score:42,why:'品牌资产维度：品牌溢价反映定价权和抗竞争能力',detail:'平价定位导致定价权弱；消费升级趋势下，核心用户（中老年/下沉市场）有向蓝月亮/P&G迁移的趋势。',subs:[],srcs:[{t:'CBNData',u:'https://www.cbndata.com/information/285167'}]},
+{name:'线上转型',score:48,why:'无形资产维度：线上转型能力决定品牌能否触达新生代消费者',detail:'天猫/京东旗舰店运营能力弱于蓝月亮和外资品牌；抖音/小红书的内容营销布局滞后。',subs:[],srcs:[{t:'中国企业家',u:'https://www.ceweekly.cn/2023/0601/384567.shtml'}]}
+],
+dimEx:'排除"海外扩张"（立白目前无实质性国际化布局）；排除"供应链创新"（日化供应链成熟，差异化有限）。',
+tColor:'var(--gold)',tLevel:'中',
+tl:[
+{p:'现在—6个月',dot:'#B8860B',t:'消费升级侵蚀核心用户。下沉市场消费者的品牌意识在提升，蓝月亮和P&G的促销价格已接近立白，价格洼地优势在收窄。'},
+{p:'6—12个月',dot:'#B8860B',t:'线上渠道竞争力不足问题将显性化。随着年轻一代（25-35岁）成为日化消费主力，立白在小红书/抖音的缺位将导致品牌老化加速。'},
+{p:'12—18个月',dot:'#1A6B3A',t:'渠道下沉优势在下沉市场消费升级过程中反而是机会。三四线城市消费能力提升，立白有机会向这部分用户推高客单价产品线，实现结构性升级。'}
+],
+recs:[
+{pri:'短期优先',c:'#FBF6E8',tc:'#92400E',a:'在核心下沉渠道推出"立白高端线"，价格区间15-25元，承接消费升级需求',r:'下沉市场消费升级是确定性趋势，立白的渠道覆盖是高端线快速铺货的天然优势。'},
+{pri:'中期优先',c:'#FEF2F2',tc:'#991B1B',a:'加大抖音/小红书内容营销投入，重建与25-35岁消费者的品牌连接',r:'核心用户的年龄结构是立白最大的长期风险——如果不能在年轻消费者心中建立认知，10年后品牌将随着老用户群体消费力下降而自然萎缩。'},
+{pri:'中长期布局',c:'#EDF7F1',tc:'#166534',a:'探索立白与其他快消品的联合渠道下沉，将渠道资产货币化',r:'100万终端的渠道网络是立白最被低估的资产——通过与其他快消品牌合作联合配送，可在不增加核心业务投入的情况下将渠道资产转化为额外收入。'}
+]}
 };
 
-const talias = {
+const talias={
   'manner':'manner','manner coffee':'manner',
   'm stand':'mstand','mstand':'mstand',
   'seesaw':'seesaw','seesaw coffee':'seesaw',
@@ -563,34 +1368,49 @@ const talias = {
   'shein':'SHEIN',
   'anker':'Anker',
   '珀莱雅':'珀莱雅','proya':'珀莱雅',
-  '完美日记':'完美日记','perfect diary':'完美日记',
-  '蓝月亮':'蓝月亮','blue moon':'蓝月亮',
+  '完美日记':'完美日记',
+  '蓝月亮':'蓝月亮',
   '立白':'立白','liby':'立白'
 };
 
-function resolveKey(raw) {
-  const k = raw.toLowerCase().replace(/\s+/g,'');
-  return talias[k] || talias[raw.toLowerCase()] || raw;
+function resolveKey(raw){
+  const k=raw.toLowerCase().replace(/\s+/g,'');
+  return talias[k]||talias[raw.toLowerCase()]||raw;
 }
 
-function renderSingle(d) {
-  const dimCards = d.dims.map(dim => `
-    <div class="t-dim">
+function renderSingle(d){
+  const dimCards=d.dims.map(dim=>{
+    const hasSubs=dim.subs&&dim.subs.length>0;
+    const expandHtml=hasSubs?`
+      <div class="t-dim-expand">
+        ${dim.subs.map(s=>`<div class="t-dim-expand-row"><span class="t-dim-expand-name">${s.n}</span><span class="t-dim-expand-score">${s.s}</span><span class="t-dim-expand-note">${s.note}</span></div>`).join('')}
+        <div class="t-dim-expand-theory">理论来源：${dim.subs[0]?.theory||'—'}</div>
+      </div>
+      <button class="t-expand-btn" onclick="toggleExpand(this)">展开子指标 ▾</button>`:'';
+    return `<div class="t-dim">
       <p class="t-dn">${dim.name}</p>
       <p class="t-dw">${dim.why}</p>
       <div class="t-bb"><div class="t-bf" style="width:${dim.score}%;background:${sc(dim.score)}"></div></div>
       <p class="t-dnum">${dim.score}/100 · ${dim.detail} ${sl(dim.srcs)}</p>
-    </div>`).join('');
-  const tlItems = d.tl.map(t => `
+      ${expandHtml}
+    </div>`;
+  }).join('');
+  const tlItems=d.tl.map((t,i)=>`
     <div class="t-tli">
-      <div class="t-tld" style="background:${t.dot}"></div>
-      <div><p class="t-tlp">${t.p}</p><p class="t-tlt">${t.t}</p></div>
+      <div class="t-tld-wrap">
+        <div class="t-tld" style="background:${t.dot}"></div>
+        ${i<d.tl.length-1?'<div class="t-tl-line"></div>':''}
+      </div>
+      <div>
+        <p class="t-tlp">${t.p}</p>
+        <p class="t-tlt">${t.t}</p>
+      </div>
     </div>`).join('');
-  const recItems = d.recs.map(r => `
+  const recItems=d.recs.map(r=>`
     <div class="t-ri">
       <div class="t-rh">
         <span class="t-pb" style="background:${r.c};color:${r.tc}">${r.pri}</span>
-        <span style="font-size:13px;font-weight:500;color:var(--ink)">${r.a}</span>
+        <span class="t-ra">${r.a}</span>
       </div>
       <p class="t-rr"><strong>取舍理由：</strong>${r.r}</p>
     </div>`).join('');
@@ -599,227 +1419,118 @@ function renderSingle(d) {
     <p class="t-sh">价格带定位</p>
     <div class="t-card"><p class="t-ct">${d.name} 的定价结构</p><p class="t-cb">${d.priceNote} ${sl(d.priceSrcs)}</p></div>
     <p class="t-sh">护城河五维诊断</p>
-    <div class="t-fw"><strong>维度选取说明：</strong>${d.dimEx}</div>
+    <div class="t-fw"><strong>维度选取说明：</strong>${d.dimEx}<br><span style="font-size:11px;color:var(--ink-4)">理论框架：Helmer 7 Powers · Aaker Brand Equity · Buffett Economic Moat</span></div>
     <div class="t-dim-grid">${dimCards}</div>
     <p class="t-sh">竞争威胁时间轴</p>
-    <div class="t-card" style="border-left:2.5px solid ${d.tColor}">
+    <div class="t-card" style="border-left:2px solid ${d.tColor}">
       <p class="t-ct">综合威胁水平：<span style="color:${d.tColor};font-weight:600">${d.tLevel}</span></p>
-      <div class="t-tl" style="margin-top:10px">${tlItems}</div>
+      <div class="t-tl" style="margin-top:12px">${tlItems}</div>
     </div>
     <p class="t-sh">策略建议（含优先级与取舍理由）</p>
     ${recItems}
     <div class="t-div"></div>`;
 }
 
-function tRun() {
-  const raw = document.getElementById('tbi').value.trim();
-  if(!raw) return;
-  const key = resolveKey(raw);
-  const d = tdb[key];
-  const out = document.getElementById('tout');
-  if(!d) {
-    out.innerHTML = `<div class="t-fw">该品牌暂无内置数据。当前支持：<strong>Manner · M Stand · Seesaw · 喜茶 · 霸王茶姬 · 蜜雪冰城 · SHEIN · Anker · 珀莱雅 · 完美日记 · 蓝月亮 · 立白</strong><br>或切换至"上传新品牌"模式，粘贴任意品牌资料由AI实时分析。</div>`;
+function toggleExpand(btn){
+  const dim=btn.closest('.t-dim');
+  const expanded=dim.classList.toggle('expanded');
+  btn.textContent=expanded?'收起子指标 ▴':'展开子指标 ▾';
+}
+
+function tRun(){
+  const raw=document.getElementById('tbi').value.trim();
+  if(!raw)return;
+  const key=resolveKey(raw);
+  const d=tdb[key];
+  const out=document.getElementById('tout');
+  if(!d){
+    out.innerHTML=`<div class="t-fw">该品牌暂无内置数据。当前支持：<strong>Manner · M Stand · Seesaw · 喜茶 · 霸王茶姬 · 蜜雪冰城 · SHEIN · Anker · 珀莱雅 · 完美日记 · 蓝月亮 · 立白</strong><br>或切换至"上传新品牌"模式，粘贴任意品牌资料由AI实时分析。</div>`;
     return;
   }
-  out.innerHTML = renderSingle(d);
+  out.innerHTML=renderSingle(d);
 }
-document.getElementById('tbi').addEventListener('keydown', e => { if(e.key==='Enter') tRun(); });
+document.getElementById('tbi').addEventListener('keydown',e=>{if(e.key==='Enter')tRun()});
 
-// RANDOM
-function tRandom() {
-  const all = Object.values(sectorBrands).flat();
-  const b = all[Math.floor(Math.random()*all.length)];
-  document.getElementById('tbi').value = b;
+function tRandom(){
+  const all=Object.values(sectorBrands).flat();
+  const b=all[Math.floor(Math.random()*all.length)];
+  document.getElementById('tbi').value=b;
   tRun();
 }
 
-// COMPARE
-async function cmpRun() {
-  const aRaw = document.getElementById('cmp-a').value.trim();
-  const bRaw = document.getElementById('cmp-b').value.trim();
-  if(!aRaw || !bRaw) return;
-  const out = document.getElementById('tout');
-  const aKey = resolveKey(aRaw);
-  const bKey = resolveKey(bRaw);
-  const dA = tdb[aKey];
-  const dB = tdb[bKey];
-
-  // If both in DB, do local compare
-  if(dA && dB) {
-    out.innerHTML = renderCompare(dA, dB);
-    return;
-  }
-
-  // If one or both not in DB, use AI
-  out.innerHTML = `<div class="t-loading"><div class="t-spinner"></div>正在对比分析 ${aRaw} vs ${bRaw}，预计30秒…</div>`;
-  try {
-    const prompt = `你是一位咨询顾问，请对以下两个品牌进行战略对比分析：品牌A：${aRaw}，品牌B：${bRaw}。
-请按以下结构输出，用中文，简洁专业：
-
-1. 价格带对比（各一句话）
-2. 核心差异点（3条，每条格式：[维度]：A的做法 vs B的做法 —— 战略含义）
-3. 如果你是A的CEO，最该警惕B的哪一步（1-2句话）
-4. 如果你是B的CEO，最该警惕A的哪一步（1-2句话）
-5. 各自短期优先策略（A一条，B一条，各含取舍理由）
-
-数据如有不确定，请说明。`;
-
-    const resp = await fetch("https://api.anthropic.com/v1/messages", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        model: "claude-sonnet-4-20250514",
-        max_tokens: 1000,
-        messages: [{ role: "user", content: prompt }]
-      })
-    });
-    const data = await resp.json();
-    const text = data.content?.map(i => i.text||'').join('') || '分析失败，请重试。';
-    out.innerHTML = `
-      <div class="t-div"></div>
-      <p class="t-sh">AI 对比分析 · ${aRaw} vs ${bRaw}</p>
-      <div class="t-card"><p class="t-cb" style="white-space:pre-wrap;line-height:1.8">${text}</p></div>
-      <div class="t-div"></div>`;
-  } catch(e) {
-    out.innerHTML = `<div class="t-error">分析失败，请检查网络连接后重试。</div>`;
-  }
-}
-
-function renderCompare(dA, dB) {
-  const dimMap = {};
-  dA.dims.forEach(d => dimMap[d.name] = { a: d.score });
-  dB.dims.forEach(d => { if(dimMap[d.name]) dimMap[d.name].b = d.score; });
-  const sharedDims = Object.entries(dimMap).filter(([,v]) => v.a !== undefined && v.b !== undefined);
-  const quickRows = sharedDims.slice(0,4).map(([name,v]) => `
-    <div class="cmp-row">
-      <div class="cmp-row-label">${name}</div>
-      <div class="cmp-row-val">${dA.name} <strong style="margin-left:auto;color:${sc(v.a)}">${v.a}</strong></div>
-      <div class="cmp-row-val">${dB.name} <strong style="margin-left:auto;color:${sc(v.b)}">${v.b}</strong></div>
-    </div>`).join('');
-  const priceDiff = `
-    <div class="cmp-row">
-      <div class="cmp-row-label">价格带</div>
-      <div class="cmp-row-val">${dA.price}</div>
-      <div class="cmp-row-val">${dB.price}</div>
-    </div>
-    <div class="cmp-row">
-      <div class="cmp-row-label">威胁等级</div>
-      <div class="cmp-row-val" style="color:${dA.tColor};font-weight:500">${dA.tLevel}</div>
-      <div class="cmp-row-val" style="color:${dB.tColor};font-weight:500">${dB.tLevel}</div>
-    </div>`;
-  const recA = dA.recs[0];
-  const recB = dB.recs[0];
-  return `
-    <div class="t-div"></div>
-    <p class="t-sh">快速对比速览</p>
-    <div class="cmp-quick">${priceDiff}${quickRows}</div>
-    <p class="t-sh">各自短期优先策略</p>
-    <div class="cmp-each">
-      <div class="cmp-each-card">
-        <div class="cmp-each-name">${dA.name} · ${recA.pri}</div>
-        <div class="cmp-each-item" style="font-weight:500;color:var(--ink);margin-bottom:6px">${recA.a}</div>
-        <div class="cmp-each-item">取舍理由：${recA.r}</div>
-      </div>
-      <div class="cmp-each-card">
-        <div class="cmp-each-name">${dB.name} · ${recB.pri}</div>
-        <div class="cmp-each-item" style="font-weight:500;color:var(--ink);margin-bottom:6px">${recB.a}</div>
-        <div class="cmp-each-item">取舍理由：${recB.r}</div>
-      </div>
-    </div>
-    <p class="t-sh">完整诊断</p>
-    <p style="font-size:12px;color:var(--ink-3);margin-bottom:12px">点击下方查看两个品牌的完整五维分析与威胁时间轴</p>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
-      <button onclick="document.getElementById('tout').innerHTML=renderSingleWrapper('${dA.name.replace("'","\\'")}');scrollToTool()" style="padding:10px;font-size:13px;border:1.5px solid var(--bg-2);border-radius:var(--r-sm);background:none;cursor:pointer;color:var(--ink-2);font-family:'DM Sans',sans-serif">查看 ${dA.name} 完整分析 →</button>
-      <button onclick="document.getElementById('tout').innerHTML=renderSingleWrapper('${dB.name.replace("'","\\'")}');scrollToTool()" style="padding:10px;font-size:13px;border:1.5px solid var(--bg-2);border-radius:var(--r-sm);background:none;cursor:pointer;color:var(--ink-2);font-family:'DM Sans',sans-serif">查看 ${dB.name} 完整分析 →</button>
-    </div>
-    <div class="t-div"></div>`;
-}
-
-function renderSingleWrapper(name) {
-  const key = resolveKey(name);
-  const d = tdb[key];
-  if(!d) return '<div class="t-fw">数据暂无</div>';
+function renderSingleWrapper(name){
+  const d=tdb[resolveKey(name)];
+  if(!d)return'<div class="t-fw">数据暂无</div>';
   return renderSingle(d);
 }
 
-function scrollToTool() { document.getElementById('tool').scrollIntoView({behavior:'smooth'}); }
-
-document.getElementById('cmp-a').addEventListener('keydown', e => { if(e.key==='Enter') cmpRun(); });
-document.getElementById('cmp-b').addEventListener('keydown', e => { if(e.key==='Enter') cmpRun(); });
-
-// UPLOAD / AI MODE
-async function uploadRun() {
-  const text = document.getElementById('upload-text').value.trim();
-  if(!text) return;
-  if(text.length > 50000) { alert('文字超过5万字限制，请精简后再试'); return; }
-  const btn = document.getElementById('upload-btn');
-  btn.disabled = true;
-  btn.innerHTML = '<div class="t-spinner" style="width:16px;height:16px;border-width:2px;margin:0"></div> 分析中…';
-  const out = document.getElementById('tout');
-  out.innerHTML = `<div class="t-loading"><div class="t-spinner"></div>Claude API 正在分析，预计30-60秒…</div>`;
-  try {
-    const prompt = `你是一位咨询顾问，擅长消费品牌竞争策略分析。以下是关于一个品牌的资料：
-
-${text}
-
-请基于以下框架（消费品牌咨询项目实战框架）输出该品牌的竞争策略诊断。严格按以下JSON格式输出，不要有任何额外文字：
-
-{
-  "name": "品牌名",
-  "price": "价格带定位（简短，如：中端 XX-XX元）",
-  "priceNote": "定价结构详细说明（2-3句话，包含核心定价策略和竞争含义）",
-  "dims": [
-    {
-      "name": "维度名称",
-      "score": 数字0-100,
-      "why": "为什么选这个维度（一句话）",
-      "detail": "具体数据或表现（2-3句话，尽量引用资料中的数字）"
-    }
-  ],
-  "dimEx": "排除了哪些维度及原因",
-  "tLevel": "威胁等级（低/中/中高/高/极高）",
-  "tl": [
-    {"p": "时间段", "dot": "#颜色（低:#16A34A 中:#D97706 高:#DC2626）", "t": "该时段的威胁描述和触发点"}
-  ],
-  "recs": [
-    {"pri": "优先级标签", "c": "#背景色", "tc": "#文字色", "a": "策略行动", "r": "取舍理由"}
-  ]
+async function cmpRun(){
+  const aRaw=document.getElementById('cmp-a').value.trim();
+  const bRaw=document.getElementById('cmp-b').value.trim();
+  if(!aRaw||!bRaw)return;
+  const out=document.getElementById('tout');
+  const dA=tdb[resolveKey(aRaw)];
+  const dB=tdb[resolveKey(bRaw)];
+  if(dA&&dB){out.innerHTML=renderCompare(dA,dB);return}
+  out.innerHTML=`<div class="t-loading"><div class="t-spinner"></div>正在对比分析 ${aRaw} vs ${bRaw}，预计30秒…</div>`;
+  try{
+    const resp=await fetch("https://api.anthropic.com/v1/messages",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({model:"claude-sonnet-4-20250514",max_tokens:1000,messages:[{role:"user",content:`你是一位咨询顾问，请对以下两个品牌进行战略对比分析：品牌A：${aRaw}，品牌B：${bRaw}。按以下结构输出，用中文，简洁专业：\n1. 价格带对比（各一句话）\n2. 核心差异点（3条，每条：[维度]：A的做法 vs B的做法 —— 战略含义）\n3. A的CEO最该警惕B的哪一步（1-2句话）\n4. B的CEO最该警惕A的哪一步（1-2句话）\n5. 各自短期优先策略（A一条，B一条，各含取舍理由）`}]})});
+    const data=await resp.json();
+    const text=data.content?.map(i=>i.text||'').join('')||'分析失败，请重试。';
+    out.innerHTML=`<div class="t-div"></div><p class="t-sh">AI 对比分析 · ${aRaw} vs ${bRaw}</p><div class="t-card"><p class="t-cb" style="white-space:pre-wrap;line-height:1.8">${text}</p></div><div class="t-div"></div>`;
+  }catch(e){out.innerHTML=`<div class="t-error">分析失败，请检查网络连接后重试。</div>`}
 }
 
-dims要有5个维度，每个维度根据品牌特点选取最相关的，并说明选取理由和排除理由。
-tl要有3个时间段。recs要有3条，优先级从高到低，颜色：高优先用红系(c:#FEF2F2,tc:#991B1B)，中用橙系(c:#FFFBEB,tc:#92400E)，低用绿系(c:#F0FDF4,tc:#166534)。`;
+function renderCompare(dA,dB){
+  const sharedDims={};
+  dA.dims.forEach(d=>sharedDims[d.name]={a:d.score});
+  dB.dims.forEach(d=>{if(sharedDims[d.name])sharedDims[d.name].b=d.score});
+  const shared=Object.entries(sharedDims).filter(([,v])=>v.a!==undefined&&v.b!==undefined).slice(0,4);
+  const rows=`
+    <div class="cmp-row"><div class="cmp-rlabel">价格带</div><div class="cmp-rval">${dA.price}</div><div class="cmp-rval">${dB.price}</div></div>
+    <div class="cmp-row"><div class="cmp-rlabel">威胁等级</div><div class="cmp-rval" style="color:${dA.tColor};font-weight:500">${dA.tLevel}</div><div class="cmp-rval" style="color:${dB.tColor};font-weight:500">${dB.tLevel}</div></div>
+    ${shared.map(([name,v])=>`<div class="cmp-row"><div class="cmp-rlabel">${name}</div><div class="cmp-rval">${dA.name} <strong style="margin-left:auto;color:${sc(v.a)}">${v.a}</strong></div><div class="cmp-rval">${dB.name} <strong style="margin-left:auto;color:${sc(v.b)}">${v.b}</strong></div></div>`).join('')}`;
+  const recA=dA.recs[0],recB=dB.recs[0];
+  return`<div class="t-div"></div><p class="t-sh">快速对比</p><div class="cmp-quick">${rows}</div>
+    <p class="t-sh">各自短期优先策略</p>
+    <div class="cmp-each">
+      <div class="cmp-card"><div class="cmp-card-name">${dA.name} · ${recA.pri}</div><div class="cmp-card-item" style="font-weight:500;color:var(--ink);margin-bottom:6px">${recA.a}</div><div class="cmp-card-item">取舍理由：${recA.r}</div></div>
+      <div class="cmp-card"><div class="cmp-card-name">${dB.name} · ${recB.pri}</div><div class="cmp-card-item" style="font-weight:500;color:var(--ink);margin-bottom:6px">${recB.a}</div><div class="cmp-card-item">取舍理由：${recB.r}</div></div>
+    </div>
+    <p class="t-sh">完整诊断</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+      <button onclick="document.getElementById('tout').innerHTML=renderSingleWrapper('${dA.name.replace(/'/g,"\\'")}');window.scrollTo({top:document.getElementById('tool').offsetTop,behavior:'smooth'})" style="padding:10px;font-size:13px;border:1px solid var(--bg-3);border-radius:var(--r-sm);background:none;cursor:pointer;color:var(--ink-2);font-family:var(--sans);transition:all .15s">查看 ${dA.name} 完整分析 →</button>
+      <button onclick="document.getElementById('tout').innerHTML=renderSingleWrapper('${dB.name.replace(/'/g,"\\'")}');window.scrollTo({top:document.getElementById('tool').offsetTop,behavior:'smooth'})" style="padding:10px;font-size:13px;border:1px solid var(--bg-3);border-radius:var(--r-sm);background:none;cursor:pointer;color:var(--ink-2);font-family:var(--sans);transition:all .15s">查看 ${dB.name} 完整分析 →</button>
+    </div>
+    <div class="t-div"></div>`;
+}
+document.getElementById('cmp-a').addEventListener('keydown',e=>{if(e.key==='Enter')cmpRun()});
+document.getElementById('cmp-b').addEventListener('keydown',e=>{if(e.key==='Enter')cmpRun()});
 
-    const resp = await fetch("https://api.anthropic.com/v1/messages", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        model: "claude-sonnet-4-20250514",
-        max_tokens: 1000,
-        messages: [{ role: "user", content: prompt }]
-      })
-    });
-    const data = await resp.json();
-    let raw = data.content?.map(i => i.text||'').join('') || '';
-    raw = raw.replace(/```json|```/g,'').trim();
-    try {
-      const d = JSON.parse(raw);
-      d.priceSrcs = [];
-      d.dims.forEach(dim => { dim.srcs = []; });
-      out.innerHTML = `
-        <div class="t-fw" style="background:#F0FDF4;border-color:#BBF7D0;color:#166534">✓ AI 已完成分析 · 基于消费品牌咨询项目实战框架 · 结果仅供参考，建议结合公开数据验证</div>
-        ${renderSingle(d)}`;
-    } catch(parseErr) {
-      out.innerHTML = `
-        <div class="t-div"></div>
-        <p class="t-sh">AI 分析结果</p>
-        <div class="t-card"><p class="t-cb" style="white-space:pre-wrap;line-height:1.8">${raw}</p></div>
-        <div class="t-div"></div>`;
+async function uploadRun(){
+  const text=document.getElementById('upload-text').value.trim();
+  if(!text)return;
+  if(text.length>50000){alert('文字超过5万字限制，请精简后再试');return}
+  const btn=document.getElementById('upload-btn');
+  btn.disabled=true;btn.innerHTML='<div class="t-spinner" style="width:14px;height:14px;border-width:2px;margin:0"></div> 分析中…';
+  const out=document.getElementById('tout');
+  out.innerHTML=`<div class="t-loading"><div class="t-spinner"></div>Claude API 正在分析，预计30-60秒…</div>`;
+  try{
+    const prompt=`你是一位咨询顾问，擅长消费品牌竞争策略分析。以下是关于一个品牌的资料：\n\n${text}\n\n请基于以下框架（消费品牌咨询项目实战框架）输出该品牌的竞争策略诊断。严格按以下JSON格式输出，不要有任何额外文字：\n\n{"name":"品牌名","price":"价格带定位（简短，如：中端 XX-XX元）","priceNote":"定价结构详细说明（2-3句话）","priceSrcs":[],"dims":[{"name":"维度名称","score":数字0-100,"why":"为什么选这个维度（一句话，需说明对应五维框架中哪个维度：品牌资产/网络效应/转换成本/规模经济/无形资产）","detail":"具体数据或表现（2-3句话）","subs":[],"srcs":[]}],"dimEx":"排除了哪些维度及原因","tLevel":"威胁等级（低/中/中高/高/极高）","tl":[{"p":"时间段","dot":"#颜色（低:#1A6B3A 中:#B8860B 高:#C0392B）","t":"威胁描述和触发点"}],"recs":[{"pri":"优先级标签","c":"#背景色","tc":"#文字色","a":"策略行动","r":"取舍理由"}]}\n\ndims要有5个维度，每个维度说明对应Helmer/Aaker/Buffett框架中的哪个理论。tl要有3个时间段。recs要有3条，颜色：高优先(c:#FEF2F2,tc:#991B1B)，中(c:#FBF6E8,tc:#92400E)，低(c:#EDF7F1,tc:#166534)。`;
+    const resp=await fetch("https://api.anthropic.com/v1/messages",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({model:"claude-sonnet-4-20250514",max_tokens:1000,messages:[{role:"user",content:prompt}]})});
+    const data=await resp.json();
+    let raw=data.content?.map(i=>i.text||'').join('')||'';
+    raw=raw.replace(/```json|```/g,'').trim();
+    try{
+      const d=JSON.parse(raw);
+      out.innerHTML=`<div class="t-fw" style="background:#EDF7F1;border-color:#A7E3BF;color:#1A6B3A">✓ AI 已完成分析 · 基于管理咨询实习的实战框架 · 结果仅供参考，建议结合公开数据验证</div>${renderSingle(d)}`;
+    }catch{
+      out.innerHTML=`<div class="t-div"></div><p class="t-sh">AI 分析结果</p><div class="t-card"><p class="t-cb" style="white-space:pre-wrap;line-height:1.8">${raw}</p></div><div class="t-div"></div>`;
     }
-  } catch(e) {
-    out.innerHTML = `<div class="t-error">分析失败，请检查网络连接后重试。错误信息：${e.message}</div>`;
+  }catch(e){
+    out.innerHTML=`<div class="t-error">分析失败，请检查网络连接后重试。</div>`;
   }
-  btn.disabled = false;
-  btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10,8 16,12 10,16"/></svg> 一键诊断';
+  btn.disabled=false;btn.innerHTML='<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10,8 16,12 10,16"/></svg> 一键诊断';
 }
 </script>
 </body>
